@@ -1,0 +1,44 @@
+.custom-image img {
+  display: block;
+}
+.custom-card {
+  padding: 10px 16px;
+}
+.custom-card p {
+  color: #999;
+}
+
+.table,
+.table * {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.table {
+  display: table;
+  // width: 80%;
+  border-collapse: collapse;
+}
+
+.table-tr {
+  display: table-row;
+  height: 30px;
+}
+
+.table-th {
+  display: table-cell;
+  font-weight: bold;
+  height: 100%;
+  border: 1px solid gray;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #E5E5E5;
+}
+
+.table-td {
+  display: table-cell;
+  height: 100%;
+  border: 1px solid gray;
+  text-align: center;
+  vertical-align: middle;
+}
