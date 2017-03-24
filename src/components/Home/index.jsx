@@ -7,7 +7,6 @@ import Content0 from './Content0';
 import Content1 from './Content1';
 import Content2 from './Content2';
 import Content3 from './Content3';
-import Footer from './Footer';
 
 import './less/antMotion_style.less';
 
@@ -45,7 +44,7 @@ export default class Home extends React.Component {
       <Content1 id="content_9_0" key="content_9_0" isMode={this.state.isMode}/>,
       <Content2 id="content_2_0" key="content_2_0" isMode={this.state.isMode}/>,
       <Content3 id="content_3_0" key="content_3_0" isMode={this.state.isMode}/>,
-      <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>,
+      // <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>,
     ];
     return (
       <div className="templates-wrapper">

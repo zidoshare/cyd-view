@@ -1,4 +1,5 @@
 import Nav from 'Components/Nav'
+import Footer from 'Components/Footer'
 import React from 'react'
 import 'antd/dist/antd.min.css'
 import enquire from 'enquire.js'
@@ -32,10 +33,12 @@ class AppLayout extends React.Component {
   /* eslint-enable no-unused-expressions */
   }
   render() {
+    //<div style={{clear:'both'}}></div>
     return (
-    <div className="templates-wrapper">
+    <div>
       <Nav id="nav_1_0" key="nav_1_0" isMode={this.state.isMode}/>
       {this.props.children}
+      <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>
     </div>
     )
   }
