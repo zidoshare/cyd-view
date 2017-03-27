@@ -1,10 +1,10 @@
 import React from 'react'
-import { Spin, Card, Layout, Pagination} from 'antd'
+import Commodity from 'Components/Commodity'
+import { Spin,  Layout, Pagination} from 'antd'
 import QueueAnim from 'rc-queue-anim'
-import {Link} from 'react-router'
 const Content = Layout.Content
-import './News.scss'
-export default class News extends React.Component {
+
+export default class Commodities extends React.Component {
   constructor( props ) {
     super( props )
     this.state = {
@@ -13,7 +13,7 @@ export default class News extends React.Component {
     }
   }
   componentDidMount() {
-    fetch( '/api/pub/news/index', {
+    fetch( '/api/pub/commodity/index', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export default class News extends React.Component {
       response:null,
       loading:true
     })
-    fetch('/api/pub/news/index?p='+pageNum, {
+    fetch('/api/pub/commodity/index?p='+pageNum, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -48,17 +48,7 @@ export default class News extends React.Component {
       for (let i = 0;i < content.length;i++) {
         let element = content[ i ]
         let dom = (<div  className = "custom"  key = {'card' + i}>
-          <Link to="/news/1"><Card style={{ width: 400}} bodyStyle={{ padding: 0 }} bordered={false}>
-                     <div className="custom-image">
-                       <img alt="example" width="100%" src={/*element.imageUrl*/ 'https://zos.alipayobjects.com/rmsportal/eXjuyOxVeNuttdH.jpg@450w'}/>
-                     </div>
-                     <div className="custom-card">
-                       <h3>{element.title}</h3>
-                       <p>
-                         {element.description}
-                       </p>
-                     </div>
-                   </Card></Link>
+          <Commodity title={element.title} image={element.image} description={element.description} images={element.images}/>
         </div>)
         list.push(dom)
       }
@@ -77,12 +67,4 @@ export default class News extends React.Component {
     </Content>
     )
   }
-}
-
-News.propTypes = {
-  id: React.PropTypes.string,
-}
-
-News.defaultProps = {
-  className: 'content7',
 }

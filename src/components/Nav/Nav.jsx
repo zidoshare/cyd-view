@@ -29,8 +29,8 @@ class Header extends React.Component {
     const navData = {
       menu1: <Link to="/">首页</Link>,
       menu2: <Link to="/news">新闻动态</Link>,
-      menu3: <Link>合作伙伴</Link>,
-      menu4: <Link>产品专栏</Link>,
+      menu3: <Link to="/partner">合作伙伴</Link>,
+      menu4: <Link to="/commodities">产品专栏</Link>,
       menu5: <Link>招贤纳士</Link>,
     };
 

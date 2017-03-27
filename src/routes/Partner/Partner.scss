@@ -1,0 +1,15 @@
+ul.partner,
+ul.partner>li {
+  list-style: none;
+  text-align: center;
+  font-size:20px;
+}
+
+ul.partner > li:nth-of-type(even){
+  background:#00b2f4;
+  color:white;
+}
+
+ul.partner div.item>div{
+  padding:20px 200px;
+}
