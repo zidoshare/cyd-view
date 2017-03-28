@@ -44,7 +44,6 @@ export default class News extends React.Component {
     const {response} = this.state
     if ( response != null ) {
       const {content} = response.data
-      console.log(content)
       for (let i = 0;i < content.length;i++) {
         let element = content[ i ]
         let dom = (<div  className = "custom"  key = {'card' + i}>
@@ -65,10 +64,10 @@ export default class News extends React.Component {
     }
     return (
     <Content style={{ padding: '10px' }}>
-      <Spin delay={500} spinning={this.state.loading}>
+      <Spin spinning={this.state.loading}>
         <div style={{minHeight:600}}>
           
-            {list.length > 0 ? <QueueAnim delay={500}>{list}</QueueAnim> : null}
+            {list.length > 0 ? <QueueAnim>{list}</QueueAnim> : null}
             <div style={{clear:'both'}}></div>
           
         </div>

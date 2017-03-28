@@ -3,6 +3,7 @@ import Footer from 'Components/Footer'
 import React from 'react'
 import 'antd/dist/antd.min.css'
 import enquire from 'enquire.js'
+import QueueAnim from 'rc-queue-anim'
 
 class AppLayout extends React.Component {
   constructor( props ) {
@@ -35,11 +36,13 @@ class AppLayout extends React.Component {
   render() {
     //<div style={{clear:'both'}}></div>
     return (
-    <div>
-      <Nav id="nav_1_0" key="nav_1_0" isMode={this.state.isMode}/>
-      {this.props.children}
-      <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>
-    </div>
+    <QueueAnim type="bottom">
+      {[
+        <Nav id="nav_1_0" key="nav_1_0" isMode={this.state.isMode}/>,
+        <div key="content_main">{this.props.children}</div>,
+        <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>
+      ]}
+    </QueueAnim>
     )
   }
 }
