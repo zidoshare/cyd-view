@@ -31,7 +31,7 @@ class Header extends React.Component {
       menu2: <Link to="/news">新闻动态</Link>,
       menu3: <Link to="/partner">合作伙伴</Link>,
       menu4: <Link to="/commodities">产品专栏</Link>,
-      menu5: <Link>招贤纳士</Link>,
+      menu5: <Link to="/careers">招贤纳士</Link>,
     };
 
     const abouts = [
@@ -46,7 +46,7 @@ class Header extends React.Component {
     const navChildren = Object.keys( navData ).map( ( key, i ) => (<Item key={i} className="menu">
                                                                      {navData[ key ]}
                                                                    </Item>) );
-    navChildren.push(<SubMenu key={navChildren.length} title="关于我们">{abouts.map((value,index)=>(value))}</SubMenu>)
+    // navChildren.push(<SubMenu key={navChildren.length} title="关于我们">{abouts.map((value,index)=>(value))}</SubMenu>)
     return (<TweenOne component="header" animation={{ opacity: 0, type: 'from' }} {...props}>
               <TweenOne className={`${this.props.className}-logo`} animation={{ x: -30, delay: 100, type: 'from', ease: 'easeOutQuad' }} id={`${this.props.id}-logo`}>
                 <div className="logo">

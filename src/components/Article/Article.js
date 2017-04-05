@@ -12,7 +12,7 @@ export default class Article extends React.Component {
     }
   }
   componentDidMount() {
-    if ( this.props.params.id == null ) {
+    if ( this.props.params.id === null ) {
       return
     }
     fetch( '/api/pub/news/info?id=' + this.props.params.id, {
@@ -27,11 +27,11 @@ export default class Article extends React.Component {
   }
   render() {
     const response = this.state.response
-    
+    console.log(response)
     return (
     <Content style={{ padding: '10px 200px',background:'#dedede' }}>
       <Spin delay={500} spinning={this.state.loading}>
-        {response != null?<QueueAnim type="bottom" style={{background:'white'}}>
+        {response !== null?<QueueAnim type="bottom" style={{background:'white'}}>
           {[
             <Title text={response.data.title} key={'title'}/>,
             <div style={{minHeight:500,padding:'20px 60px'}} key={'content'}>
@@ -43,4 +43,8 @@ export default class Article extends React.Component {
     </Content>
     )
   }
+}
+
+Article.propTypes = {
+  params:React.PropTypes.object.isRequired
 }

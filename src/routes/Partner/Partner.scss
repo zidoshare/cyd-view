@@ -13,3 +13,11 @@ ul.partner > li:nth-of-type(even){
 ul.partner div.item>div{
   padding:20px 200px;
 }
+
+.item{
+  .item-logo{
+    img{
+      width:200px;
+    }
+  }
+}

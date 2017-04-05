@@ -6,6 +6,8 @@ import News from 'Components/News'
 import Article from 'Components/Article'
 import Partner from './Partner'
 import Commodities from './Commodities'
+import CommodityPage from './CommodityPage'
+import Careers from './Careers'
 export const createRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppLayout}>
@@ -14,6 +16,8 @@ export const createRoutes = () => (
       <Route path="news/:id" component ={Article}/>
       <Route path="partner" component = {Partner}/>
       <Route path="commodities" component={Commodities}/>
+      <Route path="commodity/:id" component={CommodityPage}/>
+      <Route path="careers" component={Careers}/>
     </Route>
   </Router>
 )

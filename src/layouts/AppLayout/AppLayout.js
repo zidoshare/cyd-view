@@ -3,46 +3,57 @@ import Footer from 'Components/Footer'
 import React from 'react'
 import 'antd/dist/antd.min.css'
 import enquire from 'enquire.js'
-import QueueAnim from 'rc-queue-anim'
+import './core.scss'
 
 class AppLayout extends React.Component {
-  constructor( props ) {
-    super( props )
+  constructor(props) {
+    super(props)
     this.state = {
       isMode: false
     }
   }
+  
   componentDidMount() {
     // 适配手机屏幕;
-    this.enquireScreen( ( isMode ) => {
-      this.setState( {
+    this.enquireScreen((isMode) => {
+      this.setState({
         isMode
-      } )
-    } )
+      })
+    })
   }
-
-  enquireScreen( cb ) {
+  
+  enquireScreen(cb) {
     /* eslint-disable no-unused-expressions */
-    enquire.register( 'only screen and (min-width: 320px) and (max-width: 767px)', {
+    enquire.register('only screen and (min-width: 320px) and (max-width: 767px)', {
       match: () => {
-        cb && cb( true )
+        cb && cb(true)
       },
       unmatch: () => {
         cb && cb()
       },
-    } )
-  /* eslint-enable no-unused-expressions */
+    })
+    /* eslint-enable no-unused-expressions */
   }
+  
   render() {
     //<div style={{clear:'both'}}></div>
+    /*return (
+     <QueueAnim type="bottom">
+     {[
+     <Nav id="nav_1_0" key="nav_1_0" isMode={this.state.isMode}/>,
+     {...this.props.children},
+     <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>
+     ]}
+     </QueueAnim>
+     )*/
     return (
-    <QueueAnim type="bottom">
-      {[
-        <Nav id="nav_1_0" key="nav_1_0" isMode={this.state.isMode}/>,
-        <div key="content_main">{this.props.children}</div>,
+      <div>
+        <Nav id="nav_1_0" key="nav_1_0" isMode={this.state.isMode}/>
+        <div style={{minHeight:600}}>
+          {this.props.children}
+        </div>
         <Footer id="footer_0_0" key="footer_0_0" isMode={this.state.isMode}/>
-      ]}
-    </QueueAnim>
+      </div>
     )
   }
 }

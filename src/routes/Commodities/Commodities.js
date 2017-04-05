@@ -1,8 +1,8 @@
 import React from 'react'
-import Commodity from 'Components/Commodity'
 import { Spin, Layout, Pagination } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import './Commodities.scss'
+import Commodity from '../../components/Commodity'
 const Content = Layout.Content
 
 export default class Commodities extends React.Component {
@@ -43,13 +43,12 @@ export default class Commodities extends React.Component {
 
     const list = []
     const {response} = this.state
-    if ( response != null ) {
+    if ( response !== null ) {
       const {content} = response.data
-      console.log( content )
       for (let i = 0;i < content.length;i++) {
         let element = content[ i ]
         let dom = (<li style={{ display: 'inline-block' }} key={'card' + i}>
-                     <Commodity title={element.title} description={element.description} images={element.images}/>
+                     <Commodity title={element.title} description={element.description} images={element.images} url={element.url}/>
                    </li>)
         list.push( dom )
       }
@@ -63,7 +62,7 @@ export default class Commodities extends React.Component {
                                  {list}
                                </QueueAnim> : null}
           </div>
-          {response != null ? <Pagination showQuickJumper defaultCurrent={response.data.number + 1} total={response.data.totalElements} onChange={this.onPageChange.bind( this )}/> : null}
+          {response !== null ? <Pagination showQuickJumper defaultCurrent={response.data.number + 1} total={response.data.totalElements} onChange={this.onPageChange.bind( this )}/> : null}
         </Spin>
       </div>
     </Content>

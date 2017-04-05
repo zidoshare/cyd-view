@@ -1,10 +1,12 @@
-import React, { PropTypes } from 'react';
-import { Button, Icon } from 'antd';
-import QueueAnim from 'rc-queue-anim';
-import TweenOne, { TweenOneGroup } from 'rc-tween-one';
-import BannerAnim, { Element } from 'rc-banner-anim';
-import 'rc-banner-anim/assets/index.css';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
+import React, { PropTypes } from 'react'
+import { Button, Icon } from 'antd'
+import QueueAnim from 'rc-queue-anim'
+import TweenOne, { TweenOneGroup } from 'rc-tween-one'
+import BannerAnim, { Element } from 'rc-banner-anim'
+import 'rc-banner-anim/assets/index.css'
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
+import { Anchor } from 'antd'
+const { Link } = Anchor
 
 const BgElement = Element.BgElement;
 class Banner2 extends React.Component {
@@ -66,11 +68,10 @@ class Banner2 extends React.Component {
           key="button"
           id={`${props.id}-buttonBlock0`}
         >
-          Learn More
+          <Link href="#content_9_0" title="Learn More"/>
         </Button>
       </QueueAnim>
-    </Element>);
-
+    </Element>)
     return (
       <OverPack
         {...props}

@@ -62,7 +62,8 @@ if ( isDev ) {
   common.plugins = [
     new HtmlWebpackPlugin( {
       template: common.indexHtml,
-      inject: 'body'
+      inject: 'body',
+      favicon:'images/cyd_logo.png'
     } ),
     new webpack.HotModuleReplacementPlugin(), // HMR全局启用
     new webpack.NamedModulesPlugin(), // 在HMR更新的浏览器控制台中打印更易读的模块名称
