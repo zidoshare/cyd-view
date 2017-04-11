@@ -1,16 +1,16 @@
-import React, {PropTypes} from 'react'
-import {Button, Icon} from 'antd'
-import QueueAnim from 'rc-queue-anim'
-import TweenOne, {TweenOneGroup} from 'rc-tween-one'
-import BannerAnim, {Element} from 'rc-banner-anim'
-import 'rc-banner-anim/assets/index.css'
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
+import React, { PropTypes } from 'react';
+import { Button, Icon } from 'antd';
+import QueueAnim from 'rc-queue-anim';
+import TweenOne, { TweenOneGroup } from 'rc-tween-one';
+import BannerAnim, { Element } from 'rc-banner-anim';
+import 'rc-banner-anim/assets/index.css';
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 
-const BgElement = Element.BgElement
+const BgElement = Element.BgElement;
 class Banner extends React.Component {
   render() {
-    const props = {...this.props}
-    delete props.isMode
+    const props = { ...this.props };
+    delete props.isMode;
     const childrenData = [
       {
         title: '<img width="100%" src="https://zos.alipayobjects.com/rmsportal/HqnZZjBjWRbjyMr.png" />',
@@ -22,11 +22,11 @@ class Banner extends React.Component {
         content: '一个高效的页面动画解决方案',
         button: 'Learn More',
       }
-    ]
+    ];
     const childrenToRender = childrenData.map((item, i) => {
-      const title = item.title
-      const content = item.content
-      const button = item.button
+      const title = item.title;
+      const content = item.content;
+      const button = item.button;
       return (<Element
         key={i}
         prefixCls="banner-user-elem"
@@ -63,16 +63,16 @@ class Banner extends React.Component {
             {button}
           </Button>
         </QueueAnim>
-      </Element>)
-    })
+      </Element>);
+    });
     return (
       <OverPack
         {...props}
       >
         <TweenOneGroup
           key="banner"
-          enter={{opacity: 0, type: 'from'}}
-          leave={{opacity: 0}}
+          enter={{ opacity: 0, type: 'from' }}
+          leave={{ opacity: 0 }}
           component=""
         >
           <BannerAnim
@@ -82,25 +82,25 @@ class Banner extends React.Component {
           </BannerAnim>
         </TweenOneGroup>
         <TweenOne
-          animation={{y: '-=20', yoyo: true, repeat: -1, duration: 1000}}
+          animation={{ y: '-=20', yoyo: true, repeat: -1, duration: 1000 }}
           className={`${props.className}-icon`}
-          style={{bottom: 40}}
+          style={{ bottom: 40 }}
           key="icon"
         >
-          <Icon type="down"/>
+          <Icon type="down" />
         </TweenOne>
       </OverPack>
-    )
+    );
   }
 }
 
 Banner.propTypes = {
   className: PropTypes.string,
-}
+};
 
 Banner.defaultProps = {
   className: 'banner1',
-}
+};
 
-export default Banner
+export default Banner;
 
