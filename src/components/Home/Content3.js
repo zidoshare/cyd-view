@@ -1,13 +1,13 @@
-import React from 'react';
-import QueueAnim from 'rc-queue-anim';
-import TweenOne from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
+import React from 'react'
+import QueueAnim from 'rc-queue-anim'
+import TweenOne from 'rc-tween-one'
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
 
 class Content extends React.Component {
 
   static defaultProps = {
     className: 'content1',
-  };
+  }
 
   render() {
     const props = { ...this.props };
@@ -17,7 +17,7 @@ class Content extends React.Component {
       queue: isMode ? 'bottom' : 'left',
       one: isMode ? { y: '+=30', opacity: 0, type: 'from' }
         : { x: '+=30', opacity: 0, type: 'from' },
-    };
+    }
     return (
       <div
         {...props}
@@ -55,8 +55,8 @@ class Content extends React.Component {
           </TweenOne>
         </OverPack>
       </div>
-    );
+    )
   }
 }
 
-export default Content;
+export default Content

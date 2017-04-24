@@ -46,7 +46,6 @@ export default class News extends React.Component {
       const {content} = response.data
       for (let i = 0;i < content.length;i++) {
         let element = content[ i ]
-        console.log(element)
         let dom = (<div  className = "custom"  key = {'card' + i}>
           <Link to={'/news/'+element.id}><Card style={{ width: 400}} bodyStyle={{ padding: 0 }} bordered={false}>
                      <div className="custom-image">

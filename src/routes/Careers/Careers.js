@@ -55,15 +55,11 @@ class Careers extends React.Component {
         <li key={'info' + index} id={'info' + index}>
           <div className="careers-info">
             <div className="careers-title">
-              销售人员
+              {value.name}:
             </div>
             <div className="careers-content">
               <h3>岗位职责</h3>
-              1、结合公司的产品战略，参与制定产品规划及产品发展方向；<br/>
-              2、收集各方需求，分析线上运营产品情况，结合市场情况设计产品方案，撰写产品需求书，推动和协调开发部门开发，推动运营部门的产品运营及市场推广以及关注产品销售数据；<br/>
-              3、负责公司线上产品的完善和持续优化改进；<br/>
-              4、定期进行市场分析、竞品分析和用户研究，为产品改进提供指导；<br/>
-              5、负责培养下属产品人员的专业技能、职业化水准。<br/>
+              <div dangerouslySetInnerHTML={{__html:value.description}}/>
             </div>
           </div>
         </li>

@@ -35,8 +35,8 @@ export class Commodity extends React.Component {
               {banner}
             </Carousel>
             <div className="item-text">
-              <h3>魅族手机魅族手机魅族手机魅族手机魅族手机魅族手机</h3>
-              <nobr>简介简介简介简介简介简介简介简介简介简介</nobr>
+              <h3>{this.props.title}</h3>
+              <nobr>{this.props.description}</nobr>
               <a className="my-link" href={this.props.url} target="_blank">点击购买&gt;&gt;</a>
             </div>
           </div>

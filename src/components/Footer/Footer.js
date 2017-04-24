@@ -1,16 +1,12 @@
-import React from 'react';
-import TweenOne from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
+import React from 'react'
+import TweenOne from 'rc-tween-one'
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
 
 class Footer extends React.Component {
 
-  static defaultProps = {
-    className: 'footer0',
-  };
-
   render() {
-    const props = { ...this.props };
-    delete props.isMode;
+    const props = { ...this.props }
+    delete props.isMode
     return (<OverPack
       {...props}
       playScale={0.05}
@@ -20,11 +16,15 @@ class Footer extends React.Component {
         key="footer"
       >
         <span id={`${props.id}-content`}>
-          Copyright © 2017 <a href="http://www.cyd666666.com">成都创源地文化传播有限公司</a>. All Rights Reserved
+          Copyright © 2017 <a href="http://www.chuangyuandi.net.cn">成都创源地文化传播有限公司</a>. All Rights Reserved
         </span>
       </TweenOne>
-    </OverPack>);
+    </OverPack>)
   }
 }
 
-export default Footer;
+Footer.defaultProps = {
+  className: 'footer0',
+}
+
+export default Footer

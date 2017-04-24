@@ -8,7 +8,6 @@ import Partner from './Partner'
 import Commodities from './Commodities'
 import CommodityPage from './CommodityPage'
 import Careers from './Careers'
-import Home2 from 'Components/Home2'
 export const createRoutes = () => (
   <Router history={browserHistory}>
     <Route path="/" component={AppLayout}>
@@ -19,9 +18,7 @@ export const createRoutes = () => (
       <Route path="commodities" component={Commodities}/>
       <Route path="commodity/:id" component={CommodityPage}/>
       <Route path="careers" component={Careers}/>
-      
     </Route>
-    <Route path="home2" component={Home2}/>
   </Router>
 )
 

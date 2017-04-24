@@ -23,8 +23,8 @@ class Content extends React.Component {
     </li>);
 
   render() {
-    const props = { ...this.props };
-    delete props.isMode;
+    const props = { ...this.props }
+    delete props.isMode
     const dataSource = [
       { icon: 'http://odp22tnw6.bkt.clouddn.com/company.svg', title: '行业优势', content: '我国“十三五规划”提出，到2020年我国文化产业在GDP占比将从现在的5%提高到15%，而目前在西欧、北美地区这一比例达到了25%左右' },
       { icon: 'http://odp22tnw6.bkt.clouddn.com/resource.svg', title: '资源优势', content: '公司和钱币协会长期合作收藏业务，奠定了深厚的资源基础，同时和多个平台强化互联合作。拥有精准的市场数据分析能力和参考公共信息平台及时反馈能力' },

@@ -1,7 +1,9 @@
 import React from 'react'
 import {Spin,Layout} from 'antd'
+import {Link} from 'react-router'
 import Title from 'Components/Title'
 import QueueAnim from 'rc-queue-anim'
+import './Article.scss'
 const Content = Layout.Content
 export default class Article extends React.Component {
   constructor( props ) {
@@ -30,8 +32,9 @@ export default class Article extends React.Component {
     console.log(response)
     return (
     <Content style={{ padding: '10px 200px',background:'#dedede' }}>
-      <Spin delay={500} spinning={this.state.loading}>
-        {response !== null?<QueueAnim type="bottom" style={{background:'white'}}>
+      <div className="tools"><Link to="/news">&lt;&lt;返回上一级</Link></div>
+      <Spin spinning={this.state.loading}>
+        {response != null?<QueueAnim type="bottom" style={{background:'white'}}>
           {[
             <Title text={response.data.title} key={'title'}/>,
             <div style={{minHeight:500,padding:'20px 60px'}} key={'content'}>

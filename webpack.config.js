@@ -88,7 +88,7 @@ if ( isDev ) {
     ] ),
     new webpack.optimize.CommonsChunkPlugin( {
       name: 'vendor',
-      filename: 'vendor.bundle.js'
+      filename: 'vendor-[hash:6].bundle.js'
     } )
   ]
 }
@@ -126,7 +126,7 @@ function handleStyle( plugin, list ) {
 const webpackConfig = {
   entry: common.entry,
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle-[hash:6].js',
     path: common.dist,
     publicPath: '/', //让HMR知道在哪里加载热更新块所必需的
   },
@@ -268,7 +268,7 @@ if ( isDev ) {
     },
     proxy:{
       '/api/*':{
-        target: 'http://localhost:8080',
+        target: 'http://localhost:8089',
         changeOrigin: true,
         secure: false,
       }

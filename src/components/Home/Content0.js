@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import {Button, Icon} from 'antd'
+import {Button, Icon, Anchor} from 'antd'
 import QueueAnim from 'rc-queue-anim'
 import TweenOne, {TweenOneGroup} from 'rc-tween-one'
 import BannerAnim, {Element} from 'rc-banner-anim'
@@ -7,20 +7,28 @@ import 'rc-banner-anim/assets/index.css'
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
 
 const BgElement = Element.BgElement
+const Link = Anchor.Link
 class Banner extends React.Component {
   render() {
     const props = {...this.props}
     delete props.isMode
     const childrenData = [
       {
-        title: '<img width="100%" src="https://zos.alipayobjects.com/rmsportal/HqnZZjBjWRbjyMr.png" />',
-        content: '一个高效的页面动画解决方案',
-        button: 'Learn More',
+        title: null,
+        content: null,
+        button: null,
       },
       {
-        title: '<img width="100%" src="https://zos.alipayobjects.com/rmsportal/HqnZZjBjWRbjyMr.png" />',
-        content: '一个高效的页面动画解决方案',
-        button: 'Learn More',
+        title: '<span style="font-size: 65px;color:white;line-height: 200px;">创源地</span><span style="font-size: 18px;color:white;line-height: 100px;">文化传播有限公司</span>',
+        content: <span
+          style={{color: 'white'}}>致力于钱币、纪念币、金银贵金属纪念品及邮票等收藏品的日常鉴定与回收，努力构建诚信收藏品平台，提供中高档收藏品的大宗批发、零售及投资。</span>,
+        button: 'learn more',
+      },
+      {
+        title: '<span style="font-size: 65px;color:#000000;line-height: 200px;">创源地</span><span style="font-size: 18px;color:#000000;line-height: 100px;">文化传播有限公司</span>',
+        content: <span
+          style={{color: 'black'}}>致力于钱币、纪念币、金银贵金属纪念品及邮票等收藏品的日常鉴定与回收，努力构建诚信收藏品平台，提供中高档收藏品的大宗批发、零售及投资。</span>,
+        button: <span style={{color: '#000'}}>Learn More</span>,
       }
     ]
     const childrenToRender = childrenData.map((item, i) => {
@@ -40,28 +48,28 @@ class Banner extends React.Component {
           className={`${props.className}-title`}
           key="text"
           id={`${props.id}-wrapperBlock${i}`}
-        >
-          <span
-            className="logo"
-            key="logo"
-            id={`${props.id}-titleBlock${i}`}
-            dangerouslySetInnerHTML={{
-              __html: title,
-            }}
-          />
-          <p
+        >{title == null ? null : <span
+          className="logo"
+          key="logo"
+          id={`${props.id}-titleBlock${i}`}
+          dangerouslySetInnerHTML={{
+            __html: title,
+          }}
+        />}
+          
+          {content == null ? null : <p
             key="content"
             id={`${props.id}-contentBlock${i}`}
           >
             {content}
-          </p>
-          <Button
+          </p>}
+          {button == null ? null : <Link href="#content_9_0" key="button" title={<Button
             type="ghost"
-            key="button"
             id={`${props.id}-buttonBlock${i}`}
           >
             {button}
-          </Button>
+          </Button>}/>}
+        
         </QueueAnim>
       </Element>)
     })
