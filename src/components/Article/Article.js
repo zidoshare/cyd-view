@@ -38,7 +38,7 @@ export default class Article extends React.Component {
           {[
             <Title text={response.data.title} key={'title'}/>,
             <div style={{minHeight:500,padding:'20px 60px'}} key={'content'}>
-              {response.data.content}
+              <div dangerouslySetInnerHTML={{__html:response.data.content}}/>
             </div>
           ]}
           </QueueAnim>:null}
