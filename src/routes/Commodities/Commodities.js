@@ -48,7 +48,7 @@ export default class Commodities extends React.Component {
       for (let i = 0;i < content.length;i++) {
         let element = content[ i ]
         let dom = (<li style={{ display: 'inline-block' }} key={'card' + i}>
-                     <Commodity title={element.title} description={element.description} images={element.images} url={element.url}/>
+                     <Commodity title={element.title} description={element.description} images={element.images} url={element.url} price={element.price}/>
                    </li>)
         list.push( dom )
       }

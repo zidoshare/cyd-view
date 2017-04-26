@@ -39,9 +39,11 @@ export class Commodity extends React.Component {
         </Carousel>
         <div className="item-text">
           <h3>{this.props.title}</h3>
+          
           <nobr>
             {this.props.description}
           </nobr>
+          <p className="price">{this.props.price}</p>
           <a className="my-link" href={this.props.url} target="_blank">点击购买>></a>
         </div>
       </div>
@@ -54,6 +56,7 @@ Commodity.propTypes = {
   title: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   images: React.PropTypes.array,
-  url: React.PropTypes.string.isRequired
+  url: React.PropTypes.string.isRequired,
+  price:React.PropTypes.string.isRequired,
 }
 export default Commodity

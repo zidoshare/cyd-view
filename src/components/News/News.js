@@ -46,8 +46,7 @@ export default class News extends React.Component {
       const {content} = response.data
       for (let i = 0;i < content.length;i++) {
         let element = content[ i ]
-        let dom = (<div  className = "custom"  key = {'card' + i}>
-          <Link to={'/news/'+element.id}><Card style={{ width: 400}} bodyStyle={{ padding: 0 }} bordered={false}>
+        let card = <Card style={{ width: 400}} bodyStyle={{ padding: 0 }} bordered={false}>
                      <div className="custom-image">
                        <img alt="example" width="100%" src={element.imageUrl}/>
                      </div>
@@ -57,8 +56,12 @@ export default class News extends React.Component {
                          {element.description}
                        </nobr>
                      </div>
-                   </Card></Link>
-        </div>)
+                   </Card>
+        
+        let dom = (<div  className = "custom"  key = {'card' + i}>
+            {element.linkUrl == null ? 
+            <Link to={'/news/'+element.id}>{card}</Link> :
+            <a target="_blank" href={element.linkUrl} style={{display:'block'}}>{card}</a>}</div>)
         list.push(dom)
       }
     }

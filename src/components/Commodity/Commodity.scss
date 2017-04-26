@@ -21,7 +21,7 @@
 
 .item-bg {
   width: 100%;
-  background: #3e3e3e;
+  background: #f3f3f3;
   &>div {
     height: 200px;
     img {
@@ -51,6 +51,13 @@ a.my-link {
   background: #3e3e3e;
 }
 
+p.price {
+  text-align: center;
+  color: red;
+  font-size: 24px;
+  line-height: 1;
+}
+
 .img-container {
   height: 200px !important;
   position: relative;
@@ -60,6 +67,8 @@ a.my-link {
     height: 200px;
     overflow: hidden;
     img {
+      -webkit-user-drag: none;
+      user-select: none;
       vertical-align: middle;
       height: auto;
     }
