@@ -29,7 +29,6 @@ export default class Article extends React.Component {
   }
   render() {
     const response = this.state.response
-    console.log(response)
     return (
     <Content style={{ padding: '10px 200px',background:'#dedede' }}>
       <div className="tools"><Link to="/news">&lt;&lt;返回上一级</Link></div>

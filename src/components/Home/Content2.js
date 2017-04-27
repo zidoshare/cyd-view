@@ -4,14 +4,11 @@ import TweenOne from 'rc-tween-one'
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
 
 class Content extends React.Component {
-  static defaultProps = {
-    className: 'content0',
-  };
 
   render() {
     const props = { ...this.props }
     const isMode = props.isMode
-    delete props.isMode;
+    delete props.isMode
     const animType = {
       queue: isMode ? 'bottom' : 'right',
       one: isMode ? { y: '+=30', opacity: 0, type: 'from' }
@@ -50,20 +47,25 @@ class Content extends React.Component {
               企业文化
             </h1>
             <div key="p" id={`${props.id}-content`}>
-              <p>1、核心价值观：共创、共赢、共享
-
-                事业共创  业绩共赢  成果共享 </p>
-              <p>2、文化核心：信任与个性
-
-       	        因信任而包容  因个性而创造</p>
+              <p>
+                1、核心价值观：共创、共赢、共享
+                事业共创  业绩共赢  成果共享 
+              </p>
+              <p>
+                2、文化核心：信任与个性
+                因信任而包容  因个性而创造
+              </p>
             </div>
 
           </QueueAnim>
         </OverPack>
       </div>
-    );
+    )
   }
 }
 
+Content.defaultProps = {
+  className: 'content0',
+}
 
 export default Content

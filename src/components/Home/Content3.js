@@ -5,14 +5,10 @@ import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
 
 class Content extends React.Component {
 
-  static defaultProps = {
-    className: 'content1',
-  }
-
   render() {
-    const props = { ...this.props };
-    const isMode = props.isMode;
-    delete props.isMode;
+    const props = { ...this.props }
+    const isMode = props.isMode
+    delete props.isMode
     const animType = {
       queue: isMode ? 'bottom' : 'left',
       one: isMode ? { y: '+=30', opacity: 0, type: 'from' }
@@ -59,5 +55,7 @@ class Content extends React.Component {
     )
   }
 }
-
+Content.defaultProps = {
+  className: 'content1',
+}
 export default Content

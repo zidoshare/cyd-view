@@ -73,7 +73,8 @@ if ( isDev ) {
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin( {
       template: common.indexHtml,
-      inject: 'body'
+      inject: 'body',
+      favicon:'images/cyd_logo.png'
     } ),
     new webpack.NoEmitOnErrorsPlugin(),
     // stataic目录下静态资源的复制
@@ -137,20 +138,20 @@ const webpackConfig = {
   module: {
     //webpack1.0中可以省略 '-loader'，但是官方说法为了有明确的区分，在webpack2.0中，不能再省略
     rules: [
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   enforce: 'pre',
-      //   loader: 'eslint-loader',
-      //   exclude: /node_modules/,
-      //   options: {
-      //     emitWarning: true,
-      //     emitError: true,
-      //     //failOnWarning: false, failOnError: true,
-      //     useEslintrc: false,
-      //     // configFile: path.join(__dirname, "eslint_conf.js")
-      //     configFile: path.join( __dirname, '.eslintrc.json' )
-      //   }
-      // },
+      {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+        options: {
+          emitWarning: true,
+          emitError: true,
+          //failOnWarning: false, failOnError: true,
+          useEslintrc: false,
+          // configFile: path.join(__dirname, "eslint_conf.js")
+          configFile: path.join( __dirname, '.eslintrc.json' )
+        }
+      },
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
