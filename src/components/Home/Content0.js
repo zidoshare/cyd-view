@@ -5,6 +5,7 @@ import TweenOne, {TweenOneGroup} from 'rc-tween-one'
 import BannerAnim, {Element} from 'rc-banner-anim'
 import 'rc-banner-anim/assets/index.css'
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
+import './Content0.scss'
 
 const BgElement = Element.BgElement
 const Link = Anchor.Link
@@ -14,10 +15,15 @@ class Banner extends React.Component {
     delete props.isMode
     const childrenData = [
       {
-        title: '<span style="font-size: 65px;color:white;line-height: 200px;">创源地</span><span style="font-size: 18px;color:white;line-height: 100px;">文化传播有限公司</span>',
-        content: <span
-          style={{color: 'white'}}>致力于钱币、纪念币、金银贵金属纪念品及邮票等收藏品的日常鉴定与回收，努力构建诚信收藏品平台，提供中高档收藏品的大宗批发、零售及投资。</span>,
-        button: 'learn more',
+        title: null,
+        content: <QueueAnim type="bottom" className="word-vertical banner-text pull-right" style={{position:'relative'}}>
+        {[
+          <div key="text-1">让我们一起来发现财富，寻找世界！</div>,
+          <div key="text-2">你不了解的财富！</div>,
+          <div key="text-3">被遗忘的世界！</div>
+        ]}
+        </QueueAnim>,
+        button: null,
       },
       {
         title: '<span style="font-size: 65px;color:white;line-height: 200px;">创源地</span><span style="font-size: 18px;color:white;line-height: 100px;">文化传播有限公司</span>',
