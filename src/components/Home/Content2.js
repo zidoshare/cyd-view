@@ -21,6 +21,7 @@ class Content extends React.Component {
       <div
         {...props}
         className={`content-template-wrapper content-half-wrapper ${props.className}-wrapper`}
+        style={{background:'#d1faf9'}}
       >
         <OverPack
           className={`content-template ${props.className}`}
@@ -48,9 +49,15 @@ class Content extends React.Component {
             <h1 key="h1" id={`${props.id}-title`}>
               企业文化
             </h1>
-            <p key="p" id={`${props.id}-content`}>
-              信任、包容、个性、创新、共赢
-            </p>
+            <div key="p" id={`${props.id}-content`}>
+              <p>1、核心价值观：共创、共赢、共享
+
+                事业共创  业绩共赢  成果共享 </p>
+              <p>2、文化核心：信任与个性
+
+       	        因信任而包容  因个性而创造</p>
+            </div>
+
           </QueueAnim>
         </OverPack>
       </div>

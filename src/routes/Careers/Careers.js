@@ -44,7 +44,6 @@ class Careers extends React.Component {
   
   render() {
     const {response} = this.state
-    console.log(response)
     let linkList = []
     let infoList = []
     if (response !== null) {

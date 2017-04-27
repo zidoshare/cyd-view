@@ -13,6 +13,12 @@ export default class Commodities extends React.Component {
       loading: true,
     }
   }
+  componentWillMount(){
+    this.setState( {
+      response: null,
+      loading: true
+    } )
+  }
   componentDidMount() {
     fetch( '/api/pub/commodity/index', {
       method: 'post',
@@ -54,15 +60,18 @@ export default class Commodities extends React.Component {
       }
     }
     return (
-    <Content style={{ padding: '10px' }}>
+    <Content style={{ padding: '10px' }}  className="coms-bg">
       <div style={{ width: 1000, margin: '0 auto' }}>
         <Spin spinning={this.state.loading}>
-          <div style={{ minHeight: 600 }}>
+          <div className="com-title"></div>
+          <div style={{ minHeight: 1044 }}>
             {list.length > 0 ? <QueueAnim component="ul">
                                  {list}
                                </QueueAnim> : null}
           </div>
-          {response !== null ? <Pagination showQuickJumper defaultCurrent={response.data.number + 1} total={response.data.totalElements} onChange={this.onPageChange.bind( this )}/> : null}
+          <div className="clear-fix">
+            <div className="item-page">{response !== null ? <Pagination showQuickJumper defaultCurrent={response.data.number + 1} total={response.data.totalElements} onChange={this.onPageChange.bind( this )}/> : null}</div>
+          </div>
         </Spin>
       </div>
     </Content>

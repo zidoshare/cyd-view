@@ -19,7 +19,6 @@ export class Commodity extends React.Component {
 
   render() {
     const images = this.props.images
-    console.log( images )
     const banner = images.map( ( img, index ) => (
       <div className="img-container" key={this.props.title + index}>
         <div>
@@ -33,7 +32,7 @@ export class Commodity extends React.Component {
     }
     return (
     <TweenOne animation={animation} paused={!this.state.show}>
-      <div className="com-item" onClick={this.handleClick.bind( this )}>
+      <div className="com-item" onClick={this.handleClick.bind( this )} title={this.props.description}>
         <Carousel ref="commodity" className="item-bg" draggable autoplay infinite>
           {banner}
         </Carousel>

@@ -1,3 +1,14 @@
-button a,li a{
+.clear-fix{
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.ant-menu a{
   color:white !important;
 }
