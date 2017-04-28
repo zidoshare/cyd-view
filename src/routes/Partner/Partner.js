@@ -17,7 +17,7 @@ export default class Partner extends React.Component {
                 钱币邮票交易中心的成立，将促进钱币邮票收藏品的市场流动
                 ,使大众投资者的投资品种由目前的股票、银行理财、保险业务扩展到文化艺术品尤其是钱币邮票投资领域，对扩大钱币邮票收藏群体规模将起到十分积极的作用。未来钱币邮票交易中心在线上实物交易的基础上，还将丰富拓展以下功能：钱币邮票藏品集散中心、钱币邮票托管交收中心、文化收藏品类理财中心、钱币邮票学术中心、钱币邮票会展中心。
                 钱币邮票交易中心定位：作为全国首家钱币邮票实物挂牌交易平台、全国首家公开集中的钱币邮票线上交易平台，将建设成为全国钱币邮票交易领域的标杆性平台。 </p></div>,
-              <div key={'li1div3'}><Button type="primary" size="large"> 立即开户 </Button></div>
+              <div key={'li1div3'}><Button type="primary" size="large"  onClick={()=>{window.open('http://web.zgqbyp.com/qbypkh/?id=2713')}}> 立即开户 </Button></div>
             ]} </QueueAnim></li>,
             <li key={'li2'}>
               <QueueAnim type={'bottom'} className="item">
@@ -30,7 +30,7 @@ export default class Partner extends React.Component {
                     大宗商品现货电子交易，交易品种涵盖：国际原油、煤炭、化工原料、大宗商品、现货铜、矿产品、农副产品以及棉产品现货交易、批发零售、回收、配送及延期交
                     收业务，并为以上产品提供电子交易平台及信息咨询、培训等相关服务。
                     按照省政府“总量控制、合理布局、审慎审批”的原则，安贵大宗商品交易中心已在高新区注册5000万元成立了“安徽安贵大宗商品电子商务现货市场有限公司”作为附属基础策应保障企业。 </p></div>,
-                  <div key={'li2div3'}><Button type="default" size="large"> 立即开户 </Button></div>
+                  <div key={'li2div3'}><Button type="default" size="large"   onClick={()=>{window.open('http://web.zgqbyp.com/qbypkh/?id=2713')}}> 立即开户 </Button></div>
                 ]}
               </QueueAnim>
             </li>,
@@ -44,7 +44,7 @@ export default class Partner extends React.Component {
                     2012年6月成为浙江省杭州市唯一首批通过“国务院清理整顿交易场所部际联席会议领导小组（证监会）”检查验收的商品交易所。
                     叁点零收藏品交易中心将凭借上海作为国际化金融中心的战略定位，打造辐射整个长三角地区乃至全国的文化艺术资源配置平台。 </p>
                   </div>,
-                  <div key={'li3div3'}><Button type="primary" size="large"> 立即开户 </Button></div>
+                  <div key={'li3div3'}><Button type="primary" size="large" onClick={()=>{window.open('http://www.30scp.com/openacc/')}}> 立即开户 </Button></div>
                 ]}
               </QueueAnim>
             </li>

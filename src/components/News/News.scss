@@ -21,6 +21,45 @@
 }
 
 .custom {
-  float: left;
+  float:left;
   margin: 0 20px 20px 20px;
+}
+
+.custom-container{
+  overflow: hidden;
+  margin:auto;
+  zoom: 1;
+}
+
+.custom-container-info{
+  width:880px;
+  display: block;
+  position: relative;
+  float:left;
+}
+
+.custom-container-info:after{
+  // position: absolute;
+  // content: '';
+  // width:1px;
+  // height:100%;
+  // left:870px;
+  // top:0;
+  // background: black;
+}
+
+.wx{
+  background:url(http://odp22tnw6.bkt.clouddn.com/ewmcyd.jpg) center;
+  background-size: 100%;
+  width:120px;
+  height:120px;
+  margin:auto;
+}
+
+.wx-min{
+  background:url(http://odp22tnw6.bkt.clouddn.com/ewmcyd.jpg) center;
+  background-size: 100%;
+  width:60px;
+  height:60px;
+  margin:auto;
 }
