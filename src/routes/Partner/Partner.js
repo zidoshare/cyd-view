@@ -30,7 +30,7 @@ export default class Partner extends React.Component {
                     大宗商品现货电子交易，交易品种涵盖：国际原油、煤炭、化工原料、大宗商品、现货铜、矿产品、农副产品以及棉产品现货交易、批发零售、回收、配送及延期交
                     收业务，并为以上产品提供电子交易平台及信息咨询、培训等相关服务。
                     按照省政府“总量控制、合理布局、审慎审批”的原则，安贵大宗商品交易中心已在高新区注册5000万元成立了“安徽安贵大宗商品电子商务现货市场有限公司”作为附属基础策应保障企业。 </p></div>,
-                  <div key={'li2div3'}><Button type="default" size="large"   onClick={()=>{window.open('http://web.zgqbyp.com/qbypkh/?id=2713')}}> 立即开户 </Button></div>
+                  <div key={'li2div3'}><Button type="default" size="large" onClick={()=>{window.open('http://register.agybk.com:15926/SelfOpenAccount/index.jsp?brokerage=0019001')}}> 立即开户 </Button></div>
                 ]}
               </QueueAnim>
             </li>,
