@@ -68,9 +68,11 @@ class Banner extends React.Component {
             key="content"
             id={`${props.id}-contentBlock${i}`}
           >{content}</div>}
-          {button == null ? null : <Link href="#content_9_0" key="button" title={<Button type="ghost" id={`${props.id}-buttonBlock${i}`}>
-            {button}
-          </Button>}/>}
+          {(typeof button == 'string' || React.isValidElement(button)) && button != null?
+            <Link href="#content_9_0" key="button"
+              title={<Button type="ghost" id={`${props.id}-buttonBlock${i}`}>{button}</Button>}
+            />:button
+          }
         </QueueAnim>
       </Element>)
     })
