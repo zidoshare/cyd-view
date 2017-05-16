@@ -40,7 +40,6 @@ class Footer extends React.Component {
             <div>备案号：蜀ICP备17010963号-1</div>
             <div>电话：028-69290215</div>
             <div>地址：成都市成华区建设路钻石广场B座2310</div>
-            
         </span>
       </TweenOne>
     </OverPack>)

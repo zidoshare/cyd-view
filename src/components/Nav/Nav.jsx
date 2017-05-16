@@ -29,7 +29,11 @@ class Header extends React.Component {
       menu1: <Link to="/">中心简介</Link>,
       menu2: <Link to="/commodities">产品专栏</Link>,
       menu3: <Link to="/partner">商业伙伴</Link>,
+<<<<<<< HEAD
       menu4: <Link to="/news">时讯速览</Link>,
+=======
+      menu4: <Link to="/news">新闻动态</Link>,
+>>>>>>> 736d08c9f7127501f22e1c8e483078b9b4637ab0
       menu5: <Link to="/careers">招贤纳士</Link>,
     }
     const navChildren = Object.keys( navData ).map( ( key, i ) => (<Item key={i} className="menu">
@@ -41,7 +45,11 @@ class Header extends React.Component {
                 <div className="main-logo">
                   <div><img width="100%" src="http://odp22tnw6.bkt.clouddn.com/cyd_logo.png"/></div>
                   <div>
+<<<<<<< HEAD
                     <span>创源地文化传播有限公司</span>
+=======
+                    <span>创源地文化有限公司</span>
+>>>>>>> 736d08c9f7127501f22e1c8e483078b9b4637ab0
                   </div>
                 </div>
               </TweenOne>
