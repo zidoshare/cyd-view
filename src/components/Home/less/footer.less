@@ -1,0 +1,57 @@
+@import './custom.less';
+
+@footer: footer0;
+.@{footer} {
+  background-color: @template-bg-color;
+  text-align: center;
+  height: 240px;
+  color: @template-footer-text-color;
+  overflow: hidden;
+  position: relative;
+  span {
+    display: block;
+    margin: 20px auto 0;
+    font-size:16px;
+  }
+}
+.pan {
+    color:white;
+    font-size:14px;
+}
+.pan2 {
+       width:65%;
+       margin:auto;
+       padding-left:8%;
+	   padding-top:5px;
+}
+    .pan2 ul {
+       color:white;
+    }
+        .pan2 ul li {
+        float:left;
+        padding-left:10px;
+        }
+ .pan3 {
+       width:55%;
+       margin:auto;
+       padding-left:8%;
+	   padding-top:2%;
+      
+}
+    .pan3 ul {
+       color:white;
+    }
+        .pan3 ul li {
+            float:left;
+			padding-left:6%;
+			text-align:center;
+        }
+.clear{clear:both;}
+@media screen and (max-width: 767px) {
+  .@{footer} {
+    > div {
+      width: 90%;
+      margin: auto;
+    }
+  }
+}

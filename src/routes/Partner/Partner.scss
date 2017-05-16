@@ -1,0 +1,27 @@
+ul.partner,
+ul.partner>li {
+  list-style: none;
+  text-align: center;
+  font-size:17px;
+}
+
+ul.partner > li:nth-of-type(even){
+  //background:#a9b6fa;
+  //color:white;
+}
+
+ul.partner div.item>div{
+  padding:20px 200px;
+}
+
+.item{
+  .item-logo{
+    img{
+      width:200px;
+    }
+  }
+}
+.all-content{
+	background:url(http://oow7renvm.bkt.clouddn.com/ea4fd8e87fd48882be9999e2fb7d7988.jpg) center repeat-y;
+	background-size: 100% 105% !important;
+}

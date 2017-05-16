@@ -1,0 +1,27 @@
+.com-title{
+  width:80%;
+  height:100px;
+  padding-top:10px;
+  padding-left:0.5%;
+}
+
+.coms-bg{
+  background:url(http://odp22tnw6.bkt.clouddn.com/coms-bg.jpg) center repeat-y;
+  background-size:  100% auto;
+  transition: all .6s ease-in-out;
+}
+
+.item-page{
+  position: relative;
+  left:50%;
+  float:left;
+  &>ul{
+    position: relative;
+    left:-50%;
+  }
+}
+
+.ant-pagination {
+  background: white;
+  padding:5px 20px;
+}
