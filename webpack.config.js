@@ -17,7 +17,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const extractCss = new ExtractTextPlugin('style/[name]-css-[hash:6].css')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const {existsSync} = require('fs')
 const rootPath = path.resolve(__dirname)
 const srcPath = path.join(rootPath, 'src')

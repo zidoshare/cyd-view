@@ -1,6 +1,6 @@
 {
   "name": "cyd-view",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "创源地官方网站前端项目",
   "main": "index.js",
   "scripts": {
@@ -80,11 +80,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zidoshare/react-starter.git"
+    "url": "git+https://github.com/zidoshare/cyd-view.git"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/zidoshare/react-starter/issues"
+    "url": "https://github.com/zidoshare/cyd-view/issues"
   },
-  "homepage": "https://github.com/zidoshare/react-starter#readme"
+  "homepage": "https://github.com/zidoshare/cyd-view#readme"
 }
