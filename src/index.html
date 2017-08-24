@@ -14,8 +14,66 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="renderer" content="webkit|ie-comp|ie-stand"> <!-- 360 浏览器内核控制 -->
   <meta name="description" content="主营钱币收藏、上市项目等。线下藏品就是大家熟知的面对面买卖收藏，收益周期较长，针对线下藏品爱好者，我们开展的有鉴定、挂价、兑换等业务。线上藏品就是借助于互联网构建的交易平台，继承了股票的基本架构，收益周期大为缩短，针对这部分藏品爱好者我们开展的有藏品上市和电子盘开户交易等业务。"/>
+  <style type="text/css">
+    .spinner {
+      margin: 200px auto;
+      width: 90px;
+      height: 90px;
+      position: relative;
+      text-align: center;
+      
+      -webkit-animation: rotate 2.0s infinite linear;
+      animation: rotate 2.0s infinite linear;
+    }
+    
+    .dot1, .dot2 {
+      width: 60%;
+      height: 60%;
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      background-color: #67CF22;
+      border-radius: 100%;
+      
+      -webkit-animation: bounce 2.0s infinite ease-in-out;
+      animation: bounce 2.0s infinite ease-in-out;
+    }
+    
+    .dot2 {
+      top: auto;
+      bottom: 0px;
+      -webkit-animation-delay: -1.0s;
+      animation-delay: -1.0s;
+    }
+    
+    @-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+    @keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+    
+    @-webkit-keyframes bounce {
+      0%, 100% { -webkit-transform: scale(0.0) }
+      50% { -webkit-transform: scale(1.0) }
+    }
+    
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+      } 50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+      }
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/react/15.6.0/react.min.js"></script>
+  <script src="https://cdn.bootcss.com/react/15.6.0/react-dom.min.js"></script>
+  <script src="https://cdn.bootcss.com/react-router-dom/4.1.2/react-router-dom.min.js"></script>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <div class="spinner">
+      <div class="dot1"></div>
+      <div class="dot2"></div>
+    </div>
+  </div>
 </body>
 </html>

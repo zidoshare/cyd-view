@@ -8,7 +8,7 @@ const { Content } = Layout
 
 import Home from './routes/Home'
 
-import logo from '../image/Meeting.png'
+import logo from '../image/menu-logo.png'
 import './style/core.scss'
 export default class App extends React.Component{
   constructor(props){
@@ -42,18 +42,16 @@ export default class App extends React.Component{
     const {isMode} = this.state
     return (
       <Router>
-        <Layout>
-          <header className="ant-layout-header">
-            <Nav logo={logo} mark="创源地文化传播有限公司" isMode={isMode}>
-              <Item key="index"><NavLink exact to="/">首页</NavLink></Item>
-              <Item key="produce"><NavLink to="/produce">产品专栏</NavLink></Item> 
-              <Item key="auction"><NavLink to="/auction">拍卖</NavLink></Item>
-              <Item key="partner"><NavLink to="/paterns">商业伙伴</NavLink></Item>
-              <Item key="news"><NavLink to="/news">时讯速览</NavLink></Item>
-              <Item key="careers"><NavLink to="/career">招贤纳士</NavLink></Item>
-              <Item key="about"><NavLink to="/aboutUs">关于我们</NavLink></Item>
-            </Nav>
-          </header>
+        <Layout className="main-wrapper">
+          <Nav logo={logo} mark="创源地文化传播有限公司" isMode={isMode}>
+            <Item key="index"><NavLink exact to="/">首页</NavLink></Item>
+            <Item key="produce"><NavLink to="/produce">产品专栏</NavLink></Item> 
+            <Item key="auction"><NavLink to="/auction">拍卖</NavLink></Item>
+            <Item key="partner"><NavLink to="/paterns">商业伙伴</NavLink></Item>
+            <Item key="news"><NavLink to="/news">时讯速览</NavLink></Item>
+            <Item key="careers"><NavLink to="/career">招贤纳士</NavLink></Item>
+            <Item key="about"><NavLink to="/aboutUs">关于我们</NavLink></Item>
+          </Nav>
           <Content>
             <Switch>
               <Route exact path="/" component={Home}/>

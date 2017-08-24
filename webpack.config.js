@@ -59,11 +59,6 @@ if (isDev) {
 } else {
   common.entry = {
     app: path.join(common.srcPath, 'index.js'),
-    vendor: [
-      'react',
-      'react-dom',
-      'react-router-dom',
-    ]
   }
 }
 if (isDev) {
@@ -71,18 +66,25 @@ if (isDev) {
     new HtmlWebpackPlugin({
       template: common.indexHtml,
       inject: 'body',
-      favicon:path.join(imagePath,'Meeting.png'),
+      favicon:path.join(imagePath,'menu-logo-icon.png'),
     }),
     new webpack.HotModuleReplacementPlugin(), // HMR全局启用
     new webpack.NamedModulesPlugin(), // 在HMR更新的浏览器控制台中打印更易读的模块名称
   ]
 } else {
   common.plugins = [
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin(({
+      output:{
+        comments:false,
+      },
+      compress: {
+        warnings: false
+      },
+    })),
     new HtmlWebpackPlugin({
       template: common.indexHtml,
       inject: 'body',
-      favicon:path.join(imagePath,'Meeting.png'),
+      favicon:path.join(imagePath,'menu-logo-icon.png'),
     }),
     new BundleAnalyzerPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -96,10 +98,10 @@ if (isDev) {
         ]
       }
     ]),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.bundle.js'
-    })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'vendor',
+    //   filename: 'vendor.bundle.js'
+    // }),  这里采用cdn优化，不在使用chunk
   ]
 }
 
@@ -117,6 +119,7 @@ const styleLoaders = {
     options: {
       //将css进行hash编码，保证模块性，保证单独使用，而不会污染全局
       // modules: true
+      minimize: true //css压缩
     }
   },
   postcss: {
@@ -259,7 +262,12 @@ const webpackConfig = {
       .push(extractCss)
     //返回组装完成后的plugins
     return common.plugins
-  })()
+  })(),
+  externals:{
+    'react':'React',
+    'react-dom':'ReactDOM',
+    'react-router-dom':'ReactRouterDOM',
+  }
 }
 if (isDev) {
   webpackConfig.devServer = {
