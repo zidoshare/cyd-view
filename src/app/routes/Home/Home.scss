@@ -1,7 +1,28 @@
+
 .banner-item{
-  height: 700px;
-  max-height:100vh;
+  .slick-slide{
+    background-position: center;
+    background-size: cover;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+  }
+  @media screen and (min-width:768px){
+    .slick-slide{
+      min-height:100%;
+      height:100vh;
+      width:100%;
+    }
+  }
+
+@media screen and (max-width:767px){
+  .slick-slide{
+    width:100%;
+    height:150px;
+  }
 }
+}
+
+
 .ant-carousel .slick-dots{
   li{
     position: relative;

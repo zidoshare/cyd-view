@@ -8,7 +8,7 @@ const { Content } = Layout
 
 import Home from './routes/Home'
 
-import logo from '../image/menu-logo.png'
+import logo from '../image/cyd-logo.png'
 import './style/core.scss'
 export default class App extends React.Component{
   constructor(props){
@@ -52,9 +52,13 @@ export default class App extends React.Component{
             <Item key="careers"><NavLink to="/career">招贤纳士</NavLink></Item>
             <Item key="about"><NavLink to="/aboutUs">关于我们</NavLink></Item>
           </Nav>
-          <Content>
+          <Content style={{marginTop:64}}>
             <Switch>
-              <Route exact path="/" component={Home}/> 
+              <Route exact path="/" render={
+                props => {
+                  return <Home {...props} isMode={isMode}/>
+                } 
+              }/> 
             </Switch>
           </Content>
           <footer className="ant-layout-footer"></footer>

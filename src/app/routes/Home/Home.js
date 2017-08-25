@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import {Carousel} from 'antd'
 
 import SampleArrow from '../../components/SampleArrow'
@@ -12,22 +14,28 @@ export default class Home extends React.Component{
   }
 
   render(){
+    const {isMode} = this.props
     return (
       <div>
         <Carousel 
           className="banner-item" 
           draggable 
           pauseOnHover
-          arrows
+          arrows = {!isMode}
           prevArrow={<SampleArrow type="left"/>} 
           nextArrow={<SampleArrow type="right"/>}
         >
-          <div><h3>1</h3></div>
-          <div><h3>2</h3></div>
-          <div><h3>3</h3></div>
-          <div><h3>4</h3></div>
+          <div style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner0.jpg")'}}></div>
+          <div style={{backgroundImage:'url("http://oow7renvm.bkt.clouddn.com/cyd2.jpg")'}}></div>
+          <div style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner1.jpg")'}}></div>
+          <div  style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner2.jpg")'}}></div>
         </Carousel>
+        
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  isMode:PropTypes.bool.isRequired,
 }

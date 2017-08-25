@@ -2,12 +2,13 @@
 
 @header: header0;
 .@{header} {
+
   height: 64px;
   background: @template-nav-bg-color;
   width: 100%;
   z-index: 970;
   box-shadow: 0 5px 8px fade(#000, 15);
-  position: relative;
+  position: fixed;
   top: 0;
   &-logo {
     position: absolute;
@@ -30,10 +31,10 @@
     line-height: 64px;
     position: relative;
     & .ant-menu-horizontal {
-      border-bottom-color: transparent;
+      border-bottom-color: @template-nav-bg-color;
     }
     & .ant-menu {
-      background: transparent;
+      background: @template-nav-bg-color;
       color: @template-text-color-light;
       line-height: 62px;
       & li {
@@ -57,8 +58,12 @@
         bottom: -1px;
         transition: all .3s ease-in-out;
       }
+
+      & .ant-menu-item:hover a::after{
+        background: @link-hover-color;
+      }
       a.active::after{
-        background: #108ee9;
+        background: @link-active-color;
       }
       a.active{
         color:white;
