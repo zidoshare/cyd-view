@@ -2,46 +2,60 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Menu} from 'antd'
 import {Link} from 'react-router-dom'
+import TweenOne from 'rc-tween-one'
 const {Item} = Menu
 
-import './Nav.scss'
+import './nav.less'
 export default class Nav extends React.Component{
   constructor(props){
     super(props)
     this.state = {
       isMode:this.props.isMode,
-      open:false,
+      phoneOpen:false,
     }
   }
   handleClick(){
     this.setState({
-      open:!this.state.open,
+      phoneOpen:!this.state.phoneOpen,
     })
   }
   render(){
-    const {children,logo,mark,className,isMode} = this.props
-    const {open} = this.state
+    //获取其他props
+    const props = { ...this.props }
+    console.log(props)
+    const isMode = props.isMode
+    delete props.isMode
+
+    const {children,logo,mark,className} = this.props
+    const {phoneOpen} = this.state
     return (
-      <header className="main-header">
+      <TweenOne 
+        component="header"
+        animation={{ opacity: 0, type: 'from' }}
+        {...props}>
         <Link to="/">
-          <ul className="nav-logo">
-            <li key="0">
+          <TweenOne
+            component="ul"
+            className={`${className}-logo`}
+            animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
+            >
+            <li>
               <img src={logo}/>
             </li>
-            <li key="1">
+            <li>
               {mark}
             </li>
-          </ul>
+          </TweenOne>
         </Link>
         
           {isMode?(
-            <nav className={`${className}-nav` + (open?' open':'')}>
-              <div className={'nav-btn'} onClick={this.handleClick.bind(this)}>
+            <nav className={`${className}-phone-nav${phoneOpen ? ' open' : ''}`}>
+              <div className={`${className}-phone-nav-bar`} onClick={this.handleClick.bind(this)}>
                 <em/>
                 <em/>
                 <em/>
               </div>
-              <div className={'nav-list'} onClick={this.handleClick.bind(this)}>
+              <div className={`${className}-phone-nav-text`} onClick={this.handleClick.bind(this)}>
                 <Menu 
                   selectedKeys={[null]}
                   mode="inline"
@@ -52,8 +66,10 @@ export default class Nav extends React.Component{
               </div>
             </nav>
           ):
-          <nav
-          className={`${className}-nav`}>
+          <TweenOne
+            className={`${className}-nav`}
+            animation={{ x: 30, type: 'from', ease: 'easeOutQuad' }}
+          >
             <Menu 
               selectedKeys={[null]}
               mode="horizontal"
@@ -61,16 +77,16 @@ export default class Nav extends React.Component{
             >
               {children}
             </Menu>
-          </nav>}
+          </TweenOne>}
         
-      </header>
+      </TweenOne>
     )
   }
 }
 
 Nav.defaultProps = {
   isMode:false,
-  className:'main-header',
+  className:'header0',
 }
 
 Nav.propTypes = {

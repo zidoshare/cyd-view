@@ -42,7 +42,7 @@ export default class App extends React.Component{
     const {isMode} = this.state
     return (
       <Router>
-        <Layout className="main-wrapper">
+        <Layout>
           <Nav logo={logo} mark="创源地文化传播有限公司" isMode={isMode}>
             <Item key="index"><NavLink exact to="/">首页</NavLink></Item>
             <Item key="produce"><NavLink to="/produce">产品专栏</NavLink></Item> 
@@ -54,7 +54,7 @@ export default class App extends React.Component{
           </Nav>
           <Content>
             <Switch>
-              <Route exact path="/" component={Home}/>
+              <Route exact path="/" component={Home}/> 
             </Switch>
           </Content>
           <footer className="ant-layout-footer"></footer>
