@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {Menu} from 'antd'
 import {Link} from 'react-router-dom'
-import TweenOne from 'rc-tween-one'
 const {Item} = Menu
 
 import './nav.less'
@@ -29,15 +28,11 @@ export default class Nav extends React.Component{
     const {children,logo,mark,className} = this.props
     const {phoneOpen} = this.state
     return (
-      <TweenOne 
-        component="header"
-        animation={{ opacity: 0, type: 'from' }}
+      <header
         {...props}>
         <Link to="/">
-          <TweenOne
-            component="ul"
+          <ul
             className={`${className}-logo`}
-            animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
             >
             <li>
               <img src={logo}/>
@@ -45,7 +40,7 @@ export default class Nav extends React.Component{
             <li>
               {mark}
             </li>
-          </TweenOne>
+          </ul>
         </Link>
         
           {isMode?(
@@ -66,9 +61,8 @@ export default class Nav extends React.Component{
               </div>
             </nav>
           ):
-          <TweenOne
+          <div
             className={`${className}-nav`}
-            animation={{ x: 30, type: 'from', ease: 'easeOutQuad' }}
           >
             <Menu 
               selectedKeys={[null]}
@@ -77,9 +71,9 @@ export default class Nav extends React.Component{
             >
               {children}
             </Menu>
-          </TweenOne>}
+          </div>}
         
-      </TweenOne>
+      </header>
     )
   }
 }

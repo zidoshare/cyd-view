@@ -14,14 +14,19 @@ export default class Home extends React.Component{
   render(){
     return (
       <div>
-        <div className="banner">
-          <Carousel arrows={true} prevArrow={<SampleArrow type="left"/>} nextArrow={<SampleArrow type="right"/>}>
-            <div><h3>1</h3></div>
-            <div><h3>2</h3></div>
-            <div><h3>3</h3></div>
-            <div><h3>4</h3></div>
-          </Carousel>
-        </div>
+        <Carousel 
+          className="banner-item" 
+          draggable 
+          pauseOnHover
+          arrows
+          prevArrow={<SampleArrow type="left"/>} 
+          nextArrow={<SampleArrow type="right"/>}
+        >
+          <div><h3>1</h3></div>
+          <div><h3>2</h3></div>
+          <div><h3>3</h3></div>
+          <div><h3>4</h3></div>
+        </Carousel>
       </div>
     )
   }

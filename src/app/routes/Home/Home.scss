@@ -1,12 +1,25 @@
-.ant-carousel .slick-slide {
-  background: #364d79;
+.banner-item{
+  height: 700px;
+  max-height:100vh;
 }
-
-.ant-carousel .slick-slide h3 {
-  color: #fff;
-}
-
-.banner{
-  line-height: 450px;
-  text-align: center;
+.ant-carousel .slick-dots{
+  li{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    margin: 0 6px;
+    padding: 0;
+    button{
+      height:6px;
+      width:36px;
+    }
+  }
+  li.slick-active{
+    button{
+      width:36px;
+      height:6px;
+      background: orangered;
+    }
+  }
 }

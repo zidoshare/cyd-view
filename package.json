@@ -63,8 +63,6 @@
     "object-assign": "^4.1.1",
     "promise": "^8.0.1",
     "prop-types": "^15.5.10",
-    "rc-banner-anim": "^0.5.16",
-    "rc-tween-one": "^1.4.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router-dom": "^4.1.2",
