@@ -1,16 +1,63 @@
 @import '../../style/custom.less';
 @in-folder: in-folder;
-.@{in-folder}-container {
-    width: 100%;
-    height: 150px;
-    .@{in-folder}-list {
+.@{in-folder}-list {
+    text-align: center;
+    @media screen and (min-width:768px) {
+        >figure{
+            width:230px;
+            height:260px;
+            margin:0 40px;
+        }
+        
+    }
+    >figure{
+        background: white;
+        display: inline-block;
+        transition: all 0.4s;
+        padding:5px;
         overflow: hidden;
-        margin: auto;
-        z-index: 1;
-        >li {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
+        border:1px solid transparent;
+        box-shadow: 0 0 5px #3e3e3e;
+        @media screen and (min-width:768px) {
+            >figcaption {
+                transform:translateY(0px);
+                background: rgba(255, 255, 255, 0.6);
+                transition: transform 0.4s ease-in-out,font-size .6s ease-in-out;
+                >p{
+                    opacity: 0;
+                    font-size:14px;
+                    transition: opacity .3s ease-in;
+                }
+            }
+            >img {
+                line-height: 220px;
+                -webkit-user-drag: none;
+                user-select: none;
+                height:220px;
+                z-index: 10;
+                width:100%;
+                transition: all 0.6s ease-out;
+            }
+            &:hover{
+                transform: translateY(-10px);
+                box-shadow: 0 5px 15px #000;
+                border:1px solid rgba(10, 10, 10, 0.3);
+                >img {
+                    transform: scale(1.1 , 1.1);
+                    filter: blur(5px);
+                    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+                    transition: all 0.6s ease-in;
+                }
+                >figcaption{
+                    height:100%;
+                    transform: translateY(-200px);
+                    transition: transform 0.4s;
+                    >p{
+                        opacity: 1;
+                        transition: opacity .3s ease-out;
+                    }
+                }
+            }
         }
     }
 }

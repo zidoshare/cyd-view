@@ -1,26 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class InFolder extends React.Component{
-  constructor(props){
-    super(props)
-  }
-
-  render(){
-    const {children} = this.props
-
-    return (
-      <div className="in-folder-container">
-        <ul className="in-folder-list">
-          {children.map(child => (
-            <li>{child}</li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
+import './inFolder.less'
+export default function InFolder(props){
+  const {className,dataSource} = props
+  return (
+    <div className="in-folder-list">
+      {dataSource.map(obj => (
+        <figure className = {className}>
+          <img src={obj.img}/>
+          <figcaption>
+            <h2>{obj.title}</h2>       
+            <p>{obj.msg}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  )
 }
-
 InFolder.propTypes = {
-  children:PropTypes.array,
+  dataSource:PropTypes.arrayOf(PropTypes.shape({
+    img:PropTypes.string,
+    title:PropTypes.string,
+    msg:PropTypes.string,
+  })),
+  className:PropTypes.string,
 }

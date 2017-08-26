@@ -9,7 +9,7 @@ const { Content } = Layout
 import Home from './routes/Home'
 
 import logo from '../image/cyd-logo.png'
-import './style/core.scss'
+import './style/core.less'
 export default class App extends React.Component{
   constructor(props){
     super(props)
