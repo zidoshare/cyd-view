@@ -5,10 +5,27 @@ import {Carousel} from 'antd'
 
 import InFolder from '../../components/InFolder'
 import SampleArrow from '../../components/SampleArrow'
-import pic1 from '../../../image/pic1.jpg'
-import pic2 from '../../../image/pic3.jpg'
-import pic3 from '../../../image/pic4.jpg'
-import pic10 from '../../../image/pic10.jpg'
+const pic1 = 'http://odp22tnw6.bkt.clouddn.com/v1/pic1.jpg'
+const pic2 = 'http://odp22tnw6.bkt.clouddn.com/v1/pic3.jpg'
+const pic3 = 'http://odp22tnw6.bkt.clouddn.com/v1/pic4.jpg'
+const pic10 = 'http://odp22tnw6.bkt.clouddn.com/v1/pic10.jpg'
+const humPic = 'http://odp22tnw6.bkt.clouddn.com/v1/humanities.png'
+const serverPic = 'http://odp22tnw6.bkt.clouddn.com/v1/pic4.png'
+const mindPic = 'http://odp22tnw6.bkt.clouddn.com/v1/mind.png'
+const pic7 = 'http://odp22tnw6.bkt.clouddn.com/v1/pic7.png'
+const folder2bg = 'http://odp22tnw6.bkt.clouddn.com/v1/folder-2-bg.jpg'
+const culturePic = 'http://odp22tnw6.bkt.clouddn.com/v1/culture.png'
+
+
+const p1 = 'http://odp22tnw6.bkt.clouddn.com/v1/angui.jpg'
+const p2 = 'http://odp22tnw6.bkt.clouddn.com/v1/gsbank.jpg'
+const p3 = 'http://odp22tnw6.bkt.clouddn.com/v1/jsbank.jpg'
+const p4 = 'http://odp22tnw6.bkt.clouddn.com/v1/jtbank.jpg'
+const p5 = 'http://odp22tnw6.bkt.clouddn.com/v1/msbank.jpg'
+const p6 = 'http://odp22tnw6.bkt.clouddn.com/v1/njwjs.jpg'
+const p7 = 'http://odp22tnw6.bkt.clouddn.com/v1/nybank.jpg'
+const p8 = 'http://odp22tnw6.bkt.clouddn.com/v1/pabank.jpg'
+const p9 = 'http://odp22tnw6.bkt.clouddn.com/v1/pabx.jpg'
 import './Home.less'
 
 
@@ -35,9 +52,9 @@ export default class Home extends React.Component{
           <div style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner1.jpg")'}}></div>
           <div  style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner2.jpg")'}}></div>
         </Carousel>
-        <div className="bg-center folder">
+        <div className="folder">
           <h1 className="text-center folder-title">
-            创源地的企业优势
+            创源地企业优势
             <img className="bottom-align" src={pic10}/>
           </h1>
           <InFolder className="pic-item" dataSource={[{
@@ -53,6 +70,75 @@ export default class Home extends React.Component{
             title:'运营优势',
             msg:'  新型运营模式，权衡线上线下利弊，适时调整各项运营策略。严谨的培训体系，让职员更快的融入工作；默契的团队协作，让工作过程变得简单高效。'
           }]}/>
+        </div>
+        <div className="bg-center folder" style={!isMode?{backgroundImage:`url(${folder2bg})`}:{}}>
+          <h1 className="bg-center text-center folder-title" style={{color:'white',...isMode?{backgroundImage:`url(${folder2bg})`}:{}}} >
+            创源地企业文化
+            <img className="bottom-align" src={pic10}/>
+          </h1>
+          <InFolder type="flip" dataSource = {[{
+            img:humPic,
+            title:'人文理念',
+            msg:<div>
+                <p>共创、共赢、共享</p>
+                <p>（事业共创、业绩共赢、成果共享）</p>
+              </div>
+          },{
+            img:culturePic,
+            title:'文化核心',
+            msg:<div>
+                <p>信任、个性</p>
+                <p>（因信任而包容、因个性而创造）</p>
+              </div>,
+          },{
+            img:pic7,
+            title:'收藏理念',
+            msg:<div>
+                <p>全民收藏（懂得收藏、能够收藏）</p>
+                <p>潜在价值（市场走向、保值升值）</p>
+              </div>,
+          },{
+            img:serverPic,
+            title:'服务品质',
+            msg:<div>
+                <p>顾客至上（心系感受、保障利益）</p>
+                <p>优质精品（差异选择、层级管理）</p>
+              </div>,
+          },{
+            img:mindPic,
+            title:'世局观',
+            msg:'空间拓展（一极多元、融合发展）人文拓展、物质追求、精神共享'
+          }]}/>
+        </div>
+        <div className="folder" style={{height:'auto'}}>
+          <h1 className="text-center folder-title">
+            创源地合作伙伴
+            <img className="bottom-align" src={pic10}/>
+          </h1>
+          <div>
+            <Carousel 
+              className="car-item"
+              slidesToShow={5} 
+              autoplay 
+              swipeToSlide 
+              arrows={!isMode} 
+              style={{height:120}}
+              prevArrow={<SampleArrow type="left"/>} 
+              nextArrow={<SampleArrow type="right"/>} 
+              vertical={isMode} 
+              draggable={!isMode} 
+              dots={false}>
+              <div className="bg-center" style={{backgroundImage:`url(${p1})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p2})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p3})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p4})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p5})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p6})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p7})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p8})`,height:80}}/>
+              <div className="bg-center" style={{backgroundImage:`url(${p9})`,height:80}}/>
+            </Carousel>
+          </div>
         </div>
       </div>
     )

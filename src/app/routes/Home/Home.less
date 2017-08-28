@@ -47,11 +47,28 @@
 
 .folder{
   padding:20px;
+  min-height:500px;
+  @media screen and (max-width:767px) {
+    .folder-title{
+      margin:20px auto !important;
+    }
+  }
   .folder-title{
     width:300px;
-    margin:10px auto 40px;
+    margin:80px auto 40px;
     padding-bottom: 15px;
     border-bottom: 2px solid #D1D1D1;
     position: relative;
+  }
+}
+.car-item{
+  -webkit-user-drag: none;
+  user-select: none;
+  width:65%;
+  margin:auto;
+  .bg-center{
+    margin:5px;
+    padding:2px;
+    border: 1px solid #e3e3e3;
   }
 }

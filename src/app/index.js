@@ -7,6 +7,7 @@ import Nav,{Item} from './components/Nav'
 const { Content } = Layout
 
 import Home from './routes/Home'
+import Footer from './components/Footer'
 
 import logo from '../image/cyd-logo.png'
 import './style/core.less'
@@ -61,7 +62,7 @@ export default class App extends React.Component{
               }/> 
             </Switch>
           </Content>
-          <footer className="ant-layout-footer"></footer>
+          <Footer isMode={isMode}/>
         </Layout>
       </Router>  
     )

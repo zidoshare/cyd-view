@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Menu} from 'antd'
+import {Menu,Icon} from 'antd'
 import {Link} from 'react-router-dom'
 const {Item} = Menu
 
@@ -27,8 +27,7 @@ export default class Nav extends React.Component{
     const {children,logo,mark,className} = this.props
     const {phoneOpen} = this.state
     return (
-      <header
-        {...props}>
+      <header className={className}>
         <Link to="/">
           <ul
             className={`${className}-logo`}
@@ -69,6 +68,9 @@ export default class Nav extends React.Component{
               theme="dark"
             >
               {children}
+              <Item>
+                <span><Icon type="login" />登录</span>
+              </Item>
             </Menu>
           </div>}
         
