@@ -86,7 +86,6 @@ if (isDev) {
       inject: 'body',
       favicon:path.join(imagePath,'menu-logo-icon.png'),
     }),
-    new BundleAnalyzerPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     // stataic目录下静态资源的复制
     new CopyWebpackPlugin([
@@ -103,6 +102,10 @@ if (isDev) {
     //   filename: 'vendor.bundle.js'
     // }),  这里采用cdn优化，不在使用chunk
   ]
+}
+
+if(process.env.NODE_ENV === 'analyzer'){
+  common.plugins.push(new BundleAnalyzerPlugin())
 }
 
 common.plugins.push(new webpack.DefinePlugin({
