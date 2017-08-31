@@ -7,6 +7,7 @@ import Nav,{Item} from './components/Nav'
 const { Content } = Layout
 
 import Home from './routes/Home'
+import Auction from './routes/Auction'
 import Footer from './components/Footer'
 
 import logo from '../image/cyd-logo.png'
@@ -46,20 +47,16 @@ export default class App extends React.Component{
         <Layout>
           <Nav logo={logo} mark="创源地文化传播有限公司" isMode={isMode}>
             <Item key="index"><NavLink exact to="/">首页</NavLink></Item>
-            <Item key="produce"><NavLink to="/produce">产品专栏</NavLink></Item> 
+            <Item key="produce"><NavLink to="/produce">商城</NavLink></Item> 
             <Item key="auction"><NavLink to="/auction">拍卖</NavLink></Item>
-            <Item key="partner"><NavLink to="/paterns">商业伙伴</NavLink></Item>
             <Item key="news"><NavLink to="/news">时讯速览</NavLink></Item>
             <Item key="careers"><NavLink to="/career">招贤纳士</NavLink></Item>
-            <Item key="about"><NavLink to="/aboutUs">关于我们</NavLink></Item>
           </Nav>
           <Content style={{marginTop:64}}>
             <Switch>
-              <Route exact path="/" render={
-                props => {
-                  return <Home {...props} isMode={isMode}/>
-                } 
-              }/> 
+              <Route exact path="/" render={props => <Home {...props} isMode={isMode}/>}/>
+              <Route path="/auction" 
+                render={props => <Auction {...props} isMode={isMode}/>}/>
             </Switch>
           </Content>
           <Footer isMode={isMode}/>

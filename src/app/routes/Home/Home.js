@@ -45,7 +45,7 @@ export default class Home extends React.Component{
           pauseOnHover
           arrows = {!isMode}
           prevArrow={<SampleArrow type="left"/>} 
-          nextArrow={<SampleArrow type="right"/>}
+       x   nextArrow={<SampleArrow type="right"/>}
         >
           <div style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner0.jpg")'}}></div>
           <div style={{backgroundImage:'url("http://oow7renvm.bkt.clouddn.com/cyd2.jpg")'}}></div>
@@ -117,7 +117,6 @@ export default class Home extends React.Component{
           </h1>
           <div>
             <Carousel 
-              className="car-item"
               slidesToShow={5} 
               autoplay 
               swipeToSlide 
