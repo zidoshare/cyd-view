@@ -7,7 +7,7 @@ const erweim = 'http://odp22tnw6.bkt.clouddn.com//v1/erweim.jpg'
 export default function Footer(props){
   const temp = {...props}
   const {isMode} = temp
-  delete props.isMode
+  // delete props.isMode
   return (
     <footer {...props} className="cyd-footer ant-layout-footer">
       <Row gutter={20}>
@@ -20,7 +20,7 @@ export default function Footer(props){
           </div>
           <Row>
             <Col sm={12} style={{verticalAlign:'center'}}>
-              <h2 style={{color:'white'}}>公司地址：成都市金牛区人民北路万达甲级写字楼B座702—703</h2>
+              <h3 style={{color:'white'}}>公司地址：成都市金牛区人民北路万达甲级写字楼B座702—703</h3>
             </Col>
             <Col sm={12} className="text-center">
               <h3 style={{color:'white'}}>Copyright © 2017 成都创源地文化传播有限公司 All Rights Reserved</h3>
@@ -30,12 +30,12 @@ export default function Footer(props){
         </Col>
         <Col sm={8} style={{paddingLeft:10,height:'100%'}}>
           <div className="text-center">
-            <img src={erweim} style={{maxWidth:'100%'}}/>
+            <img src={erweim} style={{maxWidth:'200px'}}/>
           </div>
           <h1 className="text-center" style={{color:'white'}}>微信公众号</h1>
           <div style={{marginTop:20}}>
-            <h1 style={{color:'orangered'}}>全国统一服务热线</h1>
-            <h1 style={{textAlign:'right',color:'orangered'}}><Icon type="phone" />400-866-563</h1>
+            <h2 style={{color:'orangered'}}>全国统一服务热线</h2>
+            <h2 style={{textAlign:'right',color:'orangered'}}><Icon type="phone" />400-8866-563</h2>
           </div>
         </Col>
       </Row>

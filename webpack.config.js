@@ -176,7 +176,7 @@ const webpackConfig = {
         exclude: /node_modules/, //忽略node_modules路径代码
         options: {
           plugins: [
-            ['import', [{libraryName: 'antd', style: true}]],//按需加载antd 样式，有效小包大小
+            ['import', [{libraryName: 'antd', style: 'css'}]],//按需加载antd 样式，有效小包大小
           ]
         }
       },
