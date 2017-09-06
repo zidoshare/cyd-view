@@ -159,10 +159,11 @@ const webpackConfig = {
         loader: 'eslint-loader',
         exclude: /node_modules/,
         options: {
-          emitWarning: true,
-          emitError: true,
+          emitWarning: false,
+          emitError: false,
           //failOnWarning: false, failOnError: true,
           useEslintrc: false,
+          quiet:true,
           // configFile: path.join(__dirname, "eslint_conf.js")
           configFile: path.join(__dirname, '.eslintrc.json')
         }
