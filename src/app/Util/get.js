@@ -9,6 +9,8 @@ export default (url, paramsObject, headers = require('./HttpHeader'))=>{
   if (paramsObject) {
     let paramsArray = []
     Object.keys(paramsObject).forEach(key => {
+      if(paramsObject[key] == null)
+        return 
       if(!(paramsObject[key] instanceof Array))
         paramsArray.push(key + '=' + paramsObject[key])
       const array = paramsObject[key]

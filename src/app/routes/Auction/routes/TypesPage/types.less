@@ -1,0 +1,68 @@
+@import url('../../../../style/custom.less');
+
+.types-wrapper{
+  &:after{
+    clear: both;
+    content:"";
+    display: block;
+  }
+  >div{
+    float: left;
+  }
+  .banner-left-types{
+    width:120px;
+    border-right:1px solid #e3e3e3;
+    padding:0 10px;
+    h1{
+      color:orangered;
+      text-align:center;
+    }
+    ul{
+      text-decoration: none;
+      li{
+        margin-bottom: 5px;
+        a{
+          display: block;
+          color:black;
+          font-size:18px;
+          line-height: 44px;
+          height:44px;
+          background: white;
+          text-align: center;
+          letter-spacing: 4px;
+          border-bottom: 2px solid @link-color;
+          text-decoration: none;
+        }
+        a.active{
+          background: @link-active-color;
+          border-radius: 4px;
+          color:white;
+        }
+        a:hover{
+          background: @link-hover-color;
+        }
+      }
+    }
+  }
+  >.right-content{
+    width:1080px;
+    padding:0 0 0 40px;
+    .child-type-menu{
+      background: white;
+      >.child-menu-item{
+        border-bottom: 2px dashed #e3e3e3;
+        font-size:20px;
+        line-height:40px;
+        height:40px;
+        position: relative;
+        >.menu-item-span{
+          position: absolute;
+          left: 60px;
+          top:0;
+        }
+      }
+      
+    }
+    
+  }
+}
