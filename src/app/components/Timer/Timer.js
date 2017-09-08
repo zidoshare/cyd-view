@@ -5,14 +5,18 @@ export default class Timer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      endTime: props.endTime,
-      startTime: props.startTime,
+      startTime:props.startTime,
       remaining: '----:--:--',
       id: null,
     }
   }
   componentDidMount() {
     this.runTimer()
+  }
+  componentWillUnmount(){
+    if(this.state.id != null){
+      window.clearInterval(this.state.id)
+    }
   }
   runTimer() {
     if (this.state.id == null) {
@@ -22,7 +26,8 @@ export default class Timer extends React.Component {
     }
   }
   timer() {
-    const {startTime,endTime} = this.state
+    const {startTime} = this.state
+    const {endTime} = this.props
     var diffSecond = parseInt((endTime - startTime) / 1000) //结束时间到现在差的秒数
     if (diffSecond > 0) {
       var offset = moment.duration(diffSecond, 'seconds')
@@ -61,13 +66,12 @@ export default class Timer extends React.Component {
 Timer.defaultProps = {
   startTime: new Date(),
   callback: () => {
-    console.log('倒计时结束')
   },
 }
 Timer.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
-  endTime: PropTypes.instanceOf(Date),
+  endTime: PropTypes.instanceOf(Date).isRequired,
   startTime: PropTypes.instanceOf(Date),
   callback: PropTypes.func,
 }

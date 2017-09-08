@@ -4,6 +4,20 @@ import { Spin } from 'antd'
 import './types.less'
 import { NavLink } from 'react-router-dom'
 import { get, isEmpty } from '../../../../Util'
+import Preview from './components/Preview'
+
+const tempItem = {
+  head: 'http://odp22tnw6.bkt.clouddn.com/v1/',
+  url: 'commodity/loading.jpg',
+  name: '加载中...',
+  endTime: '加载中...',
+  currentPrice: '加载中...',
+  focus: '加载中...',
+}
+
+const tempDataSource = {
+  records: [tempItem, tempItem, tempItem, tempItem, tempItem, tempItem]
+}
 export class TypesPage extends React.Component {
   constructor(props) {
     super(props)
@@ -11,46 +25,126 @@ export class TypesPage extends React.Component {
       roots: [],
       types: [],
       currentType: {},
-      childLoading: true,
-      rootLoading: true,
+      childLoading: false,
+      rootLoading: false,
+      items: null,
+      itemLoading: false,
+      currentPage: 1,
+      pageLevel: 0,
+      key: null,
     }
   }
-  componentDidMount() {
-    this.getPath()
-  }
-
-  getPath() {
-    const { match } = this.props
-    const { root } = match.params
-    let rootId = root
+  componentWillMount() {
     this.setState({
       rootLoading: true,
+      childLoading: true,
+      itemLoading: true,
     })
-    get('/api/v1/types').then(json => this.setState({
+    this.getSyncPath().then(json => Object.assign({}, {
       roots: json.data,
       rootLoading: false,
-    }, this.getChildPath.bind(this, rootId)))
-  }
-
-  getChildPath(rootId) {
-    if (rootId == null)
-      rootId = this.state.roots[0].id
-    this.setState({
-      childLoading: true,
-    })
-    get('/api/v1/types', { parent: rootId }).then(json => {
-      this.setState({
+    })).then(result => {
+      let rootId = this.props.match.params.root
+      if (rootId == null)
+        rootId = result.roots[0].id
+      this.getSyncChildPath(rootId).then(json => Object.assign(result, {
         types: json.data,
         childLoading: false,
+      })).then(result => {
+        let { type } = this.props.match.params
+        if (type == null)
+          type = this.props.match.params.root
+        if(type == null && isEmpty(result.types))
+          return this.setState(Object.assign(result, {
+            items:{records:[]},
+            itemLoading: false,
+          }))
+        if (type == null)
+          type = result.roots[0].id
+        this.getSyncCommodities(type).then(json => {
+          const currentState = Object.assign(result, {
+            items: json.data,
+            itemLoading: false,
+          })
+          this.setState(currentState)
+        })
+      })
+    })
+
+  }
+
+
+
+  getSyncPath() {
+    return get('/api/v1/types')
+  }
+
+  handleChildPathAndCommodities(rootId) {
+    this.setState({
+      childLoading: true,
+      itemLoading: true,
+    })
+    this.getSyncChildPath(rootId).then(json => Object.assign({}, {
+      types: json.data,
+      childLoading: false,
+    })).then(result => {
+      if(isEmpty(result.types))
+        return this.setState(Object.assign(result, {
+          items:{records:[]},
+          itemLoading: false,
+        }))
+      let type = result.types[0].id
+      this.getSyncCommodities(type).then(json => {
+        const currentState = Object.assign(result, {
+          items: json.data,
+          itemLoading: false,
+        })
+        this.setState(currentState)
       })
     })
   }
 
+  setChildPathState(rootId) {
+    this.setState({
+      childLoading: true,
+    })
+    this.getSyncChildPath(rootId).then(json => this.setState({
+      types: json.data,
+      childLoading: false,
+    }))
+  }
+
+  getSyncChildPath(rootId) {
+    return get('/api/v1/types', { parent: rootId })
+  }
+
+  setCommoditiesState(type, currentPage = 1, pageLevel = 0, key) {
+    this.setState({
+      itemLoading: true,
+    })
+    this.getSyncCommodities(type, currentPage, pageLevel, key).then(json => {
+      this.setState({
+        items: json.data,
+        itemLoading: false,
+      })
+    })
+  }
+  getSyncCommodities(type, currentPage = 1, pageLevel = 0, key) {
+    return get('/api/v1/commodities/pages', {
+      currentPage,
+      pageLevel,
+      type,
+      key,
+    })
+  }
   render() {
     // const {match} = this.props
-    const { roots, types } = this.state
+    const { roots, types, itemLoading } = this.state
+    let { items } = this.state
+    if (items == null)
+      items = tempDataSource
     const { match } = this.props
-    const { root } = match.params
+    const { root,type } = match.params
     let currentType = {}
     if (!isEmpty(roots)) {
       if (root == null)
@@ -64,7 +158,14 @@ export class TypesPage extends React.Component {
           <h1>拍品分类</h1>
           <Spin spinning={this.state.rootLoading}>
             <ul>
-              {roots.map((value, index) => <li key={`types-${index}`}><NavLink onClick={this.getChildPath.bind(this, value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}</NavLink></li>)}
+              {roots.map((value, index) => 
+              <li key={`types-${index}`}>
+                {(index==0 && root == null)?
+                <NavLink className="active" onClick={()=>this.handleChildPathAndCommodities(value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}
+                  </NavLink>:
+                  <NavLink onClick={()=>this.handleChildPathAndCommodities(value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}
+                  </NavLink>}
+              </li>)}
             </ul>
           </Spin>
         </div>
@@ -79,17 +180,30 @@ export class TypesPage extends React.Component {
               <div className="child-menu-item">
                 <span>类别：</span>
                 <div className="menu-item-span">
+                  {type == null?
+                  <NavLink exact className="active" onClick={()=>this.setCommoditiesState(currentType.id)} to={`/auction/types/${currentType.id}`}>全部</NavLink>
+                  :<NavLink exact onClick={()=>this.setCommoditiesState(currentType.id)} to={`/auction/types/${currentType.id}`}>全部</NavLink>}
                   {types.map((value, index) => {
-                    return <span key={'t-' + index}>{index == 0 ? null : <div className="ant-divider" />}{value.name}</span>
+                    return <span key={'t-' + index}>
+                      <div className="ant-divider" />
+                      <NavLink onClick={()=>this.setCommoditiesState(value.id)} to={`/auction/types/${currentType.id}/${value.id}`}>
+                        {value.name}
+                      </NavLink>
+                    </span>
                   })}
                 </div>
               </div>
               <div className="child-menu-item" />
             </div>
           </Spin>
-          <div className="v-commodity-list">
-              
-          </div>
+          <Spin spinning={itemLoading}>
+            <div className="v-commodity-list">
+              {items.records.map((value, index) => {
+                return <Preview key={`item-${index}`} dataSource={value} />
+              })}
+            </div>
+          </Spin>
+          
         </div>
       </div>
     )
