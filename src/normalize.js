@@ -14,3 +14,7 @@ if(typeof Promise === 'undefined'){
 if(typeof window.fetch === 'undefined'){
   require('whatwg-fetch')
 }
+
+let moment = require('moment')
+
+moment.locale('zh-CN')

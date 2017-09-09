@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spin } from 'antd'
+import { Spin,Pagination } from 'antd'
 import './types.less'
 import { NavLink } from 'react-router-dom'
-import { get, isEmpty } from '../../../../Util'
+import { get, isEmpty,getQueryString } from '../../../../Util'
 import Preview from './components/Preview'
 
 const tempItem = {
@@ -145,6 +145,7 @@ export class TypesPage extends React.Component {
       items = tempDataSource
     const { match } = this.props
     const { root,type } = match.params
+    console.log(getQueryString('p'))
     let currentType = {}
     if (!isEmpty(roots)) {
       if (root == null)
@@ -202,6 +203,7 @@ export class TypesPage extends React.Component {
                 return <Preview key={`item-${index}`} dataSource={value} />
               })}
             </div>
+            <Pagination current={getQueryString('p')}/>
           </Spin>
           
         </div>

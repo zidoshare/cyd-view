@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Carousel, Layout, Breadcrumb } from 'antd'
 const Item = Breadcrumb.Item
-import { Link, NavLink, Route } from 'react-router-dom'
+import { Link, NavLink, Route,Switch } from 'react-router-dom'
 import AuctionComponent from './AuctionComponent'
 import TypesPage from './routes/TypesPage'
+import CommodityPage from './routes/CommodityPage'
 const { Content } = Layout
 import './auction.less'
 
@@ -17,13 +18,15 @@ export default class Auction extends React.Component {
         '/auction/types': '拍卖分类',
         '/auction/send': '我要送拍',
         '/auction/broadcast': '通知公告',
+        '/auction/types/commodity': '竞拍',
+        '/auction/auction': '拍卖会',
       }
     }
   }
   render() {
     const { location, isMode, match } = this.props
     const { auctionMap } = this.state
-    const pathSnippets = location.pathname.split('/').filter((value,index) => index <= 2?value:null )
+    const pathSnippets = location.pathname.split('/').filter((value, index) => (index <= 2 || value =='commodity') ? value : null)
     const breadcrumbItems = pathSnippets.map((_, index) => {
       const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
       return (
@@ -50,6 +53,7 @@ export default class Auction extends React.Component {
           <div className="sub-auction-item item-wrapper">
             <NavLink exact to={`${match.url}`}>拍卖首页</NavLink>
             <NavLink to={`${match.url}/types`}>拍品分类</NavLink>
+            <NavLink to={`${match.url}/auction`}>拍卖会</NavLink>
             <NavLink to={`${match.url}/send`}>我要送拍</NavLink>
             <NavLink to={`${match.url}/broadcast`}>通知公告</NavLink>
           </div>
@@ -60,12 +64,11 @@ export default class Auction extends React.Component {
             </Breadcrumb>
           </div>
           <div className="auction-content-wrapper">
-            <Route path={`${match.url}`} exact render={props => <AuctionComponent {...props} isMode={isMode} />} />
-            <Route path={`${match.url}/types/:root?/:type?`} render={props => <TypesPage {...props} isMode={isMode} changeMap={(key, name) => {
-              this.setState({
-                auctionMap: Object.assign(auctionMap, { [key]: name })
-              })
-            }} />} />
+            <Switch>
+              <Route path={`${match.url}`} exact render={props => <AuctionComponent {...props} isMode={isMode} />} />
+              <Route path={`${match.url}/types/commodity/:id?`} render={props => <CommodityPage {...props} isMode={isMode}/>} />
+              <Route path={`${match.url}/types/:root?/:type?`} render={props => <TypesPage {...props} isMode={isMode}/>} />
+            </Switch>
           </div>
         </Content>
 

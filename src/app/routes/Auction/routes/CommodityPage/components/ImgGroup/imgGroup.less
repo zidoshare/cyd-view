@@ -1,0 +1,60 @@
+.img-group-container {
+    height: 340px;
+    width: 360px;
+    .large-container {
+        width: 360px;
+        height: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        .img-block {
+            width: 100%;
+            height: 300px;
+            background-position: center;
+            background-size: contain;
+        }
+    }
+    .sm-container {
+        white-space: nowrap;
+        text-align: center;
+        height: 40px;
+        .group-control-btn {
+            display: inline-block;
+            font-size: 20px;
+            vertical-align: middle;
+            color: #aaa;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            margin: 5px;
+            cursor: pointer;
+            opacity: 1;
+            transition: opacity .3s ease-in-out;
+            &.over{
+              opacity: 0;
+              cursor: default;
+            }
+        }
+        .sm-img-block {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            background-position: center;
+            background-size: contain;
+            display: inline-block;
+            vertical-align: middle;
+            cursor: pointer;
+            position: relative;
+            &.active::after{
+              content:"";
+              display: block;
+              position: absolute;
+              width:32px;
+              height:32px;
+              left:-1px;
+              top:-1px;
+              background: transparent;
+              border: 1px solid #000;
+            }
+        }
+    }
+}

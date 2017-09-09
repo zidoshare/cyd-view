@@ -18,7 +18,7 @@ export default function Preview(props) {
           <p style={{fontSize:16}}>距结束：<Timer style={{color:'red'}} endTime={endTime}/></p>
           <h3>当前价 <span style={{fontSize:16,color:'red'}}>￥{currentPrice}</span></h3>
         </div>
-        <Link className="pre-btn" to={`/auction/commodity/${id}`}>
+        <Link className="pre-btn" to={`/auction/types/commodity/${id}`}>
           竞拍
         </Link>
       </figcaption>
