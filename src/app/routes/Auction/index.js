@@ -6,6 +6,9 @@ import { Link, NavLink, Route,Switch } from 'react-router-dom'
 import AuctionComponent from './AuctionComponent'
 import TypesPage from './routes/TypesPage'
 import CommodityPage from './routes/CommodityPage'
+import SendPage from './routes/SendPage'
+import BroadPage from './routes/BroadPage'
+import NoticePage from './routes/NoticePage'
 const { Content } = Layout
 import './auction.less'
 
@@ -18,22 +21,24 @@ export default class Auction extends React.Component {
         '/auction/types': '拍卖分类',
         '/auction/send': '我要送拍',
         '/auction/broadcast': '通知公告',
+        '/auction/broadcast/notice': '公告内容',
         '/auction/types/commodity': '竞拍',
-        '/auction/auction': '拍卖会',
+        '/auction/auctions': '拍卖会',
+        '/auction/auctions/commodity': '竞拍',
       }
     }
   }
   render() {
     const { location, isMode, match } = this.props
     const { auctionMap } = this.state
-    const pathSnippets = location.pathname.split('/').filter((value, index) => (index <= 2 || value =='commodity') ? value : null)
+    const pathSnippets = location.pathname.split('/').filter((value, index) => (index <= 2 || value =='commodity' || value=='notice') ? value : null)
     const breadcrumbItems = pathSnippets.map((_, index) => {
       const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
       return (
         <Item key={url}>
-          <Link to={url}>
+          {index < pathSnippets.length - 1?<Link to={url}>
             {auctionMap[url]}
-          </Link>
+          </Link>:<span>{auctionMap[url]}</span>}
         </Item>
       )
     })
@@ -53,7 +58,7 @@ export default class Auction extends React.Component {
           <div className="sub-auction-item item-wrapper">
             <NavLink exact to={`${match.url}`}>拍卖首页</NavLink>
             <NavLink to={`${match.url}/types`}>拍品分类</NavLink>
-            <NavLink to={`${match.url}/auction`}>拍卖会</NavLink>
+            <NavLink to={`${match.url}/auctions`}>拍卖会</NavLink>
             <NavLink to={`${match.url}/send`}>我要送拍</NavLink>
             <NavLink to={`${match.url}/broadcast`}>通知公告</NavLink>
           </div>
@@ -67,7 +72,12 @@ export default class Auction extends React.Component {
             <Switch>
               <Route path={`${match.url}`} exact render={props => <AuctionComponent {...props} isMode={isMode} />} />
               <Route path={`${match.url}/types/commodity/:id?`} render={props => <CommodityPage {...props} isMode={isMode}/>} />
-              <Route path={`${match.url}/types/:root?/:type?`} render={props => <TypesPage {...props} isMode={isMode}/>} />
+              <Route path={`${match.url}/auctions/commodity/:id?`} render={props => <CommodityPage {...props} isMode={isMode}/>} />
+              <Route path={`${match.url}/auctions`} key={'auctions'} render={props => <TypesPage {...props} isMode={isMode} auctions/>} />
+              <Route path={`${match.url}/types/:root?/:type?`}  key={'types'} render={props => <TypesPage {...props} isMode={isMode}/>} />
+              <Route path={`${match.url}/send`} render= {props => <SendPage {...props} isMode={isMode}/>}/>
+              <Route path={`${match.url}/broadcast`} exact render= {props => <BroadPage {...props} isMode={isMode}/>}/>
+              <Route path={`${match.url}/broadcast/notice/:id`} render = {props => <NoticePage {...props} isMode={isMode}/>}/>
             </Switch>
           </div>
         </Content>

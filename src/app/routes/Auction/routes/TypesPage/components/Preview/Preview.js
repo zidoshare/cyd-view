@@ -6,7 +6,7 @@ import './Preview.less'
 import rp from '../../../../../../../image/auction/recommend.png'
 import {Link} from 'react-router-dom'
 export default function Preview(props) {
-  const {style} = props
+  const {style,auctions} = props
   const { id,head,url, name, endTime, currentPrice,focus } = props.dataSource
   return (
     <figure {...{style}} className={'c-item'}>
@@ -18,7 +18,7 @@ export default function Preview(props) {
           <p style={{fontSize:16}}>距结束：<Timer style={{color:'red'}} endTime={endTime}/></p>
           <h3>当前价 <span style={{fontSize:16,color:'red'}}>￥{currentPrice}</span></h3>
         </div>
-        <Link className="pre-btn" to={`/auction/types/commodity/${id}`}>
+        <Link className="pre-btn" to={`/auction/${auctions?'auctions':'types'}/commodity/${id}`}>
           竞拍
         </Link>
       </figcaption>
@@ -26,9 +26,13 @@ export default function Preview(props) {
   )
 }
 
+Preview.defaultProps = {
+  auctions:false,
+}
 Preview.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
+  auctions:PropTypes.bool.isRequired,
   dataSource:PropTypes.shape({
     head: PropTypes.string,
     url:PropTypes.string,

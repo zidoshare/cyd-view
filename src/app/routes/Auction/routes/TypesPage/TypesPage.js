@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spin,Pagination } from 'antd'
+import { Spin} from 'antd'
 import './types.less'
 import { NavLink } from 'react-router-dom'
-import { get, isEmpty,getQueryString } from '../../../../Util'
+import { get, isEmpty} from '../../../../Util'
 import Preview from './components/Preview'
 
 const tempItem = {
@@ -18,7 +18,7 @@ const tempItem = {
 const tempDataSource = {
   records: [tempItem, tempItem, tempItem, tempItem, tempItem, tempItem]
 }
-export class TypesPage extends React.Component {
+export default class TypesPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,6 +35,28 @@ export class TypesPage extends React.Component {
     }
   }
   componentWillMount() {
+    if (this.props.auctions) {
+      this.setState({
+        rootLoading: true,
+        itemLoading: true,
+      })
+      this.getSyncPath().then(json => ({
+        rootLoading: false,
+        roots: json.data,
+      })).then(result => {
+        let rootId = this.props.match.params.root
+        if (rootId == null)
+          rootId = result.roots[0].id
+        let p = this.props.match.params.p
+        this.getSyncCommodities(rootId, { auction: 1,currentPage:p }).then(json =>
+          this.setState(Object.assign(result, {
+            itemLoading: false,
+            items: json.data,
+          }))
+        )
+      })
+      return
+    }
     this.setState({
       rootLoading: true,
       childLoading: true,
@@ -54,9 +76,9 @@ export class TypesPage extends React.Component {
         let { type } = this.props.match.params
         if (type == null)
           type = this.props.match.params.root
-        if(type == null && isEmpty(result.types))
+        if (type == null && isEmpty(result.types))
           return this.setState(Object.assign(result, {
-            items:{records:[]},
+            items: { records: [] },
             itemLoading: false,
           }))
         if (type == null)
@@ -73,7 +95,90 @@ export class TypesPage extends React.Component {
 
   }
 
+  render() {
+    // const {match} = this.props
+    const { roots, types, itemLoading } = this.state
+    let { items } = this.state
+    if (items == null)
+      items = tempDataSource
+    const { match, auctions } = this.props
+    const { root, type } = match.params
+    let currentType = {}
+    if (!isEmpty(roots)) {
+      if (root == null)
+        currentType = roots[0]
+      else
+        [currentType] = (roots.filter(value => value.id == root))
+    }
 
+    const childTypes = auctions ? roots : types
+
+    const childPath = auctions ? 'auctions' : 'types'
+    return (
+      <div className="types-wrapper">
+        {auctions ? null : <div className="banner-left-types">
+          <h1>拍品分类</h1>
+          <Spin spinning={this.state.rootLoading}>
+            <ul>
+              {roots.map((value, index) =>
+                <li key={`types-${index}`}>
+                  {(index == 0 && root == null) ?
+                    <NavLink className="active" onClick={() => this.handleChildPathAndCommodities(value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}
+                    </NavLink> :
+                    <NavLink onClick={() => this.handleChildPathAndCommodities(value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}
+                    </NavLink>}
+                </li>)}
+            </ul>
+          </Spin>
+        </div>}
+        <div className="right-content">
+          <Spin spinning={this.state.childLoading}>
+            <div className="child-type-menu">
+              {auctions ? <div className="child-menu-item">
+                <span>筛选条件</span>
+              </div> : <div className="child-menu-item">
+                  <span style={{ color: 'red' }}>{currentType.name}</span>
+                  <div className="ant-divider" />
+                  <span>筛选条件</span>
+                </div>}
+              <div className="child-menu-item">
+                <span>类别：</span>
+                <div className="menu-item-span">
+                  {type == null ?
+                    <NavLink exact className="active" onClick={() => this.setCommoditiesState(currentType.id, {
+                      auction: auctions?1:0
+                    })} to={`/auction/${childPath}/${currentType.id}`}>全部</NavLink>
+                    : <NavLink exact onClick={() => this.setCommoditiesState(currentType.id, {
+                      auction: auctions?1:0
+                    })} to={`/auction/${childPath}/${currentType.id}`}>全部</NavLink>}
+                  {childTypes.map((value, index) => {
+                    return <span key={'t-' + index}>
+                      <div className="ant-divider" />
+                      <NavLink onClick={() => this.setCommoditiesState(value.id, {
+                        auction: Number(auctions)
+                      })} to={`/auction/${childPath}/${currentType.id}/${value.id}`}>
+                        {value.name}
+                      </NavLink>
+                    </span>
+                  })}
+                </div>
+              </div>
+              <div className="child-menu-item" />
+            </div>
+          </Spin>
+          <Spin spinning={itemLoading}>
+            <div className="v-commodity-list">
+              {items.records.map((value, index) => {
+                return <Preview key={`item-${index}`} dataSource={value} {...{ auctions }} />
+              })}
+            </div>
+            {/* <Pagination current={getQueryString('p')} /> */}
+          </Spin>
+
+        </div>
+      </div>
+    )
+  }
 
   getSyncPath() {
     return get('/api/v1/types')
@@ -88,9 +193,9 @@ export class TypesPage extends React.Component {
       types: json.data,
       childLoading: false,
     })).then(result => {
-      if(isEmpty(result.types))
+      if (isEmpty(result.types))
         return this.setState(Object.assign(result, {
-          items:{records:[]},
+          items: { records: [] },
           itemLoading: false,
         }))
       let type = result.types[0].id
@@ -118,104 +223,31 @@ export class TypesPage extends React.Component {
     return get('/api/v1/types', { parent: rootId })
   }
 
-  setCommoditiesState(type, currentPage = 1, pageLevel = 0, key) {
+  setCommoditiesState(type, options) {
     this.setState({
       itemLoading: true,
     })
-    this.getSyncCommodities(type, currentPage, pageLevel, key).then(json => {
+    this.getSyncCommodities(type, options).then(json => {
       this.setState({
         items: json.data,
         itemLoading: false,
       })
     })
   }
-  getSyncCommodities(type, currentPage = 1, pageLevel = 0, key) {
-    return get('/api/v1/commodities/pages', {
-      currentPage,
-      pageLevel,
+  getSyncCommodities(type, options) {
+    return get('/api/v1/commodities/pages', Object.assign({
       type,
-      key,
-    })
+      currentPage:1
+    }, options))
   }
-  render() {
-    // const {match} = this.props
-    const { roots, types, itemLoading } = this.state
-    let { items } = this.state
-    if (items == null)
-      items = tempDataSource
-    const { match } = this.props
-    const { root,type } = match.params
-    console.log(getQueryString('p'))
-    let currentType = {}
-    if (!isEmpty(roots)) {
-      if (root == null)
-        currentType = roots[0]
-      else
-        [currentType] = (roots.filter(value => value.id == root))
-    }
-    return (
-      <div className="types-wrapper">
-        <div className="banner-left-types">
-          <h1>拍品分类</h1>
-          <Spin spinning={this.state.rootLoading}>
-            <ul>
-              {roots.map((value, index) => 
-              <li key={`types-${index}`}>
-                {(index==0 && root == null)?
-                <NavLink className="active" onClick={()=>this.handleChildPathAndCommodities(value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}
-                  </NavLink>:
-                  <NavLink onClick={()=>this.handleChildPathAndCommodities(value.id)} to={`/auction/types/${value.id}`}>{`${value.name}`}
-                  </NavLink>}
-              </li>)}
-            </ul>
-          </Spin>
-        </div>
-        <div className="right-content">
-          <Spin spinning={this.state.childLoading}>
-            <div className="child-type-menu">
-              <div className="child-menu-item">
-                <span style={{ color: 'red' }}>{currentType.name}</span>
-                <div className="ant-divider" />
-                <span>筛选条件</span>
-              </div>
-              <div className="child-menu-item">
-                <span>类别：</span>
-                <div className="menu-item-span">
-                  {type == null?
-                  <NavLink exact className="active" onClick={()=>this.setCommoditiesState(currentType.id)} to={`/auction/types/${currentType.id}`}>全部</NavLink>
-                  :<NavLink exact onClick={()=>this.setCommoditiesState(currentType.id)} to={`/auction/types/${currentType.id}`}>全部</NavLink>}
-                  {types.map((value, index) => {
-                    return <span key={'t-' + index}>
-                      <div className="ant-divider" />
-                      <NavLink onClick={()=>this.setCommoditiesState(value.id)} to={`/auction/types/${currentType.id}/${value.id}`}>
-                        {value.name}
-                      </NavLink>
-                    </span>
-                  })}
-                </div>
-              </div>
-              <div className="child-menu-item" />
-            </div>
-          </Spin>
-          <Spin spinning={itemLoading}>
-            <div className="v-commodity-list">
-              {items.records.map((value, index) => {
-                return <Preview key={`item-${index}`} dataSource={value} />
-              })}
-            </div>
-            <Pagination current={getQueryString('p')}/>
-          </Spin>
-          
-        </div>
-      </div>
-    )
-  }
+}
+
+TypesPage.defaultProps = {
+  auctions: false,
 }
 
 TypesPage.propTypes = {
   location: PropTypes.string,
   match: PropTypes.object,
-  changeMap: PropTypes.func.isRequired,
+  auctions: PropTypes.bool.isRequired,
 }
-
-export default TypesPage

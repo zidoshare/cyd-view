@@ -33,6 +33,7 @@ export class AuctionComponent extends React.Component {
   render() {
     const { isMode } = this.props
     const { auctionCommodities, recommends, hots } = this.state
+    console.log(hots)
     return (
       <div>
         <div className="item-wrapper" style={{ textAlign: 'center', lineHeight: '260px', fontSize: '24px', border: '1px solid #000', background: 'white' }}>
@@ -42,7 +43,7 @@ export class AuctionComponent extends React.Component {
             <div className="item-wrapper">
               <div style={{ borderBottom: '1px solid #000' }}>
                 <div style={{ float: 'left' }}><strong style={{ fontSize: 26 }}>专场拍卖</strong></div>
-                <div style={{ float: 'right' }}><Link to="/auction/types"><strong style={{ fontSize: 26, color: '#000' }}>更多&gt;&gt;&gt;</strong></Link></div>
+                <div style={{ float: 'right' }}><Link to="/auction/auctions"><strong style={{ fontSize: 26, color: '#000' }}>更多&gt;&gt;&gt;</strong></Link></div>
                 <div style={{ clear: 'both' }}></div>
               </div>
               <div style={{ height: 160, position: 'relative' }}>

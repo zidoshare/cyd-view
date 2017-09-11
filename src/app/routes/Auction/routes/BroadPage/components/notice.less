@@ -1,0 +1,53 @@
+.notice-container {
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    .notice-title{
+      position: relative;
+      padding:30px 10px;
+      transition:all .3s ease-in-out;
+    }
+    >* {
+        background: white;
+        display: block;
+        margin:10px 0;
+        cursor: pointer;
+    }
+    .notice-title::after{
+      content:">>>";
+      position: absolute;
+      top:50%;
+      margin-top:-16px;
+      right:30px;
+    }
+    .notice-title:hover{
+      box-shadow: 0 0 10px #aaaaaa;
+      background: #FF7B30;
+      color:white;
+    }
+}
+
+.notice-container.imp {
+    color: #FF7B30;
+    &::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    .notice-mark {
+        height: 120px;
+        font-size: 18px;
+        line-height: 120px;
+        text-align: center;
+        width:240px;
+        margin-right:10px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .notice-title{
+      width:940px;
+      vertical-align: middle;
+      display: inline-block;
+      margin-left:10px;
+    }
+}
