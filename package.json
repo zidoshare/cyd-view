@@ -8,7 +8,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --colors",
     "lint": "eslint app",
     "clean": "rimraf dist/*",
-    "analyzer": "npm run clean && NODE_ENV=analyzer npm_config_report=true webpack --progress --colors"
+    "analyzer": "npm run clean && cross-env NODE_ENV=analyzer npm_config_report=true webpack --progress --colors"
   },
   "author": "zido",
   "license": "ISC",

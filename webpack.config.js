@@ -18,10 +18,10 @@ const extractCss = new ExtractTextPlugin('style/[name]-css-[hash:6].css')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const {existsSync} = require('fs')
+const { existsSync } = require('fs')
 const rootPath = path.resolve(__dirname)
 const srcPath = path.join(rootPath, 'src')
-const imagePath = path.join(rootPath,'src','image')
+const imagePath = path.join(rootPath, 'src', 'image')
 const env = process
   .env
   .NODE_ENV
@@ -53,8 +53,8 @@ if (isDev) {
     'webpack/hot/only-dev-server',
     // bundle the client for hot reloading only- means to only hot reload for
     // successful updates
-    path.join( common.srcPath, 'normalize.js' ),
-    path.join( common.srcPath, 'index.js' ),
+    path.join(common.srcPath, 'normalize.js'),
+    path.join(common.srcPath, 'index.js'),
   ]
 } else {
   common.entry = {
@@ -66,7 +66,7 @@ if (isDev) {
     new HtmlWebpackPlugin({
       template: common.indexHtml,
       inject: 'body',
-      favicon:path.join(imagePath,'menu-logo-icon.png'),
+      favicon: path.join(imagePath, 'menu-logo-icon.png'),
     }),
     new webpack.HotModuleReplacementPlugin(), // HMR全局启用
     new webpack.NamedModulesPlugin(), // 在HMR更新的浏览器控制台中打印更易读的模块名称
@@ -74,17 +74,12 @@ if (isDev) {
 } else {
   common.plugins = [
     new webpack.optimize.UglifyJsPlugin(({
-      output:{
-        comments:false,
-      },
-      compress: {
-        warnings: false
-      },
+      
     })),
     new HtmlWebpackPlugin({
       template: common.indexHtml,
       inject: 'body',
-      favicon:path.join(imagePath,'menu-logo-icon.png'),
+      favicon: path.join(imagePath, 'menu-logo-icon.png'),
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     // stataic目录下静态资源的复制
@@ -104,7 +99,7 @@ if (isDev) {
   ]
 }
 
-if(process.env.NODE_ENV === 'analyzer'){
+if (process.env.NODE_ENV === 'analyzer') {
   common.plugins.push(new BundleAnalyzerPlugin())
 }
 
@@ -163,8 +158,8 @@ const webpackConfig = {
           emitError: false,
           //failOnWarning: false, failOnError: true,
           useEslintrc: false,
-          quiet:true,
-          // configFile: path.join(__dirname, "eslint_conf.js")
+          quiet: true,
+          // configFile: path.join(__dirname, 'eslint_conf.js')
           configFile: path.join(__dirname, '.eslintrc.json')
         }
       },
@@ -177,7 +172,7 @@ const webpackConfig = {
         exclude: /node_modules/, //忽略node_modules路径代码
         options: {
           plugins: [
-            ['import', [{libraryName: 'antd', style: 'css'}]],//按需加载antd 样式，有效小包大小
+            ['import', [{ libraryName: 'antd', style: 'css' }]],//按需加载antd 样式，有效小包大小
           ]
         }
       },
@@ -211,7 +206,7 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: ( handleStyle(extractCss, [
+        use: (handleStyle(extractCss, [
           styleLoaders.style,
           styleLoaders.css,
           styleLoaders.postcss
@@ -219,7 +214,7 @@ const webpackConfig = {
       },
       {
         test: /\.scss$/,
-        use: ( handleStyle(extractCss, [
+        use: (handleStyle(extractCss, [
           styleLoaders.style,
           styleLoaders.css,
           styleLoaders.postcss,
@@ -230,7 +225,7 @@ const webpackConfig = {
       },
       {
         test: /\.less$/,
-        use: ( handleStyle(extractCss, [
+        use: (handleStyle(extractCss, [
           styleLoaders.style,
           styleLoaders.css,
           styleLoaders.postcss,
@@ -267,10 +262,10 @@ const webpackConfig = {
     //返回组装完成后的plugins
     return common.plugins
   })(),
-  externals:{
-    'react':'React',
-    'react-dom':'ReactDOM',
-    'react-router-dom':'ReactRouterDOM',
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'react-router-dom': 'ReactRouterDOM',
   }
 }
 if (isDev) {
@@ -292,7 +287,7 @@ if (isDev) {
         secure: false,
       }
     },
-    host:'0.0.0.0',
+    host: '0.0.0.0',
     disableHostCheck: true,
   }
 }
