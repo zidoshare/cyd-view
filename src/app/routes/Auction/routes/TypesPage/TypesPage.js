@@ -107,8 +107,10 @@ export default class TypesPage extends React.Component {
     if (!isEmpty(roots)) {
       if (root == null)
         currentType = roots[0]
-      else
-        [currentType] = (roots.filter(value => value.id == root))
+      else{
+        const ts = (roots.filter(value => value.id == root))
+        currentType = ts[0]
+      }
     }
 
     const childTypes = auctions ? roots : types
