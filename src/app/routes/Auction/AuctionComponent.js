@@ -33,7 +33,6 @@ export class AuctionComponent extends React.Component {
   render() {
     const { isMode } = this.props
     const { auctionCommodities, recommends, hots } = this.state
-    console.log(hots)
     return (
       <div>
         <div className="item-wrapper" style={{ textAlign: 'center', lineHeight: '260px', fontSize: '24px', border: '1px solid #000', background: 'white' }}>

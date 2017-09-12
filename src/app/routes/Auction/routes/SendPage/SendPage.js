@@ -90,8 +90,7 @@ export class SendPage extends React.Component {
               required:true,
               message:'请填写拍品名称'
             }]
-          })(<Cascader placeholder="选择拍品分类（下拉列表）" options = {this.state.roots} loadData={this.loadData.bind(this)} onChange={value => {
-            console.log(value)}}/>)}
+          })(<Cascader placeholder="选择拍品分类（下拉列表）" options = {this.state.roots} loadData={this.loadData.bind(this)}/>)}
         </FormItem>
         <FormItem
           {...formItemLayout}

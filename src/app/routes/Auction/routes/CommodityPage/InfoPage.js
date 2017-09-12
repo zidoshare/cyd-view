@@ -27,7 +27,6 @@ export default class InfoPage extends React.Component{
     })
   }
   render(){
-    console.log(this.state.data)
     return (
       <div dangerouslySetInnerHTML={{
         __html:this.state.data
