@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spin} from 'antd'
+import { Spin } from 'antd'
 import './types.less'
 import { NavLink } from 'react-router-dom'
-import { get, isEmpty} from '../../../../Util'
+import { get, isEmpty } from '../../../../Util'
 import Preview from './components/Preview'
 
 const tempItem = {
@@ -48,7 +48,7 @@ export default class TypesPage extends React.Component {
         if (rootId == null)
           rootId = result.roots[0].id
         let p = this.props.match.params.p
-        this.getSyncCommodities(rootId, { auction: 1,currentPage:p }).then(json =>
+        this.getSyncCommodities(rootId, { auction: 1, currentPage: p }).then(json =>
           this.setState(Object.assign(result, {
             itemLoading: false,
             items: json.data,
@@ -77,12 +77,14 @@ export default class TypesPage extends React.Component {
         if (type == null)
           type = this.props.match.params.root
         if (type == null && isEmpty(result.types))
+          type = rootId
+        if (type == null)
+          type = result.roots[0].id
+        if (type == null)
           return this.setState(Object.assign(result, {
             items: { records: [] },
             itemLoading: false,
           }))
-        if (type == null)
-          type = result.roots[0].id
         this.getSyncCommodities(type).then(json => {
           const currentState = Object.assign(result, {
             items: json.data,
@@ -107,7 +109,7 @@ export default class TypesPage extends React.Component {
     if (!isEmpty(roots)) {
       if (root == null)
         currentType = roots[0]
-      else{
+      else {
         const ts = (roots.filter(value => value.id == root))
         currentType = ts[0]
       }
@@ -146,12 +148,12 @@ export default class TypesPage extends React.Component {
               <div className="child-menu-item">
                 <span>类别：</span>
                 <div className="menu-item-span">
-                  {type == null ?
+                  {(type == null && root == null) ?
                     <NavLink exact className="active" onClick={() => this.setCommoditiesState(currentType.id, {
-                      auction: auctions?1:0
+                      auction: auctions ? 1 : 0
                     })} to={`/auction/${childPath}/${currentType.id}`}>全部</NavLink>
                     : <NavLink exact onClick={() => this.setCommoditiesState(currentType.id, {
-                      auction: auctions?1:0
+                      auction: auctions ? 1 : 0
                     })} to={`/auction/${childPath}/${currentType.id}`}>全部</NavLink>}
                   {childTypes.map((value, index) => {
                     return <span key={'t-' + index}>
@@ -195,12 +197,7 @@ export default class TypesPage extends React.Component {
       types: json.data,
       childLoading: false,
     })).then(result => {
-      if (isEmpty(result.types))
-        return this.setState(Object.assign(result, {
-          items: { records: [] },
-          itemLoading: false,
-        }))
-      let type = result.types[0].id
+      let type = rootId
       this.getSyncCommodities(type).then(json => {
         const currentState = Object.assign(result, {
           items: json.data,
@@ -239,7 +236,7 @@ export default class TypesPage extends React.Component {
   getSyncCommodities(type, options) {
     return get('/api/v1/commodities/pages', Object.assign({
       type,
-      currentPage:1
+      currentPage: 1
     }, options))
   }
 }

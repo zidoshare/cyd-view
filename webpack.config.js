@@ -281,8 +281,13 @@ if (isDev) {
       colors: true
     },
     proxy: {
-      '/api/*': {
+      '/api/v1/*': {
         target: 'http://localhost:8089',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/api/v0/*':{
+        target: 'http://localhost:8088',
         changeOrigin: true,
         secure: false,
       }

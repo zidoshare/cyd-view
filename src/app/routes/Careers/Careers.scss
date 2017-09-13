@@ -1,0 +1,42 @@
+.banner2 .bg1{
+  background:rgb(53, 181, 210);
+  transform: translateY(-100px);
+  height: calc(100% + 200px);
+  top: -100px;
+  width: calc(100% + 30px);
+  left: -15px;
+}
+
+.car-title{
+  padding:20px;
+}
+.car-title h1{
+	color:white;
+}
+.careers-info{
+  margin: 0 0 20px 0;
+}
+.careers-content{
+  font-size:15px;
+  color:#050505;
+}
+.careers-content h3{
+	color:#cb92f7;
+}
+.careers-title{
+  padding:10px 0;
+  font-size:20px;
+  color:#d306f8;
+}
+.carees-list{
+	color:white;
+}
+.car-link{
+	font-size:16px;
+}
+.nr{
+	background:url(http://oow7renvm.bkt.clouddn.com/bg.jpg) center no-repeat;
+  background-attachment: fixed;
+	background-size: 100% 100% !important;
+   transition: all .6s ease-in-out;
+}

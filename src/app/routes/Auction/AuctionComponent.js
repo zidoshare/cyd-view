@@ -18,8 +18,11 @@ export class AuctionComponent extends React.Component {
     super(props)
     this.state = {
       auctionCommodities: [],
+      auctionLoading:false,
       recommends: [],
+      recommendsLoading:false,
       hots: [],
+      hotsLoading:false,
       types: null,
     }
   }
@@ -50,7 +53,7 @@ export class AuctionComponent extends React.Component {
                   <img src={hLeft} style={{ height: '100%' }} />
                 </div>
                 <div className="h-center" style={{ backgroundImage: `url(${hCenter})`, position: 'absolute', top: 0, left: 0, height: '100%', width: '100%' }}>
-                  <Carousel
+                  {(!this.state.auctionLoading && auctionCommodities.length == 0)?<h1 className="auction-last">当前暂无拍卖会</h1>:<Carousel
                     slidesToShow={5}
                     autoplay
                     swipeToSlide
@@ -60,12 +63,12 @@ export class AuctionComponent extends React.Component {
                     vertical={isMode}
                     draggable={!isMode}
                     dots={false}>
-                    {auctionCommodities.length > 0 ? auctionCommodities.map((value, index) =>
+                    {!this.state.auctionLoading ? auctionCommodities.map((value, index) =>
                       (<div style={{ padding: 9 }} key={`to-${index}`}>
                         <div className="bg-center" style={{ backgroundImage: `url(${value.head}${value.url})`, height: 140 }} />
                       </div>)
                     ) : this.getSpins()}
-                  </Carousel>
+                  </Carousel>}
                 </div>
                 <div style={{ position: 'absolute', height: '166px', right: 0, top: -3, zIndex: 100 }}>
                   <img src={hRight} style={{ height: '100%' }} />
@@ -143,10 +146,9 @@ export class AuctionComponent extends React.Component {
                               <p>起始价：……</p>
                             </div>
                             <div style={{ marginTop: '20px' }}>
-                              <Button size={'large'} disabled>立即竞拍</Button>
+                              <Button size={'large'}><Link to="/">立即竞拍</Link></Button>
                             </div>
                           </Col>
-
                         </Row>
                       </Spin>
                     </Col>
@@ -174,8 +176,12 @@ export class AuctionComponent extends React.Component {
   }
 
   getCurrentAction() {
+    this.setState({
+      autionLoading:true,
+    })
     get('/api/v1/commodities/pages', {
       auction: 1,
+      autionLoading:false,
     }).then(json => this.setState({ auctionCommodities: json.data.records }))
   }
   getTypes() {
@@ -185,12 +191,19 @@ export class AuctionComponent extends React.Component {
   }
 
   getRecommends() {
+    this.setState({
+      recommendsLoading:true,
+    })
     get('/api/v1/commodities/pages').then(json => this.setState({
+      recommendsLoading:false,
       recommends: json.data.records,
     }))
   }
 
   getHots() {
+    this.setState({
+      hotsLoading:true,
+    })
     get('/api/v1/commodities/pages', {
       pageSize: 4,
       focus: 1,
@@ -200,6 +213,7 @@ export class AuctionComponent extends React.Component {
         sortIndex: 2,
       }]
     }).then(json => this.setState({
+      hotsLoading:false,
       hots: json.data.records
     }))
   }

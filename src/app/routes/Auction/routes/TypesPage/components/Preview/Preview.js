@@ -10,7 +10,7 @@ export default function Preview(props) {
   const { id,head,url, name, endTime, currentPrice,focus } = props.dataSource
   return (
     <figure {...{style}} className={'c-item'}>
-      {focus == 1 ?<div className="bg-center pre-mark" style={{backgroundImage:`url(${rp})`}}></div>:null}
+      {focus == 1 ?<div className="bg-center pre-mark" style={{backgroundImage:`url(${rp})`,zIndex:200}}></div>:null}
       <div className="img-container"><img src={`${head}${url}`} /></div>
       <figcaption>
         <div className="pre-content">

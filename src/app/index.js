@@ -9,6 +9,10 @@ const { Content } = Layout
 import Home from './routes/Home'
 import Auction from './routes/Auction'
 import Footer from './components/Footer'
+import Commodities from './routes/Commodities'
+import Article from './routes/Article'
+import News from './routes/News'
+import Careers from './routes/Careers'
 
 import logo from '../image/cyd-logo.png'
 import './style/core.less'
@@ -57,6 +61,10 @@ export default class App extends React.Component{
               <Route exact path="/" render={props => <Home {...props} isMode={isMode}/>}/>
               <Route path="/auction" 
                 render={props => <Auction {...props} isMode={isMode}/>}/>
+              <Route path="/produce" render = {props => <Commodities {...props} isMode={isMode}/>}/>
+              <Route path="/news/:id" render = {props => <Article {...props} isMode={isMode}/> }/>
+              <Route path="/news" render = {props => <News {...props} isMode={isMode}/> }/>
+              <Route path="/career" render = {props => <Careers {...props} isMode={isMode} />}/>
             </Switch>
           </Content>
           <Footer isMode={isMode}/>

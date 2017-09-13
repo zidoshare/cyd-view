@@ -8,6 +8,7 @@ export default class Timer extends React.Component {
       startTime:props.startTime,
       remaining: '----:--:--',
       id: null,
+      end:false,
     }
   }
   componentDidMount() {
@@ -28,6 +29,13 @@ export default class Timer extends React.Component {
   timer() {
     const {startTime} = this.state
     const {endTime} = this.props
+    if(this.state.end){
+      window.clearInterval(this.state.id)
+      this.setState({
+        remaining: <span>拍卖结束</span>,
+        id:null,
+      },this.props.callback())
+    }
     var diffSecond = parseInt((endTime - startTime) / 1000) //结束时间到现在差的秒数
     if (diffSecond > 0) {
       var offset = moment.duration(diffSecond, 'seconds')
@@ -36,11 +44,17 @@ export default class Timer extends React.Component {
       var hour = offset.hours()
       var minute = offset.minutes()
       var second = offset.seconds()
-
+      if(month > 0){
+        this.setState({
+          remaining: '超过一个月',
+          startTime:new Date(startTime.getTime()+1000),
+          end:true,
+        })
+        return 
+      }
       var diff = moment({ month: month, day: day, hour: hour, minute: minute, second: second })
-      
       this.setState({
-        remaining: diff.format('D天HH时mm分ss秒'),
+        remaining: diff.format('DD天HH时mm分ss秒'),
         startTime:new Date(startTime.getTime()+1000)
       })
     } else {
