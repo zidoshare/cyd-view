@@ -1,0 +1,39 @@
+.about-info{
+  background: #6f5a9b;
+  font-size:16px;
+  height:300px;
+  overflow-y: auto;
+}
+.about-banner{
+  width:100%;
+  height:300px;
+}
+
+.banner-user{
+  height:300px;
+  img{
+    width:100%;
+    height:100%;
+    -webkit-user-drag: none;
+    cursor: pointer;
+  }
+}
+
+.about-item{
+  width:100%;
+  .about-item-img{
+    width:100%;
+    height:150px;
+    background-position: center;
+  }
+  .about-item-desc{
+    margin-top:10px;
+    font-size:16px;
+    line-height:20px;
+    text-align: center;
+  }
+}
+
+.about-item-container{
+  padding:10px 5px;
+}

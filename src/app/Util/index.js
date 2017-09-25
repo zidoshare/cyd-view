@@ -11,7 +11,6 @@ import post from './post'
 import checkBankNum from './checkBankNum'
 import patterns from './patterns'
 import checkIdCard from './checkIdCard'
-import buildEmpty from './buildEmpty.js'
 import toRoute from './toRoute.js'
 import cookieUtil from './cookieUtil.js'
 const Util = {
@@ -21,7 +20,6 @@ const Util = {
   checkBankNum,
   patterns,
   checkIdCard,
-  buildEmpty,
   toRoute,
   cookieUtil,
 }
@@ -33,7 +31,6 @@ export {
   checkBankNum,
   patterns,
   checkIdCard,
-  buildEmpty,
   toRoute,
   cookieUtil,
 }

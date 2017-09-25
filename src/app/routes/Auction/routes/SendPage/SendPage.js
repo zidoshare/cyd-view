@@ -67,13 +67,14 @@ export class SendPage extends React.Component {
       },
     }
     const { getFieldDecorator } = this.props.form
-    return (<div>
+    return (<div className="large-container">
       <Alert message={<h2>请填写拍品正确信息（标有<span style={{ color: 'red' }}>*</span>为必填）</h2>}></Alert>
-      <div style={{textAlign:'center'}}>
-        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1102612827&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1102612827:53" alt="点击联系客服" title="点击联系客服"/></a>
+      <div style={{textAlign:'center'}} className="inner-icon-container">
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1506998273&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1506998273:53" alt="点击联系客服" title="点击联系客服"/></a>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1720252517&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1720252517:53" alt="点击联系客服" title="点击联系客服"/></a>
       </div>
-      <Spin spinning>
-        <Form className="large-container">
+      <Spin spinning tip="详情请联系客服...">
+        <Form>
           <FormItem
             {...formItemLayout}
             label="拍品名称"

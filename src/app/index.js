@@ -13,6 +13,7 @@ import Commodities from './routes/Commodities'
 import Article from './routes/Article'
 import News from './routes/News'
 import Careers from './routes/Careers'
+import AboutUs from './routes/AboutUs'
 
 import logo from '../image/cyd-logo.png'
 import './style/core.less'
@@ -55,6 +56,7 @@ export default class App extends React.Component{
             <Item key="auction"><NavLink to="/auction">拍卖</NavLink></Item>
             <Item key="news"><NavLink to="/news">时讯速览</NavLink></Item>
             <Item key="careers"><NavLink to="/career">招贤纳士</NavLink></Item>
+            <Item key="aboutus"><NavLink to="/aboutus">关于我们</NavLink></Item>
           </Nav>
           <Content style={{marginTop:64}}>
             <Switch>
@@ -65,6 +67,7 @@ export default class App extends React.Component{
               <Route path="/news/:id" render = {props => <Article {...props} isMode={isMode}/> }/>
               <Route path="/news" render = {props => <News {...props} isMode={isMode}/> }/>
               <Route path="/career" render = {props => <Careers {...props} isMode={isMode} />}/>
+              <Route path="/aboutus" render = {props => <AboutUs {...props} isMode={isMode} />}/>
             </Switch>
           </Content>
           <Footer isMode={isMode}/>

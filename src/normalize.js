@@ -6,6 +6,8 @@
  */
 Object.assign = require('object-assign')
 
+console.log('适配低端浏览器')
+
 if(typeof Promise === 'undefined'){
   require('promise/lib/rejection-tracking').enable()
   window.Promise = require('promise/lib/es6-extensions')
