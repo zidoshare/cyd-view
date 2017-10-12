@@ -53,7 +53,6 @@ if (isDev) {
     'webpack/hot/only-dev-server',
     // bundle the client for hot reloading only- means to only hot reload for
     // successful updates
-    path.join(common.srcPath, 'normalize.js'),
     path.join(common.srcPath, 'index.js'),
   ]
 } else {
@@ -170,11 +169,6 @@ const webpackConfig = {
           path.join(common.rootPath, 'src'), //转换src路径下的代码
         ],
         exclude: /node_modules/, //忽略node_modules路径代码
-        options: {
-          plugins: [
-            ['import', [{ libraryName: 'antd', style: 'css' }]],//按需加载antd 样式，有效小包大小
-          ]
-        }
       },
       {
         test: /\.json$/,
@@ -282,12 +276,12 @@ if (isDev) {
     },
     proxy: {
       '/api/v1/*': {
-        target: 'http://localhost:8089',
+        target: 'http://112.74.29.8:8089',
         changeOrigin: true,
         secure: false,
       },
       '/api/v0/*':{
-        target: 'http://localhost:8088',
+        target: 'http://112.74.29.8:8088',
         changeOrigin: true,
         secure: false,
       }

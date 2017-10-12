@@ -45,8 +45,6 @@ export default class TypesPage extends React.Component {
         roots: json.data,
       })).then(result => {
         let rootId = this.props.match.params.root
-        if (rootId == null)
-          rootId = result.roots[0].id
         let p = this.props.match.params.p
         this.getSyncCommodities(rootId, { auction: 1, currentPage: p }).then(json =>
           this.setState(Object.assign(result, {
@@ -114,7 +112,9 @@ export default class TypesPage extends React.Component {
         currentType = ts[0]
       }
     }
-
+    if(root ==null && auctions){
+      currentType = {}
+    }
     const childTypes = auctions ? roots : types
 
     const childPath = auctions ? 'auctions' : 'types'
@@ -172,9 +172,9 @@ export default class TypesPage extends React.Component {
           </Spin>
           <Spin spinning={itemLoading}>
             <div className="v-commodity-list">
-              {items.records.map((value, index) => {
+              {items.records.length>0?items.records.map((value, index) => {
                 return <Preview key={`item-${index}`} dataSource={value} {...{ auctions }} />
-              })}
+              }):<div>暂无数据</div>}
             </div>
             {/* <Pagination current={getQueryString('p')} /> */}
           </Spin>

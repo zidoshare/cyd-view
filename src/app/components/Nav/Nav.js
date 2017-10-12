@@ -20,7 +20,7 @@ export default class Nav extends React.Component{
   }
   render(){
     //获取其他props
-    const props = { ...this.props }
+    const props = { ...(this.props) }
     const isMode = props.isMode
     delete props.isMode
 

@@ -71,7 +71,7 @@ export default class Home extends React.Component{
           }]}/>
         </div>
         <div className="bg-center folder" style={!isMode?{backgroundImage:`url(${folder2bg})`}:{}}>
-          <h1 className="bg-center text-center folder-title" style={{color:'white',...isMode?{backgroundImage:`url(${folder2bg})`}:{}}} >
+          <h1 className="bg-center text-center folder-title" style={{color:'white',...(isMode?{backgroundImage:`url(${folder2bg})`}:{})}} >
             创源地企业文化
             <img className="bottom-align" src={pic10}/>
           </h1>

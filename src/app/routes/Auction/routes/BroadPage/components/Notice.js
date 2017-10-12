@@ -7,14 +7,15 @@ export default class CommonNotice extends React.Component {
     super(props)
   }
   render() {
-    const { mark, title,id } = this.props
+    const { mark, title, id, imgHead, imgUrl } = this.props
+    let resultUrl = imgHead == null ? null : (imgHead + imgUrl)
     return (
-      <figure className={`notice-container ${mark === 1 ? 'imp' : ''}`}>
-        {mark === 1 ? <div className="notice-mark">重要通知</div> : null}
-        <Link to={`/auction/broadcast/notice/${id}`} className="notice-title">
-          <figcaption>{title}</figcaption>
-        </Link>
-      </figure>
+      <Link to={`/auction/broadcast/notice/${id}`}>
+        <figure className={`notice-container ${mark === 1 ? 'imp' : ''}`}>
+          {mark === 1 ? <img className="notice-mark" src={resultUrl} /> : null}
+          <figcaption className="notice-title">{title}</figcaption>
+        </figure>
+      </Link>
     )
   }
 }
@@ -25,4 +26,6 @@ CommonNotice.propTypes = {
   description: PropTypes.string,
   content: PropTypes.string,
   mark: PropTypes.number,
+  imgUrl: PropTypes.string,
+  imgHead: PropTypes.string,
 }
