@@ -276,12 +276,17 @@ if (isDev) {
     },
     proxy: {
       '/api/v1/*': {
-        target: 'http://112.74.29.8:8089',
+        target: 'http://localhost:8089',
         changeOrigin: true,
         secure: false,
       },
       '/api/v0/*':{
-        target: 'http://112.74.29.8:8088',
+        target: 'http://localhost:8088',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/api/*':{
+        target: 'http://localhost:8089',
         changeOrigin: true,
         secure: false,
       }

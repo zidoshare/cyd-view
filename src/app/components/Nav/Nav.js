@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Menu,Icon} from 'antd'
-import {Link} from 'react-router-dom'
+import {Link,NavLink} from 'react-router-dom'
 const {Item} = Menu
 
 import './nav.less'
@@ -69,7 +69,7 @@ export default class Nav extends React.Component{
             >
               {children}
               <Item>
-                <span><Icon type="login" />登录</span>
+                <NavLink to={'/login'} style={{padding:0}}><Icon type="login" />登录/注册</NavLink>
               </Item>
             </Menu>
           </div>}

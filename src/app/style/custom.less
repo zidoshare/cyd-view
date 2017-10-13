@@ -18,6 +18,7 @@
 @template-text-color-light: #FFF;
 @template-footer-text-color: #666;
 @animate-duration: .45s;
+@primary-theme-color: #FC6134;
 // 详细页图片或框框的样式;
 .page-shadow() {
     box-shadow: 0 5px 8px @shadow-color;
@@ -76,4 +77,14 @@
 
 .red{
     color:#FE0000;
+}
+
+.pull-right{
+    float: right;
+}
+
+.clear-fix::after{
+    content:"";
+    display: block;
+    clear: both;
 }

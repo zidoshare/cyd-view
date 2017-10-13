@@ -14,6 +14,7 @@ import Article from './routes/Article'
 import News from './routes/News'
 import Careers from './routes/Careers'
 import AboutUs from './routes/AboutUs'
+import Login from './routes/Login'
 
 import logo from '../image/cyd-logo.png'
 import './style/core.less'
@@ -68,6 +69,7 @@ export default class App extends React.Component{
               <Route path="/news" render = {props => <News {...props} isMode={isMode}/> }/>
               <Route path="/career" render = {props => <Careers {...props} isMode={isMode} />}/>
               <Route path="/aboutus" render = {props => <AboutUs {...props} isMode={isMode} />}/>
+              <Route path="/login/:state?" render = {props => <Login {...props} isMode={isMode}/>}/>
             </Switch>
           </Content>
           <Footer isMode={isMode}/>

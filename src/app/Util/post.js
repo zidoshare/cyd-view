@@ -29,11 +29,6 @@ export const createHttpPromise = (url, data = {}, headers = require('./HttpHeade
     headers: headers,
     body: data && JSON.stringify(data),
   }).then((response) => {
-    if(!response.ok){
-      return {
-        success:false,
-      }
-    }
     const contentType = response.headers.get('content-type')
     if (contentType && contentType.indexOf('application/json') !== -1)
       return response.json()

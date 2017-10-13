@@ -1,0 +1,71 @@
+@import '../../style/custom.less';
+.login-container{
+  padding-top: 100px;
+  background: url(http://odp22tnw6.bkt.clouddn.com/common-bg-2.jpg) no-repeat;
+  background-size: cover;
+  
+  .login-primary-form{
+    width:600px;
+    background:linear-gradient(to bottom, white, rgba(255, 255, 255, 0.6),rgba(255, 255, 255, 0.3),rgba(255, 255, 255, 0));
+    margin:auto;
+    position: relative;
+    .top-title{
+      color: @primary-theme-color;
+      font-weight: 600;
+      font-size:26px;
+      vertical-align: middle;
+    }
+    .login-tile{
+      padding:50px;
+      position: absolute;
+      top:0;
+      width:100%;
+      z-index:2;
+      .login-icon{
+        margin-right:20px;
+        img{
+          width:35px;
+          height:35px;
+        }
+      }
+      .login-tab{
+        margin:10px 0 20px 0;
+        a{
+          display: inline-block;
+          padding:10px 0;
+          width:250px;
+          text-align: center;
+          color:black;
+          border:1px solid #C9C9C9;
+          text-decoration: none;
+        }
+        a.active{
+          background: @link-color;
+          color:white;
+        }
+        a:hover{
+          background:@link-hover-color;
+          color:white;
+        }
+      }
+      .login-page{
+        width:280px;
+        margin:auto;
+        .login-form-button{
+          width: 100%;
+        }
+        .login-form-forgot{
+          float: right;
+        }
+      }
+    }
+    .login-bg{
+      position: relative;
+      width:400px;
+      left:-130px;
+      z-index:1;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+  }
+}

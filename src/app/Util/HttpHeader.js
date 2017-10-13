@@ -7,5 +7,5 @@
 export default {
   'Accept': 'application/json',
   //json形式
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json;charset=utf-8'
 }
