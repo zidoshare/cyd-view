@@ -24,7 +24,7 @@ export class NormalForm extends React.Component{
         })
         console.log('Received values of form: ', values)
         post('/api/auth/login',values,{
-          'content-type':'application/x-www-form-urlencoded'
+          'Content-Type':'application/x-www-form-urlencoded'
         }).then(() => {
           this.setState({
             loading:false

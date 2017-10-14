@@ -3,20 +3,28 @@
  * @author zido
  * @since 2017/6/3 0003
  */
-import {message as Message} from 'antd'
+import { message as Message } from 'antd'
+import objToQuery from './objToQuery'
 import isEmpty from './isEmpty'
-export const defaultReject = ({message = '服务器异常，请尝试刷新重试'}) => {
-  Message.error(message)
+export const defaultReject = (err) => {
+  console.log(err)
+  Message.error(err.message || '服务器异常')
 }
+
+function AjaxError(message){
+  this.success = false
+  this.message = message
+}
+AjaxError.prototype = new Error()
 
 export const resolveJson = (data, cb) => {
   if (data.success !== null && data.success === false) {
     if (!isEmpty(data.message)) {
-      cb({status: -1, info: data.message})
+      cb({ status: -1, info: data.message })
     } else if (!isEmpty((data.data))) {
       return data
     }
-    cb({status: -1})
+    cb({ status: -1 })
     return
   }
   if (data.success !== null && data.success === true)
@@ -24,34 +32,35 @@ export const resolveJson = (data, cb) => {
 }
 
 export const createHttpPromise = (url, data = {}, headers = require('./HttpHeader'), method = 'POST') => {
+  if(headers['Content-Type'].indexOf('application/x-www-form-urlencoded') !== -1){
+    data = objToQuery(data)
+  }else {
+    data = data && JSON.stringify(data)
+  }
   return fetch(url, {
     method: method,
     headers: headers,
-    body: data && JSON.stringify(data),
+    body: data,
   }).then((response) => {
     const contentType = response.headers.get('content-type')
     if (contentType && contentType.indexOf('application/json') !== -1)
       return response.json()
     return {
-      success:false,
-      message:'服务器未返回相应数据，请联系管理员',
+      success: false,
+      message: '服务器未返回相应数据，请联系管理员',
     }
-  },(err) => {
-    console.error(err)
   }).then((json) => {
-    if(json.success !== null && json.success === false){
-      const err = new Error()
-      err.data = json
-      throw err
+    if (json.success !== null && json.success === false) {
+      throw new AjaxError(json.message)
     }
-    else{
-      if(!isEmpty(json.message))
+    else {
+      if (!isEmpty(json.message))
         Message.success(json.message)
       return json
     }
   }).catch((err) => {
-    defaultReject(err.data)
-    return err.data
+    defaultReject(err)
+    return err
   })
 }
 export default createHttpPromise

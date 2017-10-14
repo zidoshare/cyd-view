@@ -1,6 +1,6 @@
 import React from 'react'
 // import { BrowserRouter as Router,Route} from 'react-router-dom'
-import enquire from 'enquire.js'
+// import enquire from 'enquire.js'
 import { Layout } from 'antd'
 import {NavLink,BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import Nav,{Item} from './components/Nav'
@@ -26,26 +26,26 @@ export default class App extends React.Component{
     }
   }
 
-  componentDidMount() {
-    // 适配手机屏幕;
-    this.enquireScreen((isMode) => {
-      this.setState({
-        isMode
-      })
-    })
-  }
-  enquireScreen(cb) {
-    /* eslint-disable no-unused-expressions */
-    enquire.register('only screen and (min-width: 320px) and (max-width: 767px)', {
-      match: () => {
-        cb && cb(true)
-      },
-      unmatch: () => {
-        cb && cb()
-      },
-    })
-    /* eslint-enable no-unused-expressions */
-  }
+  // componentDidMount() {
+  //   // 适配手机屏幕;
+  //   this.enquireScreen((isMode) => {
+  //     this.setState({
+  //       isMode
+  //     })
+  //   })
+  // }
+  // enquireScreen(cb) {
+  //   /* eslint-disable no-unused-expressions */
+  //   enquire.register('only screen and (min-width: 320px) and (max-width: 767px)', {
+  //     match: () => {
+  //       cb && cb(true)
+  //     },
+  //     unmatch: () => {
+  //       cb && cb()
+  //     },
+  //   })
+  //   /* eslint-enable no-unused-expressions */
+  // }
   render(){
     const {isMode} = this.state
     return (
