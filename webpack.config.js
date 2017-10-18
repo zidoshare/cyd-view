@@ -139,6 +139,7 @@ const webpackConfig = {
     filename: 'bundle.[hash].js',
     path: common.dist,
     publicPath: '/', //让HMR知道在哪里加载热更新块所必需的
+    chunkFilename: '[name].bundle.js',
   },
   context: path.resolve(__dirname, 'src'),
   devtool: isDev

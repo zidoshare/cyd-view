@@ -45,15 +45,21 @@ export default class Home extends React.Component{
           pauseOnHover
           arrows = {!isMode}
           prevArrow={<SampleArrow type="left"/>} 
-       x   nextArrow={<SampleArrow type="right"/>}
+          nextArrow={<SampleArrow type="right"/>}
         >
-          <div style={{backgroundImage:'url("http://oow7renvm.bkt.clouddn.com/cyd2.jpg")'}}></div>
-          <div style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner1.jpg")'}}></div>
-          <div  style={{backgroundImage:'url("http://odp22tnw6.bkt.clouddn.com/banner2.jpg")'}}></div>
+          <div>
+            <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner6.jpg"/>
+          </div>
+          <div>
+            <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner8.jpg"/>
+          </div>
+          <div>
+            <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner10.jpg"/>
+          </div>
         </Carousel>
         <div className="folder">
           <h1 className="text-center folder-title">
-            创源地企业优势
+            企业优势
             <img className="bottom-align" src={pic10}/>
           </h1>
           <InFolder className="pic-item" dataSource={[{
@@ -72,7 +78,7 @@ export default class Home extends React.Component{
         </div>
         <div className="bg-center folder" style={!isMode?{backgroundImage:`url(${folder2bg})`}:{}}>
           <h1 className="bg-center text-center folder-title" style={{color:'white',...(isMode?{backgroundImage:`url(${folder2bg})`}:{})}} >
-            创源地企业文化
+            企业文化
             <img className="bottom-align" src={pic10}/>
           </h1>
           <InFolder type="flip" dataSource = {[{
@@ -111,7 +117,7 @@ export default class Home extends React.Component{
         </div>
         <div className="folder" style={{height:'auto'}}>
           <h1 className="text-center folder-title">
-            创源地合作伙伴
+            合作伙伴
             <img className="bottom-align" src={pic10}/>
           </h1>
           <div>

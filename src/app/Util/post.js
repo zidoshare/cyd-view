@@ -7,7 +7,6 @@ import { message as Message } from 'antd'
 import objToQuery from './objToQuery'
 import isEmpty from './isEmpty'
 export const defaultReject = (err) => {
-  console.log(err)
   Message.error(err.message || '服务器异常')
 }
 
@@ -32,7 +31,7 @@ export const resolveJson = (data, cb) => {
 }
 
 export const createHttpPromise = (url, data = {}, headers = require('./HttpHeader'), method = 'POST') => {
-  if(headers['Content-Type'].indexOf('application/x-www-form-urlencoded') !== -1){
+  if(headers['Content-Type'] && headers['Content-Type'].indexOf('application/x-www-form-urlencoded') !== -1){
     data = objToQuery(data)
   }else {
     data = data && JSON.stringify(data)

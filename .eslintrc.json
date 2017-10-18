@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "commonjs": true,
@@ -24,9 +25,12 @@
         }
     },
     "rules": {
+        "strict": 0,
         "indent": [
             "error",
-            2
+            2,{
+                "SwitchCase": 1 
+            }
         ],//tab占两个空格
         // "linebreak-style": [
         //     "error",
@@ -40,7 +44,8 @@
             "error",
             "never"
         ],
-        "no-console":"off"
+        "no-console":"off",
+        "react/display-name":"off"
         // "react/jsx-uses-react": "error",//防止React被错误地标记为未使用
         // "react/jsx-uses-vars": "error",//防止在JSX中使用的变量被错误地标记为未使用
         // "react/no-danger":"error",//防止在jsx中使用危险的属性

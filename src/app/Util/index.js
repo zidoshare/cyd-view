@@ -13,6 +13,7 @@ import patterns from './patterns'
 import checkIdCard from './checkIdCard'
 import toRoute from './toRoute.js'
 import cookieUtil from './cookieUtil.js'
+import toBack from './toBack'
 const Util = {
   get,
   isEmpty,
@@ -22,6 +23,7 @@ const Util = {
   checkIdCard,
   toRoute,
   cookieUtil,
+  toBack,
 }
 export {
   Util as default,
@@ -33,6 +35,7 @@ export {
   checkIdCard,
   toRoute,
   cookieUtil,
+  toBack,
 }
 
 

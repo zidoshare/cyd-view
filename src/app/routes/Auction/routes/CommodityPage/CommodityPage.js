@@ -47,15 +47,15 @@ export default class CommodityPage extends React.Component {
     }
 
     switch (labels.state) {
-    case 0:
-      labels.state = '暂未开始'
-      break
-    case 1:
-      labels.state = '拍卖中'
-      break
-    case 2:
-      labels.state = '已结束'
-      break
+      case 0:
+        labels.state = '暂未开始'
+        break
+      case 1:
+        labels.state = '拍卖中'
+        break
+      case 2:
+        labels.state = '已结束'
+        break
     }
     return (
       <div className="commodity-wrapper">

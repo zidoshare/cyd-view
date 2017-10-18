@@ -24,8 +24,9 @@ export default class Nav extends React.Component{
     const isMode = props.isMode
     delete props.isMode
 
-    const {children,logo,mark,className} = this.props
+    const {children,logo,mark,className,loginLoading} = this.props
     const {phoneOpen} = this.state
+    console.log('nav loginLoading:',loginLoading)
     return (
       <header className={className}>
         <Link to="/">
@@ -90,6 +91,8 @@ Nav.propTypes = {
   mark:PropTypes.string.isRequired,
   isMode:PropTypes.bool.isRequired,
   className:PropTypes.string.isRequired,
+  loginLoading:PropTypes.bool.isRequired,
+  userData:PropTypes.object,
 }
 
 export {
