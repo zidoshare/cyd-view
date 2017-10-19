@@ -1,38 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Menu,Icon} from 'antd'
-import {Link,NavLink} from 'react-router-dom'
+import {Menu, Icon, Spin, Avatar} from 'antd'
+import {Link, NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import './nav.less'
+import {getUserInfo} from '../../reducers/modules/auth/loginActions'
+
 const {Item} = Menu
 
-import './nav.less'
-export default class Nav extends React.Component{
-  constructor(props){
+class Nav extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
-      isMode:this.props.isMode,
-      phoneOpen:false,
+      isMode: this.props.isMode,
+      phoneOpen: false,
     }
   }
-  handleClick(){
-    this.setState({
-      phoneOpen:!this.state.phoneOpen,
-    })
-  }
-  render(){
-    //获取其他props
-    const props = { ...(this.props) }
-    const isMode = props.isMode
-    delete props.isMode
 
-    const {children,logo,mark,className,loginLoading} = this.props
-    const {phoneOpen} = this.state
-    console.log('nav loginLoading:',loginLoading)
+  componentWillMount() {
+    this.props.getUserInfo()
+  }
+
+  render() {
+    const {children, logo, mark, className, infoLoading, userData} = this.props
     return (
       <header className={className}>
-        <Link to="/">
+        <Link to='/'>
           <ul
             className={`${className}-logo`}
-            >
+          >
             <li>
               <img src={logo}/>
             </li>
@@ -41,60 +38,62 @@ export default class Nav extends React.Component{
             </li>
           </ul>
         </Link>
-        
-          {isMode?(
-            <nav className={`${className}-phone-nav${phoneOpen ? ' open' : ''}`}>
-              <div className={`${className}-phone-nav-bar`} onClick={this.handleClick.bind(this)}>
-                <em/>
-                <em/>
-                <em/>
-              </div>
-              <div className={`${className}-phone-nav-text`} onClick={this.handleClick.bind(this)}>
-                <Menu 
-                  selectedKeys={[null]}
-                  mode="inline"
-                  theme="dark"
-                >
-                  {children}
-                </Menu>
-              </div>
-            </nav>
-          ):
-          <div
-            className={`${className}-nav`}
+        <div
+          className={`${className}-nav`}
+        >
+          <Menu
+            selectedKeys={[null]}
+            mode='horizontal'
+            theme='dark'
           >
-            <Menu 
-              selectedKeys={[null]}
-              mode="horizontal"
-              theme="dark"
-            >
-              {children}
-              <Item>
-                <NavLink to={'/login'} style={{padding:0}}><Icon type="login" />登录/注册</NavLink>
-              </Item>
-            </Menu>
-          </div>}
-        
+            {children}
+            <Item>
+
+              <Spin spinning={infoLoading}>{userData ?
+                <div className="avatar-container">
+
+                  <span className="nickName">{userData.nickname.length > 4 ? userData.nickname.slice(0, 4) + '...' : userData.nickname}</span>
+                  <Avatar shape="circle"
+                          src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/default-avatar.png"/>
+                </div>
+                :
+                <NavLink to={'/login'} style={{padding: 0}}><Icon type='login'/>登录/注册</NavLink>}</Spin>
+              {userData ? <div className="info-panel">
+
+                <span>{userData.nickname}</span>
+              </div> : null}
+            </Item>
+          </Menu>
+        </div>
+
       </header>
     )
   }
 }
 
 Nav.defaultProps = {
-  isMode:false,
-  className:'header0',
+  isMode: false,
+  className: 'header0',
 }
 
 Nav.propTypes = {
-  children:PropTypes.array.isRequired,
-  logo:PropTypes.string.isRequired,
-  mark:PropTypes.string.isRequired,
-  isMode:PropTypes.bool.isRequired,
-  className:PropTypes.string.isRequired,
-  loginLoading:PropTypes.bool.isRequired,
-  userData:PropTypes.object,
+  children: PropTypes.array.isRequired,
+  logo: PropTypes.string.isRequired,
+  mark: PropTypes.string.isRequired,
+  isMode: PropTypes.bool.isRequired,
+  className: PropTypes.string.isRequired,
+  infoLoading: PropTypes.bool.isRequired,
+  userData: PropTypes.object,
+  getUserInfo: PropTypes.func.isRequired
 }
+const mapStateToProps = (state) => ({
+  ...state.auth.info
+})
 
+const mapDispatchToProps = ({
+  getUserInfo
+})
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav))
 export {
   Item
 }

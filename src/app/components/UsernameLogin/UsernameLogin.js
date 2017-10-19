@@ -9,11 +9,15 @@ export class NormalForm extends React.Component{
   }
   
   login(e){
-    const {form,login} = this.props
+    const {form,login,getUserInfo} = this.props
     e.preventDefault()
     form.validateFields((err, values) => {
       if (!err) {
-        login(values)
+        login(values).then((json)=>{
+          if(json.success){
+            getUserInfo()
+          }
+        })
       }
     })
   }
@@ -57,7 +61,8 @@ export class NormalForm extends React.Component{
 NormalForm.propTypes = {
   form:PropTypes.object,
   login:PropTypes.func,
-  auth:PropTypes.any
+  getUserInfo:PropTypes.func,
+  auth:PropTypes.any,
 }
 
 export default Form.create()(NormalForm)

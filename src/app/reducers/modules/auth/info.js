@@ -6,11 +6,12 @@ const ACTION_HANDLERS = {
     return ({...state, infoLoading: true})
   },
   [GET_INFO_OVER]: (state, action) => {
-    return ({...state, infoLoading: false, data: action.data})
+    return ({...state, infoLoading: false, userData: action.data})
   }
 }
+
 const initialState = {
-  infoLoading: false
+  infoLoading: false,
 }
 
 

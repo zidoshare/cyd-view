@@ -1,14 +1,14 @@
 export const LOGIN_LOADING = 'LOGIN_LOADING'
 export const LOGIN_OVER = 'LOGIN_OVER'
-
-
+export const SEND_LOADING = 'SEND_LOGIN'
 const ACTION_HANDLERS = {
-  [LOGIN_LOADING]: (state) => {
-    return ({...state, loginLoading: true})
+  [LOGIN_LOADING]: () => {
+    return ({loginLoading: true})
   },
-  [LOGIN_OVER]: (state, action) => {
-    return ({...state, loginLoading: false, data: action.data})
-  }
+  [LOGIN_OVER]: () => {
+    return ({loginLoading: false})
+  },
+  [SEND_LOADING]: (state,action) => ({sendLoading:action.loading,loadingRemaining:action.loadingRemaining}),
 }
 const initialState = {
   loginLoading: false

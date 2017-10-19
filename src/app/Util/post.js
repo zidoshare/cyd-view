@@ -40,6 +40,7 @@ export const createHttpPromise = (url, data = {}, headers = require('./HttpHeade
     method: method,
     headers: headers,
     body: data,
+    credentials: 'include',
   }).then((response) => {
     const contentType = response.headers.get('content-type')
     if (contentType && contentType.indexOf('application/json') !== -1)
@@ -47,6 +48,11 @@ export const createHttpPromise = (url, data = {}, headers = require('./HttpHeade
     return {
       success: false,
       message: '服务器未返回相应数据，请联系管理员',
+    }
+  }).catch(err => {
+    return {
+      success:false,
+      message:err.message
     }
   }).then((json) => {
     if (json.success !== null && json.success === false) {

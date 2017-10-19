@@ -1,32 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Login.less'
-import {Link,Route} from 'react-router-dom'
+import {NavLink,Route} from 'react-router-dom'
 import UsernameLoginPage from './routes/UsernameLoginPage/UsernameLoginPage'
 import CodeLoginPage from './routes/CodeLoginPage/CodeLoginPage'
 export class Login extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-      type : props.match.params.state === null
-    }
-  }
-  toOtherTab(){
-    const {type} = this.state
-    if(type === false)
-      this.setState({
-        type : true
-      })
-    else
-      this.setState({
-        type : false
-      })
   }
   render(){
-    const {type} = this.state
-    const handler = {
-      onClick:this.toOtherTab.bind(this)
-    }
     return(
       <div className="login-container">
         
@@ -46,12 +28,12 @@ export class Login extends React.Component{
             </div>
             <div className="login-content">
               <div className="login-tab">
-                <Link className={type?'active':''} to={'/login'} {...(type?{}:handler)}>用户名登录</Link>
-                <Link className={!type?'active':''} to={'/login/code'} {...(!type?{}:handler)}>验证码登录</Link>
+                <NavLink to={'/login'} exact >用户名登录</NavLink>
+                <NavLink to={'/login/code'}>验证码登录</NavLink>
               </div>
               <div className="login-page">
                 <Route path="/login" exact component={UsernameLoginPage}/>
-                <Route path="/login/code" exact component={CodeLoginPage} />
+                <Route path="/login/code" component={CodeLoginPage} />
               </div>
             </div>
           </div>
