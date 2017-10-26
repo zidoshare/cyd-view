@@ -7,7 +7,7 @@ const ACTION_HANDLERS = {
   },
   [GET_INFO_OVER]: (state, action) => {
     return ({...state, infoLoading: false, userData: action.data})
-  }
+  },
 }
 
 const initialState = {

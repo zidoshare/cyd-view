@@ -1,8 +1,9 @@
 import {post, get} from '../../../Util'
 import apiUrl from '../../../apiUrl'
-import {push } from 'react-router-redux/actions'
+import {push} from 'react-router-redux/actions'
 import {GET_INFO_OVER, GET_INFO_LOADING} from './info'
-import {LOGIN_LOADING, LOGIN_OVER, SEND_LOADING} from './login'
+import {LOGIN_LOADING, LOGIN_OVER, SEND_LOADING, SEND_LOGIN_OUT, SEND_LOGIN_OVER} from './login'
+
 
 const loginLoading = () => {
   return {
@@ -39,8 +40,8 @@ export const login = (data) => {
       if (json.success) {
         // console.log(routerActions)
         dispatch(push('/'))
-        return json
       }
+      return json
     })
   }
 }
@@ -51,7 +52,8 @@ export const loginByCode = (data) => {
     return get(apiUrl.codeLoginUrl, data).then((json) => {
       dispatch(loginOver())
       if (json.success)
-        return json
+        dispatch(push('/'))
+      return json
     })
   }
 }
@@ -90,12 +92,31 @@ export const sendCode = (phoneNumber) => {
   }
 }
 
+
 export const getUserInfo = () => {
   return dispatch => {
     dispatch(sendGetInfo())
     get(apiUrl.infoUrl).then(json => {
-      if (json.success)
-        dispatch(receiveInfo(json.data))
+      dispatch(receiveInfo(json.data))
     })
   }
 }
+
+export const logOut = () => {
+  return dispatch => {
+    dispatch({
+      type: SEND_LOGIN_OUT,
+    })
+    post(apiUrl.logOutUrl).then(() => {
+      dispatch({
+        type: SEND_LOGIN_OVER,
+      })
+      dispatch(push('/'))
+      dispatch(sendGetInfo())
+      get(apiUrl.infoUrl).then(json => {
+        dispatch(receiveInfo(json.data))
+      })
+    })
+  }
+}
+

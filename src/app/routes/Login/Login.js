@@ -18,10 +18,10 @@ export class Login extends React.Component{
             <div className="clear-fix">
               <span className="top-title">登录</span>
               <div className="pull-right">
-                <a className="login-icon">
+                <a className="login-icon" target="blank" href="/api/auth/user/qqLogin">
                   <img src="http://odp22tnw6.bkt.clouddn.com/qq-login-icon.png"/>
                 </a>
-                <a className="login-icon">
+                <a className="login-icon" target="blank" href="/api/v1/oauth/wechaturl?operate=http://www.chuangyuandi.net.cn">
                   <img src="http://odp22tnw6.bkt.clouddn.com/weixin-login-icon.png"/>
                 </a>
               </div>

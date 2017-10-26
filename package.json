@@ -86,5 +86,8 @@
   "bugs": {
     "url": "https://github.com/zidoshare/cyd-view/issues"
   },
-  "homepage": "https://github.com/zidoshare/cyd-view#readme"
+  "homepage": "https://github.com/zidoshare/cyd-view#readme",
+  "theme": {
+    "primary-color": "#FC6134"
+  }
 }

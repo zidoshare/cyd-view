@@ -51,7 +51,7 @@ export class NormalForm extends React.Component{
         <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.login.bind(this)} loading={loginLoading}>
             登录
         </Button>
-        还没有账号？ <Link to="/login">立即注册</Link>
+        还没有账号？ <Link to="/register">立即注册</Link>
       </FormItem>
     </Form>
     )

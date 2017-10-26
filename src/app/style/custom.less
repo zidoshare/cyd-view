@@ -81,10 +81,30 @@
 
 .pull-right{
     float: right;
+    display: block;
+}
+
+.pull-left{
+    float: left;
 }
 
 .clear-fix::after{
     content:"";
     display: block;
     clear: both;
+}
+
+.inline-container-bottom > *{
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.inline-container-bottom{
+    position: relative;
+}
+
+.inline-container-bottom > .right-inline{
+    position:absolute;
+    right:0;
+    bottom:0;
 }

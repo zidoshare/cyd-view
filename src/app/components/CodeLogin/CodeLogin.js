@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Icon, Button, Input, Checkbox, Row, Col} from 'antd'
+import {Form, Icon, Button, Input, Row, Col} from 'antd'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -61,17 +61,11 @@ export class PhoneForm extends React.Component {
 
         </FormItem>
         <FormItem>
-          {getFieldDecorator('remember-me', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(
-            <Checkbox>记住我</Checkbox>
-          )}
           <a className="login-form-forgot" href="">忘记密码</a>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
           </Button>
-          还没有账号？ <Link to="/login">立即注册</Link>
+          还没有账号？ <Link to="/register">立即注册</Link>
         </FormItem>
       </Form>
     )

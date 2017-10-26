@@ -1,0 +1,57 @@
+@import '../../style/custom.less';
+.rg-container{
+  width:600px;
+  margin:20px auto;
+  background: white;
+  .rg-top{
+    border-bottom: 2px solid #e3e3e3;
+  }
+  .rg-form-container{
+    padding:30px;
+    .rg-info{
+      color:@link-color;
+      font-size: 16px;
+      border-bottom: 2px dashed #C0C0C0;
+    }
+    .rg-form{
+      margin:10px 0;
+    }
+  }
+  .other-login-title{
+    text-align: center;
+    h2{
+      display: inline-block;
+      position: relative;
+      text-align: center;
+    }
+    h2:before{
+      content:"";
+      display: block;
+      position: absolute;
+      width:120px;
+      height:1px;
+      background: linear-gradient(to left,#c3c3c3,#eee);
+      left:-125px;
+      top: 12px;
+    }
+    h2:after{
+      content:"";
+      display: block;
+      position: absolute;
+      width:120px;
+      height:1px;
+      background: linear-gradient(to right,#c3c3c3,#eee);
+      right:-125px;
+      top: 12px;
+    }
+  }
+
+  .other-login-icon-container{
+    text-align: center;
+  }
+  .other-login-icon-container>*{
+    display: inline-block;
+    margin:5px 20px;
+  }
+
+}
