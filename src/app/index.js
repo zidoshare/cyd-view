@@ -2,17 +2,17 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 // import { BrowserRouter as Router,Route} from 'react-router-dom'
 // import enquire from 'enquire.js'
-import {Layout} from 'antd'
+import { Layout } from 'antd'
 
 // import {connect} from 'react-redux'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import createStore from './reducers'
 // AppContainer is a necessary wrapper component for HMR
 
-import {NavLink, Route, Switch} from 'react-router-dom'
-import {ConnectedRouter} from 'react-router-redux'
-import {history} from './reducers'
-import Nav, {Item} from './components/Nav'
+import { Route, Switch } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
+import { history } from './reducers'
+import Nav from './components/Nav'
 import Auction from './routes/Auction'
 import Home from './routes/Home'
 import Footer from './components/Footer'
@@ -30,7 +30,7 @@ import PersonPage from './routes/Person/PersonPage'
 import PageNotFount from './routes/PageNotFount/PageNotFound'
 // import {createStore} from 'redux'
 const store = createStore()
-const {Content} = Layout
+const { Content } = Layout
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -64,36 +64,47 @@ export default class App extends React.Component {
   //   /* eslint-enable no-unused-expressions */
   // }
   render() {
-    const {isMode} = this.state
+    const { isMode } = this.state
     return (
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Layout>
-            <Nav logo={logo} mark="创源地文化传播有限公司" isMode={isMode}>
-              <Item key="index"><NavLink exact to="/">首页</NavLink></Item>
-              <Item key="produce"><NavLink to="/produce">商城</NavLink></Item>
-              <Item key="auction"><NavLink to="/auction">拍卖</NavLink></Item>
-              <Item key="news"><NavLink to="/news">时讯速览</NavLink></Item>
-              <Item key="careers"><NavLink to="/career">招贤纳士</NavLink></Item>
-              <Item key="aboutus"><NavLink to="/aboutus">关于我们</NavLink></Item>
+            <Nav
+              logo={logo}
+              mark="创源地文化传播有限公司"
+              isMode={isMode} 
+              menus={[{
+                path:'/',
+                title:'首页'
+              },{
+                path:'/news',
+                title:'时讯速览'
+              },{
+                title:'关于我们',
+                path:'/abus',
+                children:[{
+                  path:'/aboutus',
+                  title:'官方简介',
+                },{
+                  path:'/career',
+                  title:'招贤纳士'
+                },{
+                  path:'/ddd',
+                  title:'联系地址'
+                }]
+              }]}>
             </Nav>
-            <Content style={{marginTop: 64}}>
+            <Content style={{ marginTop: 64 }}>
               <Switch>
-                <Route exact path="/" render={props => <Home {...props} isMode={isMode}/>}/>
-                <Route path="/auction"
-                       render={props => <Auction {...props} isMode={isMode}/>}/>
-                <Route path="/produce" render={(props) => <Commodities {...props} isMode={isMode}/>}/>
-                <Route path="/news/:id" render={props => <Article {...props} isMode={isMode}/>}/>
-                <Route path="/news" render={props => <News {...props} isMode={isMode}/>}/>
-                <Route path="/career" render={props => <Careers {...props} isMode={isMode}/>}/>
-                <Route path="/aboutus" render={props => <AboutUs {...props} isMode={isMode}/>}/>
-                <Route path="/login" render={props => <Login {...props} isMode={isMode}/>}/>
-                <Route path="/register" render={props => <Register {...props} isMode={isMode}/>}/>
-                <Route path="/person" component={PersonPage}/>
-                <Route component={PageNotFount}/>
+                <Route exact path="/" render={props => <Home {...props} isMode={isMode} />} />
+                <Route path="/news/:id" render={props => <Article {...props} isMode={isMode} />} />
+                <Route path="/news" render={props => <News {...props} isMode={isMode} />} />
+                <Route path="/career" render={props => <Careers {...props} isMode={isMode} />} />
+                <Route path="/aboutus" render={props => <AboutUs {...props} isMode={isMode} />} />
+                <Route component={PageNotFount} />
               </Switch>
             </Content>
-            <Footer isMode={isMode}/>
+            <Footer isMode={isMode} />
           </Layout>
         </ConnectedRouter>
       </Provider>

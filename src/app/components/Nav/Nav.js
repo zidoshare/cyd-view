@@ -1,30 +1,77 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Menu, Icon, Spin, Avatar} from 'antd'
-import {Link, NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import { Menu, Icon } from 'antd'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import './nav.less'
-import {getUserInfo, logOut} from '../../reducers/modules/auth/loginActions'
-import moment from 'moment'
+import { getUserInfo, logOut } from '../../reducers/modules/auth/loginActions'
+import {push} from 'react-router-redux'
 
-const {Item} = Menu
+const { Item, SubMenu } = Menu
 
 class Nav extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isMode: this.props.isMode,
-      phoneOpen: false,
+      selectedKeys: [],
     }
   }
-
   componentDidMount() {
-    this.props.getUserInfo()
+    const { location } = this.props
+    this.setState({
+      selectedKeys: [location.pathname]
+    })
+    //移除 .no-link下的所有链接跳转
+    document.querySelector('.no-link').addEventListener('click', function (e) {
+      e.preventDefault()
+    })
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.setState({
+        selectedKeys: [nextProps.location.pathname]
+      })
+    }
+  }
+  linkTo(e) {
+    const { push } = this.props
+    push(e.key)
+    this.setState({
+      selectedKeys: e.key,
+    })
+  }
+
+  resolveMenu(menus, deep = 0, block) {
+    let sub = null
+    if (!Array.isArray(menus)) {
+      sub = menus
+      menus = menus.children || []
+    }
+    const menuItems = menus.map((value, index) => {
+      if (value.children) {
+        return this.resolveMenu(value, deep + 1, index)
+      }
+      return <Item key={value.path}>
+        {value.component ? value.component : <Link to={value.path}>
+          {(typeof value.icon === 'string') ? <Icon type={value.icon} /> : value.icon}
+          {(typeof value.title === 'string') ? <span>{value.title}</span> : value.title}
+        </Link>}
+      </Item>
+    })
+    if (deep > 0) {
+      return <SubMenu key={block + 'sub' + deep} {...sub}>
+        {menuItems}
+      </SubMenu>
+    }
+    return menuItems
   }
 
   render() {
-    const {children, logo, mark, className, infoLoading, userData} = this.props
+    const { logo, mark, className } = this.props
+    const menus = this.resolveMenu(this.props.menus, 0, 0)
+    console.log(menus)
+    const { selectedKeys } = this.state
     return (
       <header className={className}>
         <Link to='/'>
@@ -32,7 +79,7 @@ class Nav extends React.Component {
             className={`${className}-logo`}
           >
             <li>
-              <img src={logo}/>
+              <img src={logo} />
             </li>
             <li>
               {mark}
@@ -42,66 +89,9 @@ class Nav extends React.Component {
         <div
           className={`${className}-nav`}
         >
-          <Menu
-            selectedKeys={[null]}
-            mode='horizontal'
-            theme='dark'
-          >
-            {children}
-            <Item>
-
-              <Spin spinning={infoLoading}>{userData ?
-                <div className="avatar-container">
-
-                  <span
-                    className="nickname">{userData.nickname}</span>
-                  <Avatar shape="circle"
-                          src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/default-avatar.png"/>
-                  {userData ?
-                    <div className="info-panel">
-                      <div className="info-top clear-fix">
-                        <div className="pull-left">
-                          <div className="pull-left mod-panel">
-                            <Avatar shape="circle" size="large"
-                                    src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/default-avatar.png"/>
-                          </div>
-                          <div className="pull-left mod-panel">
-                            <p>{userData.nickname}</p>
-                            <p>{moment(userData.registerTime).format('L')}</p>
-                          </div>
-                        </div>
-                        <Link to="/" className="logout-btn" onClick={this.props.logOut}><Icon type="logout"/>登出</Link>
-                      </div>
-                      <div className="info-footer clear-fix">
-                        <Link to="/auction/send">
-                          <div className="action-item">
-                            <div><Icon type="cloud-upload-o"/></div>
-                            上传拍品
-                          </div>
-                        </Link>
-                        <Link to="/person">
-                          <div className="action-item">
-                            <div><Icon type="home"/></div>
-                            我的主页
-                          </div>
-                        </Link>
-                        <div className="action-item">
-                          <div><img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/my-action.png"/></div>
-                          我的拍卖
-                        </div>
-                      </div>
-                    </div> : null}
-                </div>
-                :
-                <div className="menu-link-container">
-                  <Icon type='login' style={{color: 'white'}}/>
-                  <NavLink to={'/login'} style={{padding: 0}}>登录</NavLink>
-                  <span style={{color: 'white'}}>&nbsp;/&nbsp;</span>
-                  <NavLink to={'/register'} style={{padding: 0}}>注册</NavLink>
-                </div>}
-              </Spin>
-
-            </Item>
+          <Menu theme="light" mode="horizontal" className="no-link" selectedKeys={selectedKeys}
+            onClick={this.linkTo.bind(this)}>
+            {menus}
           </Menu>
         </div>
 
@@ -125,6 +115,9 @@ Nav.propTypes = {
   userData: PropTypes.object,
   getUserInfo: PropTypes.func.isRequired,
   logOut: PropTypes.func.isRequired,
+  location: PropTypes.object.isRequired,
+  push: PropTypes.func.isRequired,
+  menus: PropTypes.array.isRequired,
 }
 const mapStateToProps = (state) => ({
   ...state.auth.info
@@ -133,8 +126,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = ({
   getUserInfo,
   logOut,
+  push,
 })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav))
-export {
-  Item
-}

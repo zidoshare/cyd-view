@@ -1,6 +1,3 @@
-import Nav,{Item} from './Nav'
+import Nav from './Nav'
 
-export {
-  Nav as default,
-  Item,
-}
+export default Nav
