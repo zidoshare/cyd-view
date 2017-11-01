@@ -111,7 +111,6 @@ export const logOut = () => {
       dispatch({
         type: SEND_LOGIN_OVER,
       })
-      dispatch(push('/'))
       dispatch(sendGetInfo())
       get(apiUrl.infoUrl).then(json => {
         dispatch(receiveInfo(json.data))

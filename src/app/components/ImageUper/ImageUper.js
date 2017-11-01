@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Icon,Upload,Modal,message} from 'antd'
-import {post} from '../../Util'
+import {get} from '../../Util'
 export default class ImageUper extends React.Component{
   constructor(props){
     super(props)
@@ -56,16 +56,25 @@ export default class ImageUper extends React.Component{
     // Should be a controlled component.
     if ('value' in nextProps) {
       const value = nextProps.value
-      this.setState({value})
+      let fileList = []
+      if(value instanceof Array && value.length > 0)
+        fileList = value.map((v,index) => ({
+          uid:index,
+          url:v
+        }))
+      else if(typeof(value) === 'string')
+        fileList = [{uid:'-1',url:value}]
+      this.setState({value,fileList})
     }
   }
   getUploadToken(file){
     const hide = message.loading('等待上传凭证')
     return new Promise((resolve) => {
-      post('/api/user/qiniu/getUploadToken?filename='+file.name).then(result => {
+      get('/api/v1/other/qiniu/getUploadToken?filename='+file.name).then(result => {
         hide()
+        console.log(result)
         this.setState({
-          uploadToken:result.data,
+          uploadToken:result.data.token,
         },resolve())
       },()=>{
         hide()

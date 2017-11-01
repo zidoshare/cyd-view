@@ -26,6 +26,8 @@ import Register from './routes/Register'
 
 import logo from '../image/cyd-logo.png'
 import './style/core.less'
+import PersonPage from './routes/Person/PersonPage'
+import PageNotFount from './routes/PageNotFount/PageNotFound'
 // import {createStore} from 'redux'
 const store = createStore()
 const {Content} = Layout
@@ -87,6 +89,8 @@ export default class App extends React.Component {
                 <Route path="/aboutus" render={props => <AboutUs {...props} isMode={isMode}/>}/>
                 <Route path="/login" render={props => <Login {...props} isMode={isMode}/>}/>
                 <Route path="/register" render={props => <Register {...props} isMode={isMode}/>}/>
+                <Route path="/person" component={PersonPage}/>
+                <Route component={PageNotFount}/>
               </Switch>
             </Content>
             <Footer isMode={isMode}/>

@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import './nav.less'
 import {getUserInfo, logOut} from '../../reducers/modules/auth/loginActions'
+import moment from 'moment'
 
 const {Item} = Menu
 
@@ -18,7 +19,7 @@ class Nav extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getUserInfo()
   }
 
@@ -53,7 +54,7 @@ class Nav extends React.Component {
                 <div className="avatar-container">
 
                   <span
-                    className="nickName">{userData.nickname.length > 4 ? userData.nickname.slice(0, 4) + '...' : userData.nickname}</span>
+                    className="nickname">{userData.nickname}</span>
                   <Avatar shape="circle"
                           src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/default-avatar.png"/>
                   {userData ?
@@ -66,12 +67,10 @@ class Nav extends React.Component {
                           </div>
                           <div className="pull-left mod-panel">
                             <p>{userData.nickname}</p>
-                            <p>创建时间</p>
+                            <p>{moment(userData.registerTime).format('L')}</p>
                           </div>
                         </div>
-                        <span onClick={
-                          this.props.logOut()
-                        }><Icon type="logout"/>登出</span>
+                        <Link to="/" className="logout-btn" onClick={this.props.logOut}><Icon type="logout"/>登出</Link>
                       </div>
                       <div className="info-footer clear-fix">
                         <Link to="/auction/send">
@@ -80,10 +79,12 @@ class Nav extends React.Component {
                             上传拍品
                           </div>
                         </Link>
-                        <div className="action-item">
-                          <div><Icon type="home"/></div>
-                          我的主页
-                        </div>
+                        <Link to="/person">
+                          <div className="action-item">
+                            <div><Icon type="home"/></div>
+                            我的主页
+                          </div>
+                        </Link>
                         <div className="action-item">
                           <div><img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/my-action.png"/></div>
                           我的拍卖

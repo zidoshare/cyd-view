@@ -47,7 +47,7 @@ export class NormalForm extends React.Component{
         })(
           <Checkbox>记住我</Checkbox>
         )}
-        <a className="login-form-forgot" href="">忘记密码</a>
+        <Link className="login-form-forgot" to="/login">忘记密码</Link>
         <Button type="primary" htmlType="submit" className="login-form-button" onClick={this.login.bind(this)} loading={loginLoading}>
             登录
         </Button>

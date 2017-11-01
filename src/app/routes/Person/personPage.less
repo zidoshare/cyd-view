@@ -1,0 +1,45 @@
+@import '../../style/custom.less';
+.person-container {
+  background: url(http://odp22tnw6.bkt.clouddn.com/common-bg-2.jpg) no-repeat;
+  padding:20px 0;
+  .person-container-wrapper{
+    width:800px;
+    margin:auto;
+    .person-left-menu {
+      background: white;
+      font-size:14px;
+      border-radius: 5px;
+      overflow: hidden;
+
+      .li-line{
+        border-bottom: 1px solid #ccc;
+      }
+
+      a {
+        text-align: center;
+        padding: 5px 20px;
+        display: block;
+        color:#555;
+        i{
+          margin-right: 5px;
+        }
+      }
+      a:hover{
+        background: @link-hover-color;
+        color:white;
+      }
+      a.active{
+        background: @link-active-color;
+        color: white;
+      }
+    }
+    .person-right-content{
+      background: white;
+      margin-left:20px;
+      padding:10px;
+      box-shadow: 0 0 5px #999;
+      width:600px;
+    }
+  }
+
+}
