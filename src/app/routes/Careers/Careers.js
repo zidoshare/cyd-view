@@ -14,6 +14,7 @@ const Content = Layout.Content
 import { Anchor, Spin } from 'antd'
 import {get} from '../../Util'
 const { Link } = Anchor
+import apiUrl from '../../apiUrl'
 import './Careers.scss'
 class Careers extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Careers extends React.Component {
 
   getData() {
     this.setState(Object.assign({}, this.state, { loading: true }))
-    get('/api/v0/pub/careers/index').then(data => this.setState({
+    get(apiUrl.careerUrl).then(data => this.setState({
       response: data,
       loading: false,
     }))
@@ -64,7 +65,7 @@ class Careers extends React.Component {
         <Spin spinning={this.state.loading} delay={500} tip={'正在加载...'}>
           <Row>
             <Col span={3}>
-              <Anchor style={{ background: 'url(http://oow7renvm.bkt.clouddn.com/bj.png)' }} className="car-link">
+              <Anchor style={{ background: 'url(http://oow7renvm.bkt.clouddn.com/bj.png)' }} className="car-link" offsetTop={64}>
                 {linkList}
               </Anchor>
             </Col>

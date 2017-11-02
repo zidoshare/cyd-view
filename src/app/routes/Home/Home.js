@@ -38,7 +38,7 @@ export default class Home extends React.Component{
   render(){
     const {isMode} = this.props
     return (
-      <div>
+      <div className="home-content-wrapper">
         <Carousel 
           className="banner-item" 
           draggable 

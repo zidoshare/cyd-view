@@ -14,12 +14,6 @@ let render = () => {
 }
 
 if (isDev) {
-  // if ( window.devToolsExtension ) {
-  //   window.devToolsExtension.open()
-  // }
-}
-
-if (isDev) {
   if (module.hot) {
     // Development render functions
     const renderApp = render

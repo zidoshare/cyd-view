@@ -1,0 +1,192 @@
+@primery-gallery-height:407px;
+.news-index-content-wrapper {
+    width: 1200px;
+    margin: 20px auto;
+    .news-carousel-container {
+        width: 810px;
+        position: relative;
+        height: @primery-gallery-height;
+        .gallery-loading{
+          width:100%;
+          line-height: @primery-gallery-height;
+        }
+        .ant-carousel .slick-slide {
+          text-align: center;
+          height: @primery-gallery-height;
+          background: #364d79;
+          overflow: hidden;
+          img{
+            -webkit-user-drag: none;
+            user-select: none;
+            margin: auto;
+            line-height: 407px;
+            min-height:407px;
+          }
+        }
+        
+        .ant-carousel .slick-slide h3 {
+          color: #fff;
+        }        
+        .news-dots:after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+        .news-dots {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            list-style: none;
+            display: block;
+            text-align: center;
+            padding: 0;
+            z-index: 10;
+            cursor: pointer;
+            * {
+                cursor: pointer;
+            }
+            li {
+                float: left;
+                margin-left: 5px;
+                button {
+                    background: #352A1A;
+                    border: 1px solid #5E4633;
+                    color: #98926C;
+                    width: 26px;
+                    height: 26px;
+                    font-size: 12px;
+                    outline: none;
+                }
+                button:hover {
+                    background: #640B03;
+                    color: white;
+                }
+            }
+            li.slick-active {
+                button {
+                    background: #640B03;
+                    color: white;
+                }
+            }
+        }
+        .slick-title-panel{
+          position: absolute;
+          bottom:0;
+          background: rgba(0,0,0,0.6);
+          width:100%;
+          h2{
+            width:480px;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+            padding:0 10px;
+            line-height:40px;
+            color:white;
+          }
+          a{
+            color:white;
+          }
+        }
+    }
+    .notice-container{
+      border-radius: 15px;
+      background: url(http://odp22tnw6.bkt.clouddn.com/v1/commodity/notice-bg.jpg);
+      background-size:cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width:360px;
+      height:407px;
+      padding:20px;
+      overflow: hidden;
+      ul{
+        margin:0;
+        li{
+          margin:20px 0;
+          font-size:14px;
+        }
+      }
+      a{
+        color:#5F4D2E;
+      }
+    }
+    h1.title-container{
+      color:#451719;
+      span{
+        display: inline-block;
+        margin-left: 15px;
+        color:#DAC99D;
+      }
+      margin:10px 0;
+    }
+
+    .video-container{
+      width:450px;
+      padding:10px;
+      .video-ins{
+        text-align: center;
+        line-height: 360px;
+        background:#000;
+      }
+    }
+    .chat-ins{
+      padding:10px;
+      img{
+        width:120px;
+      }
+      .chat-info{
+        h1{
+          margin-left:20px;
+          color:#97432E;
+        }
+      }
+    }
+    .news-container-list-wrapper{
+      margin-left:10px;
+      padding:10px;
+      width:740px;
+      .news-index-list{
+        li.news-link-title{
+          margin:5px;
+          padding:5px 0;
+          border-bottom: 1px dashed #888;
+          position: relative;
+          a{
+            display: inline-block;
+          }
+          div{
+            width:400px;
+            display: block;
+            float: left;
+            padding:10px;
+            overflow: hidden;
+            span{
+              font-size:24px;
+            }
+            p{
+              margin:10px 0;
+            }
+          }
+          img{
+            height:180px;
+            display: block;
+            float: left;
+          }
+          .after-foot{
+            display: block;
+            position: absolute;
+            right:0;
+            top:50%;
+            margin-top:-10px;
+          }
+        }
+      }
+    }
+    .new-arraival-wrapper{
+      padding:10px;
+      img{
+        user-select: none;
+        -webkit-user-drag: none;
+      }
+    }
+}
+

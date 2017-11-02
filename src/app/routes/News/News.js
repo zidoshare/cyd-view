@@ -1,98 +1,106 @@
 import React from 'react'
-import { Spin, Card, Layout, Pagination, Affix } from 'antd'
-import { Link } from 'react-router-dom'
-import {get} from '../../Util'
+import { Spin, Layout, Pagination,Affix } from 'antd'
+import { Link,NavLink } from 'react-router-dom'
+import { get, handlePage,formartData } from '../../Util'
+import apiUrl from '../../apiUrl'
 const Content = Layout.Content
-import './News.scss'
+import './News.less'
 export default class News extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      response: null,
+      data: null,
       loading: true,
       middle: true,
+      page: null,
     }
   }
 
   componentDidMount() {
-    get('/api/v0/pub/news/index').then(data => this.setState({
-      response: data,
-      loading: false,
-    }))
+    get(apiUrl.newsUrl).then(json => {
+      if (json.success) {
+        this.setState({
+          data: json.data,
+          loading: false,
+          page: handlePage(json.data)
+        })
+      }
+    })
   }
 
   onPageChange(pageNum) {
     this.setState({
-      response: null,
       loading: true
     })
-    get('/api/v0/pub/news/index',{
-      p:pageNum
-    }).then(data => this.setState({
-      response: data,
-      loading: false,
-    }))
+    get(apiUrl.newsUrl, {
+      currentPage: pageNum
+    }).then(json => {
+      if (json.success) {
+        this.setState({
+          data: json.data,
+          loading: false,
+          page: handlePage(json.data)
+        })
+        document.documentElement.scrollTop = 0
+      }
+    })
   }
   render() {
 
     const list = []
-    const { response } = this.state
-    /*if(this.state.middle)
-      list.push(<div className="clear-fix">
-                        <div className="pull-right">
-                          <p>用微信客户端扫一扫,</p>
-                          <p>了解更多关于钱币的知识</p>
-                        </div>
-                        <div className="wx-min pull-right"/>
-                        </div>)*/
-    if (response != null) {
-      const { content } = response.data
+    const { data, loading, page } = this.state
+    if (data) {
+      const content = data.records
       for (let i = 0; i < content.length; i++) {
         let element = content[i]
-        let card = <Card style={{ width: 360 }} bodyStyle={{ padding: 0 }} bordered={false}>
-          <div className="custom-image">
-            <img alt="example" width="100%" src={element.imageUrl} />
-          </div>
-          <div className="custom-card">
-            <h3>{element.title}</h3>
-            <nobr>
-              {element.description}
-            </nobr>
-          </div>
-        </Card>
-
-        let dom = (<div className="custom" key={'card' + i}>
+        let li = <div><span>{element.title}</span><span className="after-foot">{formartData(new Date(element.createTime),'MM-dd')}</span></div>
+        let dom = (<li className="custom" key={'card' + i}>
           {element.linkUrl == null ?
-            <Link to={'/news/' + element.id}>{card}</Link> :
-            <a target="_blank" href={element.linkUrl} style={{ display: 'block' }}>{card}</a>}</div>)
+            <Link to={'/news/' + element.id}>{li}</Link> :
+            <a target="_blank" href={element.linkUrl} style={{ display: 'block' }}>{li}</a>}</li>)
         list.push(dom)
       }
     }
     return (
-      <Content  className="cyd-content-wrapper">
-        <Spin spinning={this.state.loading} delay={500} tip={'正在加载...'}>
-          <div style={{ minHeight: 600 }}>
-
-            {list.length > 0 ? <div style={{ width: this.state.middle ? 1200 : 1020, margin: 'auto' }}>
-              {this.state.middle ? <div className={'custom-container clear-fix'}>{list}</div> :
-                <div className="clear-fix">
-                  <div className="custom-container-info">
-                    {list}
-                    <div style={{ clear: 'both' }}></div>
-                  </div>
-                  <Affix className="pull-left">
-                    <div>
-                      <p>用微信客户端扫一扫</p>
-                      <p>了解更多关于钱币的知识</p>
-                      <div className="wx" />
-                    </div>
-                  </Affix>
-                </div>
-              }
-            </div> : <div></div>}
-
+      <Content className="cyd-content-wrapper">
+        <Affix offsetTop={80} className="left-card">
+          <div >
+            <div className="title-container">
+              <h1>时讯头条</h1>
+            </div>
+            <ul className="menu-list">
+              <li><NavLink to="/news/list">新闻中心</NavLink></li>
+              <li><NavLink to="/notices/list">通知公告</NavLink></li>
+            </ul>
+            <div className="clear-fix chat-ins">
+              <div className="pull-left">
+                <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/chat-to-service.png"/>
+              </div>
+              <div className="pull-left chat-info">
+                <h1>
+                  联系我们
+                </h1>
+                <h1>
+                  400-886-6563
+                </h1>
+              </div>
+            </div>
           </div>
-          {response != null ? <Pagination showQuickJumper defaultCurrent={response.data.number + 1} total={response.data.totalElements} onChange={this.onPageChange.bind(this)} /> : null}
+        </Affix>
+        <Spin spinning={loading} delay={500} tip={'正在加载...'}>
+          
+          <div style={{ minHeight: 600 }}>
+            
+            <ul className="custom-container clear-fix">
+            <h1>
+              <span>Press center&nbsp;&nbsp;&nbsp;</span>
+              <span>新闻中心</span>
+            </h1>
+            {list}
+            {data != null ? <Pagination showQuickJumper {...page} onChange={this.onPageChange.bind(this)} /> : null}
+            </ul>
+          </div>
+          
         </Spin>
       </Content>
     )

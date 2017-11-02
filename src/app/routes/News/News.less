@@ -1,0 +1,73 @@
+@import '../../style/custom.less';
+.cyd-content-wrapper {
+    width: 1200px;
+    margin: auto;
+    position: relative;
+    .left-card {
+        position: absolute;
+        left: 0;
+        top: 16px;
+        width: 320px;
+        height: 300px;
+        text-align: center;
+        z-index: 1;
+        .title-container {
+            background: #FBDB90;
+        }
+        .chat-ins {
+            padding: 10px;
+            background: linear-gradient(to bottom, #EDDDA8, #fff);
+            img {
+                width: 80px;
+            }
+            .chat-info {
+                h1 {
+                    margin-left: 20px;
+                    color: #97432E;
+                }
+            }
+        }
+        .menu-list {
+            padding: 10px;
+            height: 160px;
+            background: white;
+        }
+        a {
+            color: black;
+            font-size:16px;
+        }
+        a.active {
+            color: @link-active-color;
+        }
+    }
+}
+
+.custom-container {
+    width: 850px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px 0;
+    h1{
+      position: relative;
+      left:-15px;
+      border-bottom: 1px solid #FBDB90;
+    }
+    >li {
+        padding: 5px 0;
+        position: relative;
+        font-size:14px;
+        padding:5px;
+        &::before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: #FBDB90;
+            left: -10px;
+            top: 50%;
+            margin-top: -4px;
+        }
+    }
+}

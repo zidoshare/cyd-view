@@ -1,12 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, Icon } from 'antd'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { Link,withRouter } from 'react-router-dom'
 import './nav.less'
-import { getUserInfo, logOut } from '../../reducers/modules/auth/loginActions'
-import {push} from 'react-router-redux'
 
 const { Item, SubMenu } = Menu
 
@@ -18,6 +14,7 @@ class Nav extends React.Component {
     }
   }
   componentDidMount() {
+    
     const { location } = this.props
     this.setState({
       selectedKeys: [location.pathname]
@@ -35,8 +32,7 @@ class Nav extends React.Component {
     }
   }
   linkTo(e) {
-    const { push } = this.props
-    push(e.key)
+    this.props.history.push(e.key)
     this.setState({
       selectedKeys: e.key,
     })
@@ -70,7 +66,6 @@ class Nav extends React.Component {
   render() {
     const { logo, mark, className } = this.props
     const menus = this.resolveMenu(this.props.menus, 0, 0)
-    console.log(menus)
     const { selectedKeys } = this.state
     return (
       <header className={className}>
@@ -111,21 +106,8 @@ Nav.propTypes = {
   mark: PropTypes.string.isRequired,
   isMode: PropTypes.bool.isRequired,
   className: PropTypes.string.isRequired,
-  infoLoading: PropTypes.bool.isRequired,
-  userData: PropTypes.object,
-  getUserInfo: PropTypes.func.isRequired,
-  logOut: PropTypes.func.isRequired,
   location: PropTypes.object.isRequired,
-  push: PropTypes.func.isRequired,
+  history:PropTypes.object.isRequired,
   menus: PropTypes.array.isRequired,
 }
-const mapStateToProps = (state) => ({
-  ...state.auth.info
-})
-
-const mapDispatchToProps = ({
-  getUserInfo,
-  logOut,
-  push,
-})
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav))
+export default withRouter(Nav)

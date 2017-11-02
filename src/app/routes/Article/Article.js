@@ -19,7 +19,7 @@ export default class Article extends React.Component {
     if (match.params.id === null) {
       return
     }
-    get('/api/v0/pub/news/info', {
+    get('/api/v0/news/getNew', {
       id: match.params.id
     }).then(data => this.setState({
       response: data,

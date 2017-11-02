@@ -13,6 +13,8 @@ import patterns from './patterns'
 import checkIdCard from './checkIdCard'
 import toRoute from './toRoute.js'
 import cookieUtil from './cookieUtil.js'
+import handlePage from './handlePage'
+import formartData from './formartData'
 const Util = {
   get,
   isEmpty,
@@ -22,6 +24,8 @@ const Util = {
   checkIdCard,
   toRoute,
   cookieUtil,
+  handlePage,
+  formartData,
 }
 export {
   Util as default,
@@ -33,6 +37,8 @@ export {
   checkIdCard,
   toRoute,
   cookieUtil,
+  handlePage,
+  formartData,
 }
 
 
