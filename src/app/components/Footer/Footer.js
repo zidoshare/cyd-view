@@ -11,13 +11,11 @@ export default class Footer extends React.Component{
   }
   render(){
     const {props} = this
-    const temp = {...props}
-    const {isMode} = temp
     // delete props.isMode
     return (
       <footer {...props} className='cyd-footer ant-layout-footer'>
         <Row gutter={20}>
-          <Col sm={16} style={{borderRight:isMode?null:'2px solid #eee'}}>
+          <Col sm={16}>
             <Row>
               <Col sm={12} style={{verticalAlign:'center'}}>
                 <h3 style={{color:'white'}}>公司地址：成都市金牛区人民北路二段甲级写字楼B座702—704</h3>
