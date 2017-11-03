@@ -38,7 +38,6 @@ export const login = (data) => {
     }).then((json) => {
       dispatch(loginOver())
       if (json.success) {
-        // console.log(routerActions)
         dispatch(push('/'))
       }
       return json

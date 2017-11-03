@@ -72,7 +72,6 @@ export default class ImageUper extends React.Component{
     return new Promise((resolve) => {
       get('/api/v1/other/qiniu/getUploadToken?filename='+file.name).then(result => {
         hide()
-        console.log(result)
         this.setState({
           uploadToken:result.data.token,
         },resolve())

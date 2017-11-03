@@ -10,7 +10,6 @@ const Content = Layout.Content
 import './News.less'
 export default class News extends React.Component {
   render() {
-    console.log(this.props)
     return (
       <Content className="cyd-content-wrapper">
         <Affix offsetTop={64} className="left-card">
