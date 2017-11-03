@@ -194,7 +194,7 @@ export default class NewsIndex extends Component {
         </div>
         <div className="bg-center far-top new-arraival-wrapper"  style={{backgroundImage:'url(http://odp22tnw6.bkt.clouddn.com/v1/commodity/news-bg.jpg)'}}>
           <h1 className="title-container">新品上架<span>New Arrival</span></h1>
-          <Carousel dots={false}
+          {products.length > 0 ?<Carousel dots={false}
                 autoplay
                 draggable
                 slidesToShow={3}>
@@ -204,7 +204,7 @@ export default class NewsIndex extends Component {
                   </div>
                 ))}
                 
-          </Carousel>
+          </Carousel>:<div/>}
         </div>
       </div>
     )

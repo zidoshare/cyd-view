@@ -46,6 +46,7 @@ export default class Home extends React.Component{
           arrows = {!isMode}
           prevArrow={<SampleArrow type="left"/>} 
           nextArrow={<SampleArrow type="right"/>}
+          autoplay
         >
           <div>
             <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner6.jpg"/>

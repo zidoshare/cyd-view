@@ -46,7 +46,7 @@ export default class App extends React.Component {
               title: '首页'
             }, {
               path: '/news',
-              title: '实讯头条'
+              title: '时讯头条'
             }, {
               title: '关于我们',
               path: '/abus',

@@ -6,7 +6,13 @@
 import {message as Message} from 'antd'
 import objToQuery from './objToQuery'
 import isEmpty from './isEmpty'
+import 'whatwg-fetch'
+import Promise from 'promise-polyfill'
 
+// To add to window
+if (!window.Promise) {
+  window.Promise = Promise
+}
 export const defaultReject = (err) => {
   if (err.message) {
     Message.error(err.message || '服务器异常')
