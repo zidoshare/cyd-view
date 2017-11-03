@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import './footer.less'
 import {Row,Col,Icon} from 'antd'
 
-const erweim = 'http://odp22tnw6.bkt.clouddn.com//v1/erweim.jpg'
+
 export default class Footer extends React.Component{
   componentDidMount(){
     var cnzz_protocol = (('https:' == document.location.protocol) ? ' https://' : ' http://')
@@ -18,12 +18,6 @@ export default class Footer extends React.Component{
       <footer {...props} className='cyd-footer ant-layout-footer'>
         <Row gutter={20}>
           <Col sm={16} style={{borderRight:isMode?null:'2px solid #eee'}}>
-            <h1 className='text-center' style={{color:'#eee'}}>
-              我们在这
-            </h1>
-            <div style={{textAlign:'center',padding:'0 100px'}}>
-              <img style={{width:'100%'}} src='http://oow7renvm.bkt.clouddn.com/jnmap.jpg'/>
-            </div>
             <Row>
               <Col sm={12} style={{verticalAlign:'center'}}>
                 <h3 style={{color:'white'}}>公司地址：成都市金牛区人民北路万达甲级写字楼B座702—703</h3>
@@ -35,13 +29,10 @@ export default class Footer extends React.Component{
             </Row>
           </Col>
           <Col sm={8} style={{paddingLeft:10,height:'100%'}}>
-            <div className='text-center'>
-              <img src={erweim} style={{maxWidth:'200px'}}/>
-            </div>
-            <h1 className='text-center' style={{color:'white'}}>微信公众号</h1>
+            
             <div style={{marginTop:20}}>
-              <h2 style={{color:'orangered'}}>全国统一服务热线</h2>
-              <h2 style={{textAlign:'right',color:'orangered'}}><Icon type='phone' />400-8866-563</h2>
+              <h2 style={{color:'orangered'}}>全国统一服务热线：<span style={{textAlign:'right',color:'orangered'}}><Icon type='phone' />400-8866-563</span></h2>
+              
             </div>
           </Col>
         </Row>

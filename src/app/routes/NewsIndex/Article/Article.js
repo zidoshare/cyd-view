@@ -39,7 +39,6 @@ export default class Article extends React.Component {
   }
   render() {
     const response = this.state.response
-    console.log(response)
     return (
       <Content className="custom-container" style={{ background: 'white' }}>
         <div className="tools"><Link to="javascript:void(0)" onClick={this.onBack.bind(this)}>&lt;&lt;返回上一级</Link></div>
