@@ -16,6 +16,8 @@ export default class NewsIndex extends Component {
       newsLoading:false,
       notices:[],
       noticeLoading:false,
+      video:{},
+      products:[],
     }
   }
   loadGallery(){
@@ -78,13 +80,34 @@ export default class NewsIndex extends Component {
       current:gallery[c],
     })
   }
+
+  loadVideo(){
+    get(apiUrl.videoUrl).then(json => {
+      if (json.success) {
+        this.setState({
+          video:json.data,
+        })
+      }
+    })
+  }
+  loadProducts(){
+    get(apiUrl.productsUrl).then(json => {
+      if(json.success){
+        this.setState({
+          products:json.data,
+        })
+      }
+    })
+  }
   componentDidMount(){
     this.loadGallery()
     this.loadNewsList()
     this.loadNoticeList()
+    this.loadVideo()
+    this.loadProducts()
   }
   render() {
-    const {gallery,galleryLoading,current,news,newsLoading,noticeLoading,notices} = this.state
+    const {gallery,galleryLoading,current,news,newsLoading,noticeLoading,notices,video,products} = this.state
     return (
       <div className="news-index-content-wrapper">
         <div className="clear-fix">
@@ -95,14 +118,14 @@ export default class NewsIndex extends Component {
                 autoplay
                 afterChange={this.changeTitle.bind(this)}>
                   {gallery.map((value) => {
-                    return (<div><Link to={`/news/${current.id}`}>
+                    return (<div><Link to={`/news/list/info/${current.id}`}>
                         <img src={value.imageUrl}/>
                       </Link>
                     </div>)
                   })}
                 </Carousel>
                 <div className="slick-title-panel">
-                  <h2><Link to={`/news/${current.id}`}>{current.title}</Link></h2>
+                  <h2><Link to={`/news/list/info/${current.id}`}>{current.title}</Link></h2>
                 </div>
               </div>}
             
@@ -113,19 +136,20 @@ export default class NewsIndex extends Component {
               <Spin spinning={noticeLoading}>
                 <ul className="notice-list">
                   {notices.length>0?notices.map((value,index) => (
-                    <li key={index}>{index+1}:{value.title}</li>
+                    <li key={index}><Link to={`/news/list/notice/info/${value.id}`}>{index+1}:{value.title}</Link></li>
                   )):<div/>}
                 </ul>
               </Spin>
+              <Link to="/news/list/notice">更多&gt;&gt;&gt; </Link>
             </div>
           </div>
         </div>
         <div className="clear-fix bg-center far-top" style={{backgroundImage:'url(http://odp22tnw6.bkt.clouddn.com/v1/commodity/news-bg.jpg)'}}>
           <div className="pull-left video-container">
             <h1 className="title-container">视频<span>Video</span></h1>
-            <div className="video-ins">
-              视频区域
-            </div>
+            <video className="video-ins" autoPlay controls height={360} poster={video.videoInfo} src={video.videoUrl} width={'100%'}>
+              你的浏览器暂不支持h5播放器，请升级
+            </video>
             <div className="bg-center chat-ins" style={{backgroundImage:'url(http://odp22tnw6.bkt.clouddn.com/v1/commodity/news-bg.jpg)'}}>
                 <div className="pull-left">
                  <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/chat-to-service.png"/>
@@ -147,7 +171,7 @@ export default class NewsIndex extends Component {
                 {news.length>0?news.map((value,index) => {
                   if(index === 0){
                     return <li key={value.id} className="news-link-title">
-                      <Link to={`/news/${value.id}`}>
+                      <Link to={`/news/list/info/${value.id}`}>
                         <img src={value.imageUrl}/>
                         <div>
                           <span>{value.title}</span>
@@ -157,11 +181,12 @@ export default class NewsIndex extends Component {
                     </li>
                   }
                   return <li key={value.id} className="news-link-title">
-                    <Link to={`/news/${value.id}`}><span>{value.title}</span><span className="after-foot">{formartData(new Date(value.createTime),'MM-dd')}</span></Link>
+                    <Link to={`/news/list/info/${value.id}`}><span>{value.title}</span><span className="after-foot">{formartData(new Date(value.createTime),'MM-dd')}</span></Link>
                   </li>
                 }):<div></div>}
               </ul>
               <div className="pull-right">
+                <br/>
               <Link to="/news/list">更多&gt;&gt;&gt; </Link>
               </div>
               </Spin>
@@ -173,9 +198,12 @@ export default class NewsIndex extends Component {
                 autoplay
                 draggable
                 slidesToShow={3}>
-                <div>
-                  <img src="http://odp22tnw6.bkt.clouddn.com/v1/pic1.jpg"/>
-                </div>
+                {products.map((value) => (
+                  <div>
+                    <img src={value.imageUrl}/>
+                  </div>
+                ))}
+                
           </Carousel>
         </div>
       </div>

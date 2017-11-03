@@ -11,15 +11,14 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './routes/Home'
 import Footer from './components/Footer'
-import Article from './routes/Article'
-import News from './routes/News'
-import NewsIndex from './routes/NewsIndex'
 import Careers from './routes/Careers'
 import AboutUs from './routes/AboutUs'
 
 import logo from '../image/cyd-logo.png'
 import './style/core.less'
 import PageNotFount from './routes/PageNotFount/PageNotFound'
+import ContactUs from './routes/ContactUs'
+import News from './routes/NewsIndex'
 // import {createStore} from 'redux'
 const { Content } = Layout
 export default class App extends React.Component {
@@ -58,7 +57,7 @@ export default class App extends React.Component {
                 path: '/career',
                 title: '招贤纳士'
               }, {
-                path: '/ddd',
+                path: '/contact',
                 title: '联系地址'
               }]
             }]}>
@@ -67,11 +66,10 @@ export default class App extends React.Component {
 
             <Switch>
               <Route exact path="/" render={props => <Home {...props} isMode={isMode} />} />
-              <Route path="/news/list" render={props => <News {...props} isMode={isMode} />} />
-              <Route path="/news/:id" render={props => <Article {...props} isMode={isMode} />} />
-              <Route path="/news" exact render={props => <NewsIndex {...props} isMode={isMode} />} />
+              <Route path="/news" render={props => <News {...props} isMode={isMode} />} />
               <Route path="/career" render={props => <Careers {...props} isMode={isMode} />} />
               <Route path="/aboutus" render={props => <AboutUs {...props} isMode={isMode} />} />
+              <Route path="/contact" component={ContactUs} />
               <Route component={PageNotFount} />
             </Switch>
 

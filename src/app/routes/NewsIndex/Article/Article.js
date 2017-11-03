@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { Spin, Layout } from 'antd'
 import { Link } from 'react-router-dom'
 import Title from './components/Title'
-import { get } from '../../Util'
+import { get } from '../../../Util'
+import apiUrl from '../../../apiUrl'
 import './Article.scss'
 const Content = Layout.Content
 export default class Article extends React.Component {
@@ -15,22 +16,33 @@ export default class Article extends React.Component {
     }
   }
   componentDidMount() {
-    const { match } = this.props
+    const { match,location } = this.props
     if (match.params.id === null) {
       return
     }
-    get('/api/v0/news/getNew', {
+    let url = apiUrl.newUrl
+    if(location.pathname.indexOf('notice') > 0){
+      url = apiUrl.noticeInfoUrl
+    }
+    get(url, {
       id: match.params.id
     }).then(data => this.setState({
       response: data,
       loading: false,
     }))
   }
+
+  onBack(e){
+    e.preventDefault()
+    const {history} = this.props
+    history.goBack()
+  }
   render() {
     const response = this.state.response
+    console.log(response)
     return (
-      <Content style={{ padding: '10px 200px', background: 'white' }}>
-        <div className="tools"><Link to="/news">&lt;&lt;返回上一级</Link></div>
+      <Content className="custom-container" style={{ background: 'white' }}>
+        <div className="tools"><Link to="javascript:void(0)" onClick={this.onBack.bind(this)}>&lt;&lt;返回上一级</Link></div>
         <Spin spinning={this.state.loading}>
           {response != null ? <div style={{ background: 'white' }}>
             {[
@@ -48,4 +60,6 @@ export default class Article extends React.Component {
 
 Article.propTypes = {
   match: PropTypes.object,
+  history:PropTypes.object.isRequired,
+  location:PropTypes.object.isRequired,
 }

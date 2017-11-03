@@ -1,3 +1,3 @@
-import NewsIndex from './NewsIndex'
+import NewsLayout from './NewsLayout'
 
-export default NewsIndex
+export default NewsLayout

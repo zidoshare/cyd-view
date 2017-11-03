@@ -9,11 +9,10 @@
  */
 
 import React, { PropTypes } from 'react'
-import { Layout, Row, Col } from 'antd'
+import { Layout,Row,Col } from 'antd'
 const Content = Layout.Content
-import { Anchor, Spin } from 'antd'
+import {Spin } from 'antd'
 import {get} from '../../Util'
-const { Link } = Anchor
 import apiUrl from '../../apiUrl'
 import './Careers.scss'
 class Careers extends React.Component {
@@ -39,12 +38,8 @@ class Careers extends React.Component {
 
   render() {
     const { response } = this.state
-    let linkList = []
     let infoList = []
     if (response !== null) {
-      linkList = response.data.map((value, index) => (
-        <Link key={'link' + index} href={'#info' + index} title={value.name} />
-      ))
       infoList = response.data.map((value, index) => (
         <li key={'info' + index} id={'info' + index}>
           <div className="careers-info">
@@ -52,7 +47,6 @@ class Careers extends React.Component {
               {value.name}:
             </div>
             <div className="careers-content">
-              <h3>岗位职责</h3>
               <div dangerouslySetInnerHTML={{ __html: value.description }} />
             </div>
           </div>
@@ -60,24 +54,52 @@ class Careers extends React.Component {
       ))
     }
     return (
-      <Content style={{ padding: '0 100px', minHeight: 600, }} className="nr">
-        <div className="car-title"><h1>招贤纳士</h1></div>
-        <Spin spinning={this.state.loading} delay={500} tip={'正在加载...'}>
-          <Row>
-            <Col span={3}>
-              <Anchor style={{ background: 'url(http://oow7renvm.bkt.clouddn.com/bj.png)' }} className="car-link" offsetTop={64}>
-                {linkList}
-              </Anchor>
-            </Col>
-            <Col span={21}>
-
+      <Content className="car-container">
+        <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/career-banner-1.jpg"/>
+          <div className="nr" >
+            <img className="nr-ins" src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/career-person-1.png"/>
+            <Spin  spinning={this.state.loading} delay={500} tip={'正在加载...'}>
               <ul style={{ padding: 20 }}>
                 {infoList}
               </ul>
-
-            </Col>
-          </Row>
-        </Spin>
+            </Spin>
+            <div className="car-panel">
+            <h1>公司福利</h1>
+              <h1>CORPORATE WELFARE</h1>
+            <Row gutter={10} className="car-panel-ins">
+              
+              <Col span={6}>
+                <div style={{background:'#566E86',height:215,marginBottom:10}}>
+                  <h1>薪资</h1>
+                  <p>3000~8000元无责任底薪+提成+奖金+福利</p>
+                </div>
+                <div style={{background:'#52908F',height:215}}>
+                  <h1>晋升体系</h1>
+                  <p>公司将定期组织职务晋升并调整相关待遇</p>
+                </div>
+              </Col>
+              <Col span={6}>
+                <div style={{background:'#138EEC',height:440}}>
+                  <h1>社会保障</h1>
+                  <p>提供养老保险、生育保险、工伤保险、失业保险及医疗保险</p>
+                </div>
+              </Col>
+              <Col span={12}>
+                <div style={{background:'#9A8B52',height:215,marginBottom:10}}>
+                  <h1>员工关怀</h1>
+                  <p>餐补、房补、话补、绩效奖金、旅游奖励、年度红包</p>
+                </div>
+                <div style={{background:'#F7702E',height:215}}>
+                  <h1>工作待遇</h1>
+                  <p>朝九晚六、周末单休、享国家法定节假日</p>
+                </div>
+              </Col>
+            </Row>
+            <p>如果你对我们的职位感兴趣，并且符合我们公司的基本要求</p>
+            <p>欢迎拨打公司招聘热线与我们联系</p>
+            <p>联系电话：028-69290213   李妍</p>
+            </div>
+        </div>
       </Content>
     )
   }
