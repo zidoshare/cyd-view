@@ -58,7 +58,7 @@ export default class App extends React.Component {
                 title: '招贤纳士'
               }, {
                 path: '/contact',
-                title: '联系地址'
+                title: '联系我们'
               }]
             }]}>
           </Nav>
