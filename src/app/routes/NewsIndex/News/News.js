@@ -38,10 +38,10 @@ export default class News extends React.Component {
         </Affix>
           <div style={{ minHeight: 600 }} className="clear-fix">
             <Switch>
-              <Route path="/news/list" exact component={NewsList}/>
               <Route path="/news/list/info/:id" component={Article} />
               <Route path="/news/list/notice/info/:id" component={Article} />
-              <Route path="/news/list/notice" component={NoticeList} />
+              <Route path="/news/list/notice/:p?" component={NoticeList} />
+              <Route path="/news/list/:p?" exact component={NewsList}/>
               <Route component={PageNotFound} />
             </Switch>
           </div>
