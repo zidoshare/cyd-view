@@ -21,7 +21,7 @@ export default class AboutUs extends React.Component{
                     key="0"
                   >
                     {/*图片写在这*/}
-                    <img src="http://oow7renvm.bkt.clouddn.com/gsdl.jpg"/></div>
+                    <img src="http://oow7renvm.bkt.clouddn.com/283443172508208883.jpg"/></div>
                   <div
                     key="1"
                   >
@@ -53,7 +53,7 @@ export default class AboutUs extends React.Component{
                   <div className="about-item-img" style={{backgroundImage:'url(http://oow7renvm.bkt.clouddn.com/1111111.jpg)'}}>
                   </div>
                   <div className="about-item-desc">
-                    <p>藏品展示区</p>
+                    <p>舒适的办公环境</p>
                   </div>
                 </Card>
               </Col>
