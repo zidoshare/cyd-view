@@ -47,6 +47,7 @@ export default class Home extends React.Component{
           prevArrow={<SampleArrow type="left"/>} 
           nextArrow={<SampleArrow type="right"/>}
           autoplay
+          autoplaySpeed={2000}
         >
           <div>
             <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner6.jpg"/>
