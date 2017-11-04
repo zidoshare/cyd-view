@@ -71,27 +71,28 @@ class Careers extends React.Component {
               <Col span={6}>
                 <div style={{background:'#566E86',height:215,marginBottom:10}}>
                   <h1>薪资</h1>
-                  <p>3000~8000元无责任底薪+提成+奖金+福利</p>
+                  <p>3000~8000元<br/>无责任底薪+提成+奖金+福利</p>
                 </div>
                 <div style={{background:'#52908F',height:215}}>
-                  <h1>晋升体系</h1>
-                  <p>公司将定期组织职务晋升并调整相关待遇</p>
+                  <h1>晋升</h1>
+                  <p>季度晋升职务<br/>薪资福利调整</p>
                 </div>
               </Col>
               <Col span={6}>
                 <div style={{background:'#138EEC',height:440}}>
+                <br/><br/><br/>
                   <h1>社会保障</h1>
-                  <p>提供养老保险、生育保险、工伤保险、失业保险及医疗保险</p>
+                  <p>养老保险<br/>生育保险<br/>工伤保险<br/>失业保险<br/>医疗保险</p>
                 </div>
               </Col>
               <Col span={12}>
                 <div style={{background:'#9A8B52',height:215,marginBottom:10}}>
                   <h1>员工关怀</h1>
-                  <p>餐补、房补、话补、绩效奖金、旅游奖励、年度红包</p>
+                  <p>餐补、房补、话补<br/>绩效奖金、旅游奖励、年度红包</p>
                 </div>
                 <div style={{background:'#F7702E',height:215}}>
                   <h1>工作待遇</h1>
-                  <p>朝九晚六、周末单休、享国家法定节假日</p>
+                  <p>朝九晚六、周末单休<br/>享国家法定节假日</p>
                 </div>
               </Col>
             </Row>

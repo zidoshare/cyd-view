@@ -87,34 +87,37 @@ export default class Home extends React.Component{
             img:humPic,
             title:'人文理念',
             msg:<div>
-                <p>共创、共赢、共享</p>
-                <p>（事业共创、业绩共赢、成果共享）</p>
+                <p>共创<br/>共赢<br/>共享</p>
+                <p>（事业共创<br/>业绩共赢<br/>成果共享）</p>
               </div>
           },{
             img:culturePic,
             title:'文化核心',
             msg:<div>
                 <p>信任、个性</p>
-                <p>（因信任而包容、因个性而创造）</p>
+                <p>（因信任<br/>而包容、<br/>因个性<br/>而创造）</p>
               </div>,
           },{
             img:pic7,
             title:'收藏理念',
             msg:<div>
-                <p>全民收藏（懂得收藏、能够收藏）</p>
-                <p>潜在价值（市场走向、保值升值）</p>
+                <p>全民收藏<br/>（懂得收藏<br/>能够收藏）</p>
+                <p>潜在价值<br/>（市场走向<br/>保值升值）</p>
               </div>,
           },{
             img:serverPic,
             title:'服务品质',
             msg:<div>
-                <p>顾客至上（心系感受、保障利益）</p>
-                <p>优质精品（差异选择、层级管理）</p>
+                <p>顾客至上<br/>（心系感受<br/>保障利益）</p>
+                <p>优质精品<br/>（差异选择<br/>层级管理）</p>
               </div>,
           },{
             img:mindPic,
             title:'世局观',
-            msg:'空间拓展（一极多元、融合发展）人文拓展、物质追求、精神共享'
+            msg:<div>
+            <p>空间拓展<br/>（一极多元<br/>融合发展）</p>
+            <p>人文拓展<br/>（物质追求<br/>精神共享）</p>
+          </div>,
           }]}/>
         </div>
         <div className="folder" style={{height:'auto'}}>
