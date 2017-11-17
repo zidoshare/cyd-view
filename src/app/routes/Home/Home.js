@@ -54,7 +54,7 @@ export default class Home extends React.Component{
             <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner8.jpg"/>
           </div>
           <div>
-            <img src="http://oow7renvm.bkt.clouddn.com/banner%E6%9C%AA%E4%BF%AE%E6%94%B91.jpg"/>
+            <img src="http://oow7renvm.bkt.clouddn.com/banner%E6%9C%AA%E4%BF%AE%E6%94%B92.jpg"/>
           </div>
         </Carousel>
         <div className="folder">
