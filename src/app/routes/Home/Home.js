@@ -48,6 +48,9 @@ export default class Home extends React.Component{
           nextArrow={<SampleArrow type="right"/>}
         >
           <div>
+            <img src="http://oow7renvm.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E6%96%87%E5%8C%96banner.jpg"/>
+          </div>
+          <div>
             <img src="http://odp22tnw6.bkt.clouddn.com/v1/commodity/banner6.jpg"/>
           </div>
           <div>
