@@ -31,7 +31,7 @@ const isDev = (env === 'development')
 const common = {
   rootPath: rootPath,
   srcPath: srcPath,
-  dist: path.join(rootPath, 'dist'),
+  dist: path.join(rootPath, 'cyd-dist'),
   indexHtml: path.join(srcPath, 'index.html'),
   staticDir: path.join(rootPath, 'static'),
   theme: {}
@@ -267,7 +267,7 @@ if (isDev) {
   webpackConfig.devServer = {
     historyApiFallback: true,
     hot: true,
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, 'cyd-dist'),
     publicPath: '/',
     clientLogLevel: 'none', //日志
     compress: true, //压缩
