@@ -2,5 +2,6 @@
 /.idea/
 /node_modules/
 /dist/
+/cyd-dist/
 # 添加了自动部署脚本，内含服务器密码，所以忽略不上传
 *.sh
