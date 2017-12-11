@@ -43,6 +43,8 @@ export default class Home extends React.Component{
           className="banner-item" 
           draggable 
           pauseOnHover
+          autoplay
+          autoplaySpeed={2000}
           arrows = {!isMode}
           prevArrow={<SampleArrow type="left"/>} 
           nextArrow={<SampleArrow type="right"/>}
