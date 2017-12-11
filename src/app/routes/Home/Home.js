@@ -59,6 +59,9 @@ export default class Home extends React.Component{
           <div>
             <img src="http://oow7renvm.bkt.clouddn.com/banner%E6%9C%AA%E4%BF%AE%E6%94%B92.jpg"/>
           </div>
+          <div>
+            <img src="http://oow7renvm.bkt.clouddn.com/%E5%92%8C%E5%AD%97%E5%B8%81.jpg"/>
+          </div>
         </Carousel>
         <div className="folder">
           <h1 className="text-center folder-title">
